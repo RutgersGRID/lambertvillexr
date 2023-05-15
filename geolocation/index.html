@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <style>
+      * {
+        font-family: "Urbanist";
+        font-weight: 700;
+      }
+    </style>
+    <script>
+      window.addEventListener("load", (event) => {
+        var debugElem = document.querySelector("#debug");
+        console.log(debugElem);
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition((position) => {
+            const geoPos = {
+              x: position.coords.latitude,
+              y: position.coords.longitude,
+            };
+            const targetPos = {
+              x: 40.477723,
+              y: -74.425498,
+            };
+            const dist = Math.sqrt(
+              Math.pow(geoPos.x - targetPos.x, 2),
+              Math.pow(geoPos.y - targetPos.y, 2)
+            );
+            const distKilometers = dist * 111;
+            const distMeters = distKilometers * 1000;
+            debugElem.innerHTML = `current: lat: ${geoPos.x} long: ${geoPos.y}<br>target: lat: ${targetPos.x}; long: ${targetPos.y}<br>distance: ${distMeters} meters`;
+          });
+        } else {
+          debugElem.innerHTML = "Geolocation is not supported.";
+        }
+      });
+    </script>
+  </head>
+  <div
+    style="
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2em;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+    "
+  >
+    <span style="margin: 0; font-size: 1.5em" id="debug"></span>
+  </div>
+  <body style="margin: 0; overflow: hidden">
+    <a-scene
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      loading-screen="enabled: false;"
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-assets>
+        <a-asset-item id="avocado" src="Avocado.glb"></a-asset-item>
+      </a-assets>
+
+      <a-entity
+        look-at="[gps-camera]"
+        gltf-model="#avocado"
+        scale="20 20 20"
+        gps-entity-place="latitude: 40.477723; longitude: -74.425498;"
+      ></a-entity>
+
+      <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+  </body>
+</html>

@@ -11,7 +11,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        about: resolve(__dirname, "marker/index.html"),
+        marker: resolve(__dirname, "marker/index.html"),
+        geolocation: resolve(__dirname, "geolocation/index.html"),
         main: resolve(__dirname, "index.html"),
       },
     },
