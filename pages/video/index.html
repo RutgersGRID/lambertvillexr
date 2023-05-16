@@ -10,7 +10,18 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <link rel="stylesheet" href="/styles.css" />
-    <script lang="ts">
+    <script>
+      (function prependBase() {
+        document.querySelectorAll("a").forEach((link) => {
+          let url = link.getAttribute("href");
+          if (url?.startsWith("/")) {
+            url = import.meta.env.BASE_URL + url.slice(1);
+            link.setAttribute("href", url);
+          }
+        });
+      })();
+    </script>
+    <script>
       const avocadoVideoRatio = 3840 / 2160;
       const avocadoVideoHeight = 1;
       const avocadoVideoWidth = avocadoVideoHeight * avocadoVideoRatio;
