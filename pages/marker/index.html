@@ -1,82 +1,45 @@
-<head>
-  <link
-    rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥑</text></svg>"
-  />
-  <title>AFrame Geolocation</title>
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Marker</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
+    />
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body style="margin: 0px; overflow: hidden">
+    <a-scene
+      embedded
+      renderer="antialias: true; alpha: true; precision: high;"
+      vr-mode-ui="enabled: false"
+      loading-screen="enabled: false;"
+      arjs="sourceType: webcam; maxDetectionRate: 60; detectionMode: mono;"
+      stats
+      style="height: 100%; width: 100%"
+    >
+      <a-assets>
+        <a-asset-item id="avocado" src="/Avocado.glb"></a-asset-item>
+      </a-assets>
 
-  <script>
-    window.addEventListener("load", (event) => {
-      const scene = document.querySelector("a-scene");
-      const resolutionScale = 1;
-      // scene.setAttribute("arjs", {
-      // });
-      const arjsSystem = scene.systems["arjs"];
-      const _arProfile = arjsSystem._arProfile;
-      _arProfile.trackingMethod("best");
-      _arProfile.contextParameters = {
-        ..._arProfile.contextParameters,
-        ...{
-          sourceType: "webcam",
-          maxDetectionRate: 60,
-          detectionMode: "mono",
-        },
-      };
-
-      // Make it a square
-      // const maxLength =
-      //   window.innerWidth > window.innerHeight
-      //     ? window.innerWidth
-      //     : window.innerHeight;
-      // _arProfile.sourceParameters = {
-      //   ..._arProfile.sourceParameters,
-      //   ...{
-      //     sourceWidth: maxLength * resolutionScale,
-      //     sourceHeight: maxLength * resolutionScale,
-      //     displayWidth: maxLength * resolutionScale,
-      //     displayHeight: maxLength * resolutionScale,
-      //   },
-      // };
-
-      // _arProfile.sourceParameters = {
-      //   ..._arProfile.sourceParameters,
-      //   ...{
-      //     sourceWidth: window.innerWidth * resolutionScale,
-      //     sourceHeight: window.innerHeight * resolutionScale,
-      //     displayWidth: window.innerWidth * resolutionScale,
-      //     displayHeight: window.innerHeight * resolutionScale,
-      //   },
-      // };
-    });
-  </script>
-</head>
-<body style="margin: 0px; overflow: hidden">
-  <a-scene
-    embedded
-    renderer="antialias: true; alpha: true; precision: high;"
-    vr-mode-ui="enabled: false"
-    stats
-    style="height: 100%; width: 100%"
-  >
-    <a-assets>
-      <a-asset-item id="avocado" src="/Avocado.glb"></a-asset-item>
-    </a-assets>
-
-    <a-marker preset="hiro" smooth="true">
-      <a-entity
-        position="0 1 0"
-        gltf-model="#avocado"
-        scale="20 20 20"
-        rotation="-45 90 0"
-      ></a-entity>
-      <a-box
-        position="0 0.25 0"
-        material="opacity: 0.5;"
-        scale="0.5 0.5 0.5"
-      ></a-box>
-    </a-marker>
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
+      <a-marker preset="hiro" smooth="true">
+        <a-entity
+          position="0 1 0"
+          gltf-model="#avocado"
+          scale="20 20 20"
+          rotation="-45 90 0"
+        ></a-entity>
+        <a-box
+          position="0 0.25 0"
+          material="opacity: 0.5;"
+          scale="0.5 0.5 0.5"
+        ></a-box>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+    <a href="/index.html" class="linkButton backButton">⬅️ Back</a>
+  </body>
+</html>

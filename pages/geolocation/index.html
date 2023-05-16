@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <title>Geolocation</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥑</text></svg>"
-    />
-    <title>AFrame Geolocation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
     />
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <style>
-      * {
-        font-family: "Urbanist";
-        font-weight: 700;
-      }
-    </style>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/styles.css" />
+
     <script>
       window.addEventListener("load", (event) => {
         var debugElem = document.querySelector("#debug");
-        console.log(debugElem);
         if (navigator.geolocation) {
           navigator.geolocation.watchPosition((position) => {
             const geoPos = {
@@ -44,7 +32,11 @@
             );
             const distKilometers = dist * 111;
             const distMeters = distKilometers * 1000;
-            debugElem.innerHTML = `current: lat: ${geoPos.x} long: ${geoPos.y}<br>target: lat: ${targetPos.x}; long: ${targetPos.y}<br>distance: ${distMeters} meters`;
+            debugElem.innerHTML = `<b>current:</b> lat: ${geoPos.x} long: ${
+              geoPos.y
+            }<br><b>target:</b> lat: ${targetPos.x}; long: ${
+              targetPos.y
+            }<br><b>distance:</b> ${distMeters.toFixed(2)} meters`;
           });
         } else {
           debugElem.innerHTML = "Geolocation is not supported.";
@@ -86,5 +78,6 @@
 
       <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
+    <a href="/index.html" class="linkButton backButton">⬅️ Back</a>
   </body>
 </html>
