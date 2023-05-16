@@ -8,6 +8,11 @@ export default defineConfig({
       targets: ["defaults", "not IE 11"],
     }),
   ],
+  resolve: {
+    alias: [
+      { find: '@', replacement: resolve(__dirname, 'public/') },
+    ],
+  },
   build: {
     rollupOptions: {
       input: {

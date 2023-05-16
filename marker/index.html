@@ -1,52 +1,59 @@
-<!-- include A-Frame obviously -->
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<!-- include ar.js for A-Frame -->
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+<head>
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥑</text></svg>"
+  />
+  <title>AFrame Geolocation</title>
+  <!-- include A-Frame obviously -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- include ar.js for A-Frame -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-<script>
-  window.addEventListener("load", (event) => {
-    const scene = document.querySelector("a-scene");
-    const resolutionScale = 1;
-    // scene.setAttribute("arjs", {
-    // });
-    const arjsSystem = scene.systems["arjs"];
-    const _arProfile = arjsSystem._arProfile;
-    _arProfile.trackingMethod("best");
-    _arProfile.contextParameters = {
-      ..._arProfile.contextParameters,
-      ...{
-        sourceType: "webcam",
-        maxDetectionRate: 60,
-        detectionMode: "mono",
-      },
-    };
+  <script>
+    window.addEventListener("load", (event) => {
+      const scene = document.querySelector("a-scene");
+      const resolutionScale = 1;
+      // scene.setAttribute("arjs", {
+      // });
+      const arjsSystem = scene.systems["arjs"];
+      const _arProfile = arjsSystem._arProfile;
+      _arProfile.trackingMethod("best");
+      _arProfile.contextParameters = {
+        ..._arProfile.contextParameters,
+        ...{
+          sourceType: "webcam",
+          maxDetectionRate: 60,
+          detectionMode: "mono",
+        },
+      };
 
-    // Make it a square
-    // const maxLength =
-    //   window.innerWidth > window.innerHeight
-    //     ? window.innerWidth
-    //     : window.innerHeight;
-    // _arProfile.sourceParameters = {
-    //   ..._arProfile.sourceParameters,
-    //   ...{
-    //     sourceWidth: maxLength * resolutionScale,
-    //     sourceHeight: maxLength * resolutionScale,
-    //     displayWidth: maxLength * resolutionScale,
-    //     displayHeight: maxLength * resolutionScale,
-    //   },
-    // };
+      // Make it a square
+      // const maxLength =
+      //   window.innerWidth > window.innerHeight
+      //     ? window.innerWidth
+      //     : window.innerHeight;
+      // _arProfile.sourceParameters = {
+      //   ..._arProfile.sourceParameters,
+      //   ...{
+      //     sourceWidth: maxLength * resolutionScale,
+      //     sourceHeight: maxLength * resolutionScale,
+      //     displayWidth: maxLength * resolutionScale,
+      //     displayHeight: maxLength * resolutionScale,
+      //   },
+      // };
 
-    // _arProfile.sourceParameters = {
-    //   ..._arProfile.sourceParameters,
-    //   ...{
-    //     sourceWidth: window.innerWidth * resolutionScale,
-    //     sourceHeight: window.innerHeight * resolutionScale,
-    //     displayWidth: window.innerWidth * resolutionScale,
-    //     displayHeight: window.innerHeight * resolutionScale,
-    //   },
-    // };
-  });
-</script>
+      // _arProfile.sourceParameters = {
+      //   ..._arProfile.sourceParameters,
+      //   ...{
+      //     sourceWidth: window.innerWidth * resolutionScale,
+      //     sourceHeight: window.innerHeight * resolutionScale,
+      //     displayWidth: window.innerWidth * resolutionScale,
+      //     displayHeight: window.innerHeight * resolutionScale,
+      //   },
+      // };
+    });
+  </script>
+</head>
 <body style="margin: 0px; overflow: hidden">
   <a-scene
     embedded
