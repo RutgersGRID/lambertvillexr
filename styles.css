@@ -1,0 +1,42 @@
+:root {
+  --theme-blue: #415466;
+  --theme-tan: #a79d89;
+  --theme-white: #e9e9e9;
+  --theme-black: #002625;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.linkButton {
+  text-decoration: none;
+  border-radius: 0.4rem;
+  background-color: var(--theme-tan);
+  color: var(--theme-black);
+  padding: 0.8rem 1.6rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: auto;
+  transition: all 0.1s;
+}
+
+.linkButton:hover {
+  filter: brightness(85%);
+}
+
+.backButton {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
