@@ -1,1 +1,0 @@
-System.register([],(function(t,e){"use strict";return{execute:function(){document.querySelectorAll("a").forEach((t=>{let e=t.getAttribute("href");e?.startsWith("/")&&(e="/lambertvillexr/"+e.slice(1),t.setAttribute("href",e))}))}}}));
