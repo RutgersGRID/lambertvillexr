@@ -10,7 +10,6 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <link rel="stylesheet" href="/styles.css" />
-    <script type="module" src="/main.ts"></script>
     <script>
       const avocadoVideoRatio = 3840 / 2160;
       const avocadoVideoHeight = 1;
@@ -34,7 +33,7 @@
       style="height: 100%; width: 100%"
     >
       <a-assets>
-        <a-asset-item id="avocado" src="/Avocado.glb"></a-asset-item>
+        <a-asset-item id="avocado" src="%BASE_URL%Avocado.glb"></a-asset-item>
         <video
           id="avocado-video"
           autoplay
@@ -59,6 +58,6 @@
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
-    <a href="/" class="linkButton backButton">⬅️ Back</a>
+    <a href="%BASE_URL%" class="linkButton backButton">⬅️ Back</a>
   </body>
 </html>

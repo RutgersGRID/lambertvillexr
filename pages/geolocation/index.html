@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/styles.css" />
-    <script type="module" src="/main.ts"></script>
     <script>
       window.addEventListener("load", (event) => {
         var debugElem = document.querySelector("#debug");
@@ -66,7 +65,7 @@
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
       <a-assets>
-        <a-asset-item id="avocado" src="/Avocado.glb"></a-asset-item>
+        <a-asset-item id="avocado" src="%BASE_URL%Avocado.glb"></a-asset-item>
       </a-assets>
 
       <a-entity
@@ -78,6 +77,6 @@
 
       <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
-    <a href="/" class="linkButton backButton">⬅️ Back</a>
+    <a href="%BASE_URL%" class="linkButton backButton">⬅️ Back</a>
   </body>
 </html>
