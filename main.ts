@@ -19,4 +19,4 @@ function prependBase() {
   });
 }
 
-window.addEventListener("load", (event) => prependBase);
+prependBase();
