@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
 
     <script>
+      (function prependBase() {
+        document.querySelectorAll("a").forEach((link) => {
+          let url = link.getAttribute("href");
+          if (url?.startsWith("/")) {
+            url = import.meta.env.BASE_URL + url.slice(1);
+            link.setAttribute("href", url);
+          }
+        });
+      })();
+    </script>
+    <script>
       window.addEventListener("load", (event) => {
         var debugElem = document.querySelector("#debug");
         if (navigator.geolocation) {
