@@ -2,14 +2,16 @@
   "name": "LambertvilleXR",
   "scripts": {
     "build": "vite build",
-    "start": "vite --host",
-    "start:live": "concurrently --names 'vite,localtunnel' --prefix-colors 'green,yellow' --kill-others-on-fail \"npm start -- --port 4225\" \"lt --port 4225\""
+    "start": "vite --host --port 4225",
+    "start:live": "concurrently --names 'vite,localtunnel' --prefix-colors 'green,yellow' --kill-others-on-fail \"npm start -- \" \"lt --port 4225\"",
+    "ngrok": "ngrok http 4225"
   },
   "dependencies": {
     "@ar-js-org/ar.js": "^3.4.5",
     "three": "^0.152.2"
   },
   "devDependencies": {
+    "@types/node": "^20.1.5",
     "@vitejs/plugin-legacy": "^4.0.3",
     "concurrently": "^8.0.1",
     "localtunnel": "^2.0.2",
