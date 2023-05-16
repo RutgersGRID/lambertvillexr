@@ -1,4 +1,4 @@
-(function prependBase() {
+function prependBase() {
   document.querySelectorAll("a").forEach((link) => {
     let url = link.getAttribute("href");
     if (url?.startsWith("/")) {
@@ -14,4 +14,6 @@
       item.setAttribute("src", url);
     }
   });
-})();
+}
+
+window.addEventListener("load", (event) => prependBase);
