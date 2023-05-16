@@ -1,4 +1,4 @@
-window.addEventListener("load", (event) => {
+(function prependBase() {
   document.querySelectorAll("a").forEach((link) => {
     let url = link.getAttribute("href");
     if (url?.startsWith("/")) {
@@ -6,4 +6,4 @@ window.addEventListener("load", (event) => {
       link.setAttribute("href", url);
     }
   });
-});
+})();
