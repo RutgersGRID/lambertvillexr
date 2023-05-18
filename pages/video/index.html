@@ -11,14 +11,53 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
     <script>
-      const avocadoVideoRatio = 3840 / 2160;
-      const avocadoVideoHeight = 1;
-      const avocadoVideoWidth = avocadoVideoHeight * avocadoVideoRatio;
+      AFRAME.registerComponent("play-on-click", {
+        init: function () {
+          this.onClick = this.onClick.bind(this);
+        },
+        play: function () {
+          window.addEventListener("click", this.onClick);
+        },
+        pause: function () {
+          window.removeEventListener("click", this.onClick);
+        },
+        onClick: function (evt) {
+          var videoEl = this.el.getAttribute("material").src;
+          if (!videoEl) {
+            return;
+          }
+          this.el.object3D.visible = true;
+          videoEl.play();
+        },
+      });
 
-      window.addEventListener("load", (event) => {
-        const avocadoAVideo = document.querySelector("#avocado-avideo");
-        avocadoAVideo.setAttribute("width", avocadoVideoWidth);
-        avocadoAVideo.setAttribute("height", avocadoVideoHeight);
+      AFRAME.registerComponent("hide-on-play", {
+        schema: {
+          type: "selector",
+        },
+        init: function () {
+          this.onPlaying = this.onPlaying.bind(this);
+          this.onPause = this.onPause.bind(this);
+          this.el.object3D.visible = !this.data.playing;
+        },
+        play: function () {
+          if (this.data) {
+            this.data.addEventListener("playing", this.onPlaying);
+            this.data.addEventListener("pause", this.onPause);
+          }
+        },
+        pause: function () {
+          if (this.data) {
+            this.data.removeEventListener("playing", this.onPlaying);
+            this.data.removeEventListener("pause", this.onPause);
+          }
+        },
+        onPlaying: function (evt) {
+          this.el.object3D.visible = false;
+        },
+        onPause: function (evt) {
+          this.el.object3D.visible = true;
+        },
       });
     </script>
     <script async type="module" crossorigin src="/lambertvillexr/assets/video-28788956.js"></script>
@@ -34,31 +73,51 @@
       style="height: 100%; width: 100%"
     >
       <a-assets>
-        <a-asset-item id="avocado" src="/lambertvillexr/Avocado.glb"></a-asset-item>
         <video
           id="avocado-video"
+          preload="auto"
+          width="160"
+          height="90"
           autoplay
           muted
           loop="true"
           src="/lambertvillexr/avocado.mp4"
+          crossorigin="anonymous"
         ></video>
       </a-assets>
 
-      <a-marker preset="hiro" smooth="true">
-        <a-video
-          id="avocado-avideo"
-          src="#avocado-video"
-          positon="0 1 0"
-          rotation="-90 90 -90"
-          scale="1 1 1"
-        ></a-video>
-        <a-box
-          position="0 0.25 0"
-          material="opacity: 0.5;"
-          scale="0.5 0.5 0.5"
-        ></a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
+      <a-entity
+        material="shader: flat; src: #avocado-video"
+        geometry="primitive: plane; width: 160; height: 90;"
+        position="0 60 -250"
+        rotation="0 35 0"
+        play-on-click
+        visible="false"
+      >
+      </a-entity>
+
+      <a-entity
+        material="shader: flat; src: #avocado-video"
+        geometry="primitive: plane; width: 160; height: 90"
+        position="0 -60 -200"
+        rotation="0 -35 0"
+        play-on-click
+        visible="false"
+      >
+      </a-entity>
+      <a-entity position="0 0 0" hide-on-play="#avocado-video">
+        <a-entity
+          position="0 0 -2"
+          text="
+          align: center;
+          width: 6;
+          wrapCount: 100;
+          font: https://cdn.aframe.io/fonts/Exo2Bold.fnt;
+          color: white;
+          value: C L I C K   T O   S T A R T"
+        ></a-entity>
+      </a-entity>
+      <a-entity camera look-controls></a-entity>
     </a-scene>
     <a href="/lambertvillexr/" class="linkButton backButton">⬅️ Back</a>
     <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
