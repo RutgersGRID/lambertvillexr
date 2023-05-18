@@ -13,17 +13,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/styles.css" />
     <script>
-      function getLog(latitude, longitude){
-        var cord = "latitude:"+latitude+"; longitude:"+longitude;
+      function getGPSString(latitude, longitude) {
+        return `latitude:${latitude}; longitude:${longitude}`;
         return cord;
       }
       window.addEventListener("load", (event) => {
-        var time= prompt("Enter Coordinates");
-        let token = time.split(', ');
-        var latitude= token[0];
-        var longitude= token[1];
-        var gpsentity = document.querySelector("#gpsentity")
-        gpsentity.setAttribute("gps-entity-place",getLog(latitude, longitude))
+        var time = prompt("Enter Coordinates");
+        let token = time.split(", ");
+        var latitude = token[0];
+        var longitude = token[1];
+        var gpsentity = document.querySelector("#gpsentity");
+        gpsentity.setAttribute(
+          "gps-entity-place",
+          getGPSString(latitude, longitude)
+        );
         var debugElem = document.querySelector("#debug");
         if (navigator.geolocation) {
           navigator.geolocation.watchPosition((position) => {
