@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("/assets/fonts/Raleway/Raleway-VariableFont_wwght.ttf") format("truetype") tech("variations");
+}
+
 :root {
   --theme-blue: #415466;
   --theme-tan: #a79d89;

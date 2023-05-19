@@ -7,8 +7,8 @@
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
     />
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="%BASE_URL%scripts/aframe.min.js"></script>
+    <script src="%BASE_URL%scripts/aframe-ar.js"></script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body style="margin: 0px; overflow: hidden">
@@ -22,8 +22,8 @@
       style="height: 100%; width: 100%"
     >
       <a-assets>
-        <a-asset-item id="avocado" src="%BASE_URL%Avocado.glb"></a-asset-item>
-        <audio id="river-audio" src="%BASE_URL%river.wav" preload="auto"></audio>
+        <a-asset-item id="avocado" src="%BASE_URL%assets/models/Avocado.glb"></a-asset-item>
+        <audio id="river-audio" src="%BASE_URL%assets/sounds/river.wav" preload="auto"></audio>
       </a-assets>
 
       <a-marker preset="hiro" smooth="true">
