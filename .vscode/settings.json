@@ -2,5 +2,6 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "liveServer.settings.root": "/dist",
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "liveServer.settings.port": 5501
 }
