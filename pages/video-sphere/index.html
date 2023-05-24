@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Sphere</title>
+    <script src="%BASE_URL%scripts/aframe.min.js"></script>
+    <script src="%BASE_URL%scripts/video-controls.js"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <script>
+      AFRAME.registerSystem("style-video-controls", {
+        init: function () {
+          window.addEventListener("load", (event) => {
+            this.videoControlElems = document.querySelectorAll("[video-controls]");
+            for (let i = 0; i < this.videoControlElems.length; i++) {
+              const elem = this.videoControlElems[i];
+              const videoControls = elem.components["video-controls"];
+              const elemStyles = getComputedStyle(elem);
+              const themeBlue = elemStyles.getPropertyValue("--theme-blue");
+              const themeTan = elemStyles.getPropertyValue("--theme-tan");
+              const themeWhite = elemStyles.getPropertyValue("--theme-white");
+              const themeBlack = elemStyles.getPropertyValue("--theme-black");
+              videoControls.data.infoTextTop = "Look + click on play or bar ";
+              videoControls.data.infoTextBottom = "";
+              videoControls.data.backgroundColor = themeBlue;
+              videoControls.data.barColor = themeTan;
+              videoControls.data.textColor = themeWhite;
+              videoControls.data.infoTextFont = "500 2em Raleway";
+              videoControls.data.statusTextFont = "800 2em Raleway";
+              videoControls.data.timeTextFont = "800 3em Raleway";
+            }
+          });
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <video
+          id="video-sphere"
+          loop="true"
+          src="%BASE_URL%assets/pano/smaller.mp4"
+          webkit-playsinline
+          play-on-click
+        ></video
+        >e
+      </a-assets>
+
+      <a-camera position="0 1.6 0" wasd-controls-enabled="false">
+        <a-cursor id="cursor" color="white"></a-cursor>
+      </a-camera>
+      <a-videosphere src="#video-sphere"></a-videosphere>
+      <a-entity video-controls="src:#video-sphere; distance:1"></a-entity>
+    </a-scene>
+    <a href="%BASE_URL%" class="linkButton backButton">⬅️ Back</a>
+  </body>
+</html>
