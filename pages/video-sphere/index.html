@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Sphere</title>
+    <script src="/lambertvillexr/scripts/aframe.min.js"></script>
+    <script src="/lambertvillexr/scripts/video-controls.js"></script>
+    <link rel="stylesheet" href="/lambertvillexr/styles.css" />
+    <script>
+      AFRAME.registerSystem("style-video-controls", {
+        init: function () {
+          window.addEventListener("load", (event) => {
+            this.videoControlElems = document.querySelectorAll("[video-controls]");
+            for (let i = 0; i < this.videoControlElems.length; i++) {
+              const elem = this.videoControlElems[i];
+              const videoControls = elem.components["video-controls"];
+              const elemStyles = getComputedStyle(elem);
+              const themeBlue = elemStyles.getPropertyValue("--theme-blue");
+              const themeTan = elemStyles.getPropertyValue("--theme-tan");
+              const themeWhite = elemStyles.getPropertyValue("--theme-white");
+              const themeBlack = elemStyles.getPropertyValue("--theme-black");
+              videoControls.data.infoTextTop = "Look + click on play or bar ";
+              videoControls.data.infoTextBottom = "";
+              videoControls.data.backgroundColor = themeBlue;
+              videoControls.data.barColor = themeTan;
+              videoControls.data.textColor = themeWhite;
+              videoControls.data.infoTextFont = "500 2em Raleway";
+              videoControls.data.statusTextFont = "800 2em Raleway";
+              videoControls.data.timeTextFont = "800 3em Raleway";
+            }
+          });
+        },
+      });
+    </script>
+    <script async type="module" crossorigin src="/lambertvillexr/assets/video-sphere-28788956.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <video
+          id="video-sphere"
+          loop="true"
+          src="/lambertvillexr/assets/pano/smaller.mp4"
+          webkit-playsinline
+          play-on-click
+        ></video
+        >e
+      </a-assets>
+
+      <a-camera position="0 1.6 0" wasd-controls-enabled="false">
+        <a-cursor id="cursor" color="white"></a-cursor>
+      </a-camera>
+      <a-videosphere src="#video-sphere"></a-videosphere>
+      <a-entity video-controls="src:#video-sphere; distance:1"></a-entity>
+    </a-scene>
+    <a href="/lambertvillexr/" class="linkButton backButton">⬅️ Back</a>
+    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="/lambertvillexr/assets/video-sphere-legacy-518b8698.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+  </body>
+</html>
