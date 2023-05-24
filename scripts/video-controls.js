@@ -46,9 +46,7 @@ AFRAME.registerComponent("video-controls", {
 
       // Set position of menu based on camera yaw and data.pitch
 
-      // Have to add 1.6m to camera.position.y (????)
-
-      self.y_position = camera.position.y + 1.6;
+      self.y_position = 1;
       self.x_position = -self.data.distance * Math.sin((camera_yaw * Math.PI) / 180.0);
       self.z_position = -self.data.distance * Math.cos((camera_yaw * Math.PI) / 180.0);
 
@@ -56,7 +54,9 @@ AFRAME.registerComponent("video-controls", {
 
       // and now, make our controls rotate towards origin
 
-      this.el.object3D.lookAt(new THREE.Vector3(camera.position.x, camera.position.y + 1.6, camera.position.z));
+      let cameraWorldPos = new THREE.Vector3();
+      camera.getWorldPosition(cameraWorldPos);
+      this.el.object3D.lookAt(cameraWorldPos);
     }
   },
   /**
@@ -73,10 +73,6 @@ AFRAME.registerComponent("video-controls", {
 
     this.el.setAttribute("visible", true);
 
-    this.video_selector = this.data.src;
-
-    this.video_el = document.querySelector(this.video_selector);
-
     // image sources for play/pause
 
     self.play_image_src = document.getElementById("video-play-image")
@@ -89,30 +85,6 @@ AFRAME.registerComponent("video-controls", {
     // Create icon image (play/pause), different image whether video is playing.
 
     this.play_image = document.createElement("a-image");
-
-    if (this.video_el.paused) {
-      this.play_image.setAttribute("src", self.play_image_src);
-    } else {
-      this.play_image.setAttribute("src", self.pause_image_src);
-    }
-
-    // Change icon to 'play' on end
-
-    this.video_el.addEventListener("ended", function () {
-      self.play_image.setAttribute("src", self.play_image_src);
-    });
-
-    // Change icon to 'pause' on start.
-
-    this.video_el.addEventListener("pause", function () {
-      self.play_image.setAttribute("src", self.play_image_src);
-    });
-
-    // Change icon to 'play' on pause.
-
-    this.video_el.addEventListener("playing", function () {
-      self.play_image.setAttribute("src", self.pause_image_src);
-    });
 
     this.bar_canvas = document.createElement("canvas");
     this.bar_canvas.setAttribute("id", "video_player_canvas");
@@ -253,6 +225,40 @@ AFRAME.registerComponent("video-controls", {
    * Generally modifies the entity based on the data.
    */
   update: function (oldData) {
+    var self = this;
+    this.video_selector = this.data.src;
+    this.video_el = document.querySelector(this.video_selector);
+
+    if (this.video_el.paused) {
+      this.play_image.setAttribute("src", self.play_image_src);
+    } else {
+      this.play_image.setAttribute("src", self.pause_image_src);
+    }
+
+    // Change icon to 'play' on end
+
+    if (this.video_el && this.endedListener) this.video_el.removeEventListener("ended", this.endedListener);
+    this.endedListener = function () {
+      self.play_image.setAttribute("src", self.play_image_src);
+    };
+    this.video_el.addEventListener("ended", this.endedListener);
+
+    // Change icon to 'pause' on start.
+
+    if (this.video_el && this.pauseListener) this.video_el.removeEventListener("pause", this.pauseListener);
+    this.pauseListener = function () {
+      self.play_image.setAttribute("src", self.play_image_src);
+    };
+    this.video_el.addEventListener("pause", this.pauseListener);
+
+    // Change icon to 'play' on pause.
+
+    if (this.video_el && this.playingListener) this.video_el.removeEventListener("playing", this.playingListener);
+    this.playingListener = function () {
+      self.play_image.setAttribute("src", self.pause_image_src);
+    };
+    this.video_el.addEventListener("playing", this.playingListener);
+
     this.position_control_from_camera();
 
     this.bar.setAttribute("height", this.data.size / 4.0);
