@@ -12,43 +12,47 @@
     <script src="/lambertvillexr/scripts/showdown.min.js"></script>
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
     <script>
-        AFRAME.registerSystem("debug", {
+      AFRAME.registerSystem("debug", {
         init: function () {
-          document.querySelector("a-scene").addEventListener("loaded", (event)=>{
+          document.querySelector("a-scene").addEventListener("loaded", (event) => {
             this.debugElem = document.querySelector("#debug");
-            this.avocado = document.querySelector("#avocado");
+            this.avocado = document.querySelector("#avocado-entity");
             this.camera = document.querySelector("#camera");
             this.converter = new showdown.Converter();
-          })
-          },
-          tick: function (time, timeDelta) {
-            if(avocado){}
-            const debugMarkDown=
-            `
-            **current avocado:**: ${this.avocado.object3D.position}\n
-            **current-camera**: ${this.camera.object3D.position}\n
-            **distance**: ${this.avocado.object3D.position.distanceTo(this.camera.object3D.position)}
-            `
+          });
+        },
+        tick: function (time, timeDelta) {
+          if (this.avocado) {
+            
+            const debugMarkDown = `
+              **current avocado:**: ${this._displayVector3(this.avocado.object3D.getWorldPosition())}\n
+              **current-camera**: ${this._displayVector3(this.camera.object3D.getWorldPosition())}\n
+              **distance**: ${this.avocado.object3D.getWorldPosition().distanceTo(this.camera.object3D.getWorldPosition())}
+              `;
             this.debugElem.innerHTML = this.converter.makeHtml(debugMarkDown);
           }
-        })
+        },
+        _displayVector3(vector3) {
+          return `x:${vector3.x.toFixed(2)} y: ${vector3.y.toFixed(2)} z:${vector3.z.toFixed(2)}`;
+        },
+      });
     </script>
     <script async type="module" crossorigin src="/lambertvillexr/assets/image-28788956.js"></script>
   </head>
   <div
-  style="
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2em;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-  "
->
-  <span style="margin: 0; font-size: 0.8em" id="debug"></span>
-</div>  
+    style="
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2em;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+    "
+  >
+    <span style="margin: 0; font-size: 0.8em" id="debug"></span>
+  </div>
   <body style="margin: 0px; overflow: hidden">
     <a-scene
       embedded
@@ -56,7 +60,6 @@
       vr-mode-ui="enabled: false"
       loading-screen="enabled: false;"
       arjs="sourceType: webcam; maxDetectionRate: 60; detectionMode: mono;"
-      stats
       style="height: 100%; width: 100%"
     >
       <a-assets>
@@ -71,8 +74,10 @@
         smoothTolerance=".01"
         smoothThreshold="5"
       >
-        <a-entity position="0 1 0" gltf-model="#avocado" scale="10 160 120" rotation="-45 90 0"></a-entity>
-        <a-box position="0 0 0" material="opacity: 1;" scale="1 1 1"></a-box>
+        <a-entity scale="100 100 100">
+        <a-entity position="0 1 0" gltf-model="#avocado" scale="20 20 20" rotation="-45 90 0" id="avocado-entity"></a-entity>
+        <a-box position="0 0.25 0" material="opacity: 0.5;" scale="0.5 0.5 0.5"></a-box>
+        </a-entity>
       </a-nft>
       <a-entity camera id="camera"></a-entity>
     </a-scene>
