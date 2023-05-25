@@ -23,11 +23,14 @@
         },
         tick: function (time, timeDelta) {
           if (this.avocado) {
-            
+            const avocadoWorldPos = new THREE.Vector3();
+            this.avocado.object3D.getWorldPosition(avocadoWorldPos);
+            const cameraWorldPos = new THREE.Vector3();
+            this.camera.object3D.getWorldPosition(cameraWorldPos);
             const debugMarkDown = `
-              **current avocado:**: ${this._displayVector3(this.avocado.object3D.getWorldPosition())}\n
-              **current-camera**: ${this._displayVector3(this.camera.object3D.getWorldPosition())}\n
-              **distance**: ${this.avocado.object3D.getWorldPosition().distanceTo(this.camera.object3D.getWorldPosition())}
+              **current avocado:**: ${this._displayVector3(avocadoWorldPos)}\n
+              **current-camera**: ${this._displayVector3(cameraWorldPos)}\n
+              **distance**: ${avocadoWorldPos.distanceTo(cameraWorldPos)}
               `;
             this.debugElem.innerHTML = this.converter.makeHtml(debugMarkDown);
           }
@@ -74,8 +77,14 @@
         smoothThreshold="5"
       >
         <a-entity scale="100 100 100">
-        <a-entity position="0 1 0" gltf-model="#avocado" scale="20 20 20" rotation="-45 90 0" id="avocado-entity"></a-entity>
-        <a-box position="0 0.25 0" material="opacity: 0.5;" scale="0.5 0.5 0.5"></a-box>
+          <a-entity
+            position="0 0 0"
+            gltf-model="#avocado"
+            scale="20 20 20"
+            rotation="-45 90 0"
+            id="avocado-entity"
+          ></a-entity>
+          <a-box position="0 0.25 0" material="opacity: 0.5;" scale="0.5 0.5 0.5"></a-box>
         </a-entity>
       </a-nft>
       <a-entity camera id="camera"></a-entity>
