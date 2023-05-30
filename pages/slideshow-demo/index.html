@@ -8,33 +8,7 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
     />
     <script src="/lambertvillexr/scripts/aframe.min.js"></script>
-    <script src="/lambertvillexr/scripts/aframe-ar.js"></script>
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
-    <script async type="module" crossorigin src="/lambertvillexr/assets/slideshow-demo-28788956.js"></script>
-  </head>
-  <body style="margin: 0px; overflow: hidden">
-    <a-scene
-      embedded
-      renderer="antialias: true; alpha: true; precision: high;"
-      vr-mode-ui="enabled: false"
-      loading-screen="enabled: false;"
-      arjs="sourceType: webcam; maxDetectionRate: 60; detectionMode: mono;"
-      stats
-      style="height: 100%; width: 100%"
-    >
-      <a-assets>
-        <a-asset-item id="image1" src="/lambertvillexr/assets/images/image1.jpg"></a-asset-item>
-        <a-asset-item id="image2" src="/lambertvillexr/assets/images/image2.jpg"></a-asset-item>
-        <a-asset-item id="image3" src="/lambertvillexr/assets/images/image3.jpg"></a-asset-item>
-      </a-assets>
-
-      <a-marker preset="hiro" smooth="true">
-        <a-box position="0 0.25 0" material="opacity: 0.5;" scale="0.5 0.5 0.5"></a-box>
-        <a-image id="slideshow" src="#image1" scale="2 2 1" position="0 2 -3"></a-image>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-    <a href="/lambertvillexr/" class="linkButton backButton">⬅️ Back</a>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -50,6 +24,20 @@
         setInterval(showNextImage, 2000);
       });
     </script>
+    <script async type="module" crossorigin src="/lambertvillexr/assets/slideshow-demo-28788956.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden">
+    <a-scene>
+      <a-assets>
+        <img id="image1" src="/lambertvillexr/assets/images/image1.jpg" />
+        <img id="image2" src="/lambertvillexr/assets/images/image2.jpg" />
+        <img id="image3" src="/lambertvillexr/assets/images/image3.jpg" />
+      </a-assets>
+
+      <a-image id="slideshow" src="#image1" scale="2 2 1" position="0 2 -3"></a-image>
+      <a-entity camera look-controls wasd-controls></a-entity>
+    </a-scene>
+    <a href="/lambertvillexr/" class="linkButton backButton">⬅️ Back</a>
     <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
     <script nomodule crossorigin id="vite-legacy-entry" data-src="/lambertvillexr/assets/slideshow-demo-legacy-518b8698.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
   </body>
