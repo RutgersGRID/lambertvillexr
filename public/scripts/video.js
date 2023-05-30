@@ -7,6 +7,9 @@ AFRAME.registerComponent("video", {
     src: { type: "string" },
     width: { default: 16 },
     height: { default: 9 },
+    curved: { default: false },
+    radius: { default: 2 },
+    thetaStart: { default: 0 },
   },
   init: function () {
     this.playImageSrc =
@@ -16,29 +19,34 @@ AFRAME.registerComponent("video", {
 
     this.animDuration = 200;
     this.animEasing = "easeOutCubic";
-    const percentageOfVideoPlane = 0.3;
 
-    this.playPlane = document.createElement("a-plane");
-    this.el.classList.add("clickable");
-    this.el.appendChild(this.playPlane);
-    const smallestDim = this.data.width < this.data.height ? this.data.width : this.data.height;
-    const playPlaneDim = smallestDim * percentageOfVideoPlane;
-    this.playPlane.object3D.position.copy(new THREE.Vector3(0, 0, 0.1));
-    this.playPlane.object3D.scale.copy(new THREE.Vector3(playPlaneDim, playPlaneDim, playPlaneDim));
+    if (this.data.curved) {
+      this.playPlane = document.createElement("a-curvedimage");
+      this.videoPlane = document.createElement("a-curvedimage");
+    } else {
+      this.playPlane = document.createElement("a-image");
+      this.videoPlane = document.createElement("a-image");
+    }
+
+    this.playPlane.setAttribute("transparent", true);
+    this.playPlane.setAttribute("alpha-test", 0.5);
+    this.el.appendChild(this.videoPlane);
+    this.videoPlane.classList.add("clickable");
+    this.videoPlane.appendChild(this.playPlane);
 
     this.update();
     this.updateAnimations(this.animDuration);
 
-    this.el.addEventListener("mouseenter", () => {
+    this.videoPlane.addEventListener("mouseenter", () => {
       this.isHovering = true;
       this.showControls();
     });
-    this.el.addEventListener("mouseleave", () => {
+    this.videoPlane.addEventListener("mouseleave", () => {
       this.isHovering = false;
       this.hideControls();
       clearTimeout(this.fadeControlsTimer);
     });
-    this.el.addEventListener("click", () => {
+    this.videoPlane.addEventListener("click", () => {
       if (!this.controlsVisible) return;
       clearTimeout(this.fadeControlsTimer);
       if (!this.isPlayable()) return;
@@ -57,8 +65,34 @@ AFRAME.registerComponent("video", {
     });
   },
   update: function () {
-    this.el.setAttribute("material", `shader: flat; src: ${this.data.src};`);
-    this.el.setAttribute("geometry", `primitive: plane; width: ${this.data.width}; height: ${this.data.height}`);
+    const percentageOfVideoPlane = 0.3;
+    const smallestDim = this.data.width < this.data.height ? this.data.width : this.data.height;
+
+    if (this.data.curved) {
+      const circumference = 2 * Math.PI * this.data.radius;
+      if (this.data.width > circumference) this.data.width = circumference;
+      const arcLengthToDeg = function (width, radius) {
+        return (width / radius) * (180 / Math.PI);
+      };
+      const videoPlaneArcDeg = arcLengthToDeg(this.data.width, this.data.radius);
+      this.videoPlane.setAttribute("theta-length", videoPlaneArcDeg);
+      this.videoPlane.setAttribute("theta-start", this.data.thetaStart);
+      this.videoPlane.setAttribute("radius", this.data.radius);
+      const playPlaneRadius = this.data.radius - 0.1;
+      const playPlaneArcDeg = arcLengthToDeg(smallestDim, playPlaneRadius) * percentageOfVideoPlane;
+      const playPlaneThetaStart = this.data.thetaStart;
+      this.playPlane.setAttribute("theta-start", playPlaneThetaStart + videoPlaneArcDeg / 2 - playPlaneArcDeg / 2);
+      this.playPlane.setAttribute("radius", playPlaneRadius);
+      this.playPlane.setAttribute("theta-length", playPlaneArcDeg);
+    } else {
+      this.videoPlane.setAttribute("width", this.data.width);
+      this.playPlane.setAttribute("width", smallestDim * percentageOfVideoPlane);
+      this.playPlane.object3D.position.copy(new THREE.Vector3(0, 0, 0.1));
+    }
+
+    this.playPlane.setAttribute("height", smallestDim * percentageOfVideoPlane);
+    this.videoPlane.setAttribute("height", this.data.height);
+    this.videoPlane.setAttribute("src", this.data.src);
     this.videoElem = document.querySelector(this.data.src);
     this.isVideoPlaying = !!(
       this.videoElem.currentTime > 0 &&
@@ -72,14 +106,14 @@ AFRAME.registerComponent("video", {
     if (this.controlsVisible) return;
     this.controlsVisible = true;
     this.updateAnimations(animDuration);
-    this.el.emit("showcontrols");
+    this.videoPlane.emit("showcontrols");
     this.playPlane.emit("showcontrols");
   },
   hideControls: function (animDuration = this.animDuration) {
     if (!this.controlsVisible) return;
     this.controlsVisible = false;
     this.updateAnimations(animDuration);
-    this.el.emit("hidecontrols");
+    this.videoPlane.emit("hidecontrols");
     this.playPlane.emit("hidecontrols");
   },
   isPlayable: function () {
@@ -91,47 +125,61 @@ AFRAME.registerComponent("video", {
   updateAnimations: function (animDuration = this.animDuration, animEasing = this.animEasing) {
     this.playPlane.setAttribute("material", "transparent", true);
     this.playPlane.setAttribute("material", "opacity", 0);
-    this.playPlane.setAttribute("animation__videohoverenter_color", {
+    this.playPlane.setAttribute("animation__showcontrols_color", {
       property: "material.opacity",
       to: 1,
       startEvents: "showcontrols",
       dur: animDuration,
       easing: animEasing,
     });
-    this.playPlane.setAttribute("animation__videohoverleave_color", {
+    this.playPlane.setAttribute("animation__hidecontrols_color", {
       property: "material.opacity",
       to: 0,
       startEvents: "hidecontrols",
       dur: animDuration,
       easing: animEasing,
     });
-    this.el.setAttribute("animation__mouseenter_color", {
+    this.videoPlane.setAttribute("animation__mouseenter_color", {
       property: "material.color",
       to: "#686868",
       startEvents: "showcontrols",
       dur: animDuration,
       easing: animEasing,
     });
-    this.el.setAttribute("animation__mouseenter_scale", {
+    this.videoPlane.setAttribute("animation__showcontrols_scale", {
       property: "scale",
-      to: { x: 1.01, y: 1.01, z: 1.01 },
+      to: { x: 1.025, y: 1.025, z: 1.025 },
       startEvents: "showcontrols",
       dur: animDuration,
       easing: animEasing,
     });
-    this.el.setAttribute("animation__mouseleave_color", {
+    this.videoPlane.setAttribute("animation__hidecontrols_color", {
       property: "material.color",
       to: "#FFFFFF",
       startEvents: "hidecontrols",
       dur: animDuration,
       easing: animEasing,
     });
-    this.el.setAttribute("animation__mouseleave_scale", {
+    this.videoPlane.setAttribute("animation__hidecontrols_scale", {
       property: "scale",
       to: { x: 1, y: 1, z: 1 },
       startEvents: "hidecontrols",
       dur: animDuration,
       easing: animEasing,
     });
+  },
+});
+
+AFRAME.registerPrimitive("a-playback-video", {
+  defaultComponents: {
+    video: {},
+  },
+  mappings: {
+    src: "video.src",
+    width: "video.width",
+    height: "video.height",
+    curved: "video.curved",
+    "theta-start": "video.thetaStart",
+    radius: "video.radius",
   },
 });
