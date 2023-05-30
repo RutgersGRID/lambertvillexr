@@ -260,6 +260,7 @@ AFRAME.registerComponent("video-controls", {
     this.video_el.addEventListener("playing", this.playingListener);
 
     this.position_control_from_camera();
+    this.el.setAttribute("visible", true);
 
     this.bar.setAttribute("height", this.data.size / 4.0);
     this.bar.setAttribute("width", this.data.size);
