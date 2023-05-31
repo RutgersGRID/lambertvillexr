@@ -12,8 +12,5 @@
     "concurrently": "^8.0.1",
     "localtunnel": "^2.0.2",
     "vite": "^4.3.5"
-  },
-  "dependencies": {
-    "aframe-video-controls": "^0.3.0"
   }
 }
