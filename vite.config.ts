@@ -34,7 +34,6 @@ export default defineConfig({
       targets: ["defaults", "not IE 11"],
     }),
   ],
-
   build: {
     rollupOptions: {
       input,
