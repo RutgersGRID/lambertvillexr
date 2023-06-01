@@ -9,31 +9,9 @@
     />
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
     <script src="/lambertvillexr/scripts/aframe.min.js"></script>
-    <script>
-      AFRAME.registerSystem("ball-scene-manager", {
-        init: function () {
-          this.ballScenes = document.querySelectorAll("[ball-scene]");
-          this.currScene = undefined;
-        },
-      });
-      AFRAME.registerPrimitive("a-ball-scene", {
-        defaultComponents: {
-          geometry: { primitive: "sphere" },
-        },
-      });
-      AFRAME.registerComponent("ball-scene", {
-        schema: {
-          src: { default: "" },
-        },
-        init: function () {
-          this.el.setAttribute("geometry", { primitive: "sphere" });
-          this.el.setAttribute("material", { src: this.data.src });
-          this.el.addEventListener("mouseenter", () => {});
-          this.el.addEventListener("mousexit", () => {});
-        },
-      });
-    </script>
-    <script async type="module" crossorigin src="/lambertvillexr/assets/360-sphere-28788956.js"></script>
+    
+    <script type="module" crossorigin src="/lambertvillexr/assets/360-sphere-9178fd66.js"></script>
+    <link rel="modulepreload" crossorigin href="/lambertvillexr/assets/modulepreload-polyfill-3cfb730f.js">
   </head>
   <body style="margin: 0px; overflow: hidden">
     <a-scene>
@@ -66,6 +44,6 @@
     </a-scene>
     <a href="/lambertvillexr/" class="linkButton backButton">⬅️ Back</a>
     <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
-    <script nomodule crossorigin id="vite-legacy-entry" data-src="/lambertvillexr/assets/360-sphere-legacy-518b8698.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="/lambertvillexr/assets/360-sphere-legacy-69dbd927.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
   </body>
 </html>
