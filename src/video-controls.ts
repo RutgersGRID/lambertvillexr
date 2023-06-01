@@ -290,24 +290,24 @@ AFRAME.registerComponent("video-controls", {
       if (this.video_el.readyState > 0) {
         // Get current position minutes and second, and add leading zeroes if needed
 
-        var current_minutes = Math.floor(this.video_el.currentTime / 60);
-        var current_seconds = Math.floor(this.video_el.currentTime % 60);
+        const current_minutes = Math.floor(this.video_el.currentTime / 60);
+        const current_seconds = Math.floor(this.video_el.currentTime % 60);
 
-        current_minutes = current_minutes < 10 ? "0" + current_minutes : current_minutes;
-        current_seconds = current_seconds < 10 ? "0" + current_seconds : current_seconds;
+        const current_minutes_str = current_minutes < 10 ? "0" + current_minutes : current_minutes;
+        const current_seconds_str = current_seconds < 10 ? "0" + current_seconds : current_seconds;
 
         // Get video duration in  minutes and second, and add leading zeroes if needed
 
-        var duration_minutes = Math.floor(this.video_el.duration / 60);
-        var duration_seconds = Math.floor(this.video_el.duration % 60);
+        const duration_minutes = Math.floor(this.video_el.duration / 60);
+        const duration_seconds = Math.floor(this.video_el.duration % 60);
 
-        duration_minutes = duration_minutes < 10 ? "0" + duration_minutes : duration_minutes;
-        duration_seconds = duration_seconds < 10 ? "0" + duration_seconds : duration_seconds;
+        const duration_minutes_str = duration_minutes < 10 ? "0" + duration_minutes : duration_minutes;
+        const duration_seconds_str = duration_seconds < 10 ? "0" + duration_seconds : duration_seconds;
 
         // Refresh time information : currentTime / duration
 
         var time_info_text =
-          current_minutes + ":" + current_seconds + " / " + duration_minutes + ":" + duration_seconds;
+          current_minutes_str + ":" + current_seconds_str + " / " + duration_minutes_str + ":" + duration_seconds_str;
 
         //  Refresh transport bar canvas
 
