@@ -85,6 +85,7 @@ AFRAME.registerComponent("video-controls", {
     // Create icon image (play/pause), different image whether video is playing.
 
     this.play_image = document.createElement("a-image");
+    this.play_image.classList.add("clickable");
 
     this.bar_canvas = document.createElement("canvas");
     this.bar_canvas.setAttribute("id", "video_player_canvas");

@@ -8,41 +8,25 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
     />
     <script src="%BASE_URL%scripts/aframe.min.js"></script>
-    <script type='module' src="/src/video.ts"></script>
+    <script type="module" src="/src/video.ts"></script>
     <link rel="stylesheet" href="/styles.css" />
-    <script>
-      AFRAME.registerSystem("positional-audio", {
-        init: function () {
-          document.querySelector("a-scene").addEventListener("loaded", () => {
-            const video = document.getElementById("trash-video");
-            const listener = new THREE.AudioListener();
-            console.log(document.getElementById("camera"));
-            const camera = document.getElementById("camera").components.camera.camera;
-            console.log(camera);
-            camera.add(listener);
-            const audio = new THREE.Audio(listener);
-            audio.setMediaElementSource(video);
-          });
-        },
-      });
-    </script>
   </head>
   <body style="margin: 0px; overflow: hidden">
     <a-scene>
       <a-assets>
-        <video id="trash-video" src="%BASE_URL%assets/videos/trash.mp4"></video>
-        <sound id="trash-sound" src="%BASE_URL%assets/videos/trash.mp4"></sound>
+        <video id="trash-video" src="%BASE_URL%assets/videos/trash.mp4" webkit-playsinline></video>
         <img id="panorama" src="%BASE_URL%assets/pano/snow.jpg" />
       </a-assets>
-      <a-playback-video src="#trash-video" position="0 0 -20" rotation="0 0 0"></a-playback-video>
       <a-sky src="#panorama"></a-sky>
+      <a-playback-video src="#trash-video" position="0 0 -20" rotation="0 0 0"></a-playback-video>
+
       <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
         <a-cursor
           id="cursor"
           color="white"
           rayOrigin="mouse"
-          raycaster="objects: .clickable"
           fuseTimeout="500"
+          raycaster="objects: .clickable"
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
           animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
