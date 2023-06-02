@@ -10,22 +10,6 @@
     <script src="/lambertvillexr/scripts/aframe.min.js"></script>
     
     <link rel="stylesheet" href="/lambertvillexr/styles.css" />
-    <script>
-      AFRAME.registerSystem("positional-audio", {
-        init: function () {
-          document.querySelector("a-scene").addEventListener("loaded", () => {
-            const video = document.getElementById("trash-video");
-            const listener = new THREE.AudioListener();
-            console.log(document.getElementById("camera"));
-            const camera = document.getElementById("camera").components.camera.camera;
-            console.log(camera);
-            camera.add(listener);
-            const audio = new THREE.Audio(listener);
-            audio.setMediaElementSource(video);
-          });
-        },
-      });
-    </script>
     <script type="module" crossorigin src="/lambertvillexr/assets/video-positional-audio-062de336.js"></script>
     <link rel="modulepreload" crossorigin href="/lambertvillexr/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="modulepreload" crossorigin href="/lambertvillexr/assets/video-530294de.js">
@@ -33,19 +17,19 @@
   <body style="margin: 0px; overflow: hidden">
     <a-scene>
       <a-assets>
-        <video id="trash-video" src="/lambertvillexr/assets/videos/trash.mp4"></video>
-        <sound id="trash-sound" src="/lambertvillexr/assets/videos/trash.mp4"></sound>
+        <video id="trash-video" src="/lambertvillexr/assets/videos/trash.mp4" webkit-playsinline></video>
         <img id="panorama" src="/lambertvillexr/assets/pano/snow.jpg" />
       </a-assets>
-      <a-playback-video src="#trash-video" position="0 0 -20" rotation="0 0 0"></a-playback-video>
       <a-sky src="#panorama"></a-sky>
+      <a-playback-video src="#trash-video" position="0 0 -20" rotation="0 0 0"></a-playback-video>
+
       <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
         <a-cursor
           id="cursor"
           color="white"
           rayOrigin="mouse"
-          raycaster="objects: .clickable"
           fuseTimeout="500"
+          raycaster="objects: .clickable"
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
           animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
