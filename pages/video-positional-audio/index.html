@@ -14,11 +14,11 @@
   <body style="margin: 0px; overflow: hidden">
     <a-scene>
       <a-assets>
-        <video id="trash-video" src="%BASE_URL%assets/videos/trash.mp4" webkit-playsinline></video>
+        <video id="trashvideo" src="%BASE_URL%assets/videos/trash-video.mp4" webkit-playsinline autoplay></video>
         <img id="panorama" src="%BASE_URL%assets/pano/snow.jpg" />
       </a-assets>
       <a-sky src="#panorama"></a-sky>
-      <a-playback-video src="#trash-video" position="0 0 -20" rotation="0 0 0"></a-playback-video>
+      <a-playback-video src="#trashvideo" position="0 0 -20" rotation="0 0 0"></a-playback-video>
 
       <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
         <a-cursor
