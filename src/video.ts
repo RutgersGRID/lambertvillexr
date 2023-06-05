@@ -183,3 +183,15 @@ AFRAME.registerPrimitive("a-playback-video", {
     radius: "video.radius",
   },
 });
+
+// function playVideo() {
+//   var button = document.querySelector(".a-dialog-allow-button").addEventListener("click", function () {
+//     const allvids = document.querySelectorAll("video");
+//     for (let i = 0; i < allvids.length; i++) {
+//       let video = allvids[i] as HTMLVideoElement;
+
+//       video.play();
+//     }
+//   });
+// }
+// playVideo();
