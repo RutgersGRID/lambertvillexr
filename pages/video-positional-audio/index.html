@@ -13,6 +13,11 @@
     <script>
       window.addEventListener("load", function () {
         let playvideo = document.querySelector("#playbutton").addEventListener("click", function () {
+          DeviceMotionEvent.requestPermission().then((permissionState) => {
+            if (permissionState === "granted") {
+              window.addEventListener("devicemotion", () => {});
+            }
+          });
           var vid = document.querySelector("#trash-video");
           vid.muted = false;
           vid.play();
@@ -21,7 +26,7 @@
     </script>
   </head>
   <body style="margin: 0px; overflow: hidden">
-    <a-scene>
+    <a-scene device-orientation-permission-ui="enabled: false">
       <a-assets>
         <video
           id="trash-video"
