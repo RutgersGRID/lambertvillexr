@@ -1,6 +1,6 @@
 # Lambertville XR
 
-Website for Lambertville XR walking tour. The website is hosted on [https://rutgersgrid.github.io/lambertville-xr](https://rutgersgrid.github.io/lambertville-xr).
+Website for Lambertville XR walking tour. The website is hosted on [https://rutgersgrid.github.io/lambertvillexr](https://rutgersgrid.github.io/lambertvillexr).
 
 ## Developing
 

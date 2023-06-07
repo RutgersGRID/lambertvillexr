@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const routes = ['index', 'demo-1', 'demo-2', 'demo-3'];
+const routes = ['index', 'demo-1', 'demo-2', 'demo-3', 'hover-video'];
 
 function kebabToTitleCase(str: string) {
   return str

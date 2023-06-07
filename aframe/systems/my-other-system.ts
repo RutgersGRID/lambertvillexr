@@ -1,7 +1,6 @@
 import { BaseSystem, system } from '@/manual_modules/aframe-class-components';
 
 const THREE = AFRAME.THREE;
-
 THREE.Vector2.prototype.toString = function (): string {
   return `(${this.x}, ${this.y})`;
 };
