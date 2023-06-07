@@ -1,12 +1,8 @@
 # Lambertville XR
 
-Augmented reality site for Lambertville XR.
+Website for Lambertville XR walking tour. The website is hosted on [https://rutgersgrid.github.io/lambertville-xr](https://rutgersgrid.github.io/lambertville-xr).
 
-## Structure
-
-Each page has a folder and has an index.html inside of its folder. The pages folder contains all of the page folders. We use Vite to build the site and host a local server, and we use GitHub Actions to automatically deploy the site to GitHub pages. We also use AFrame and ARjs to make the AR content in the website.
-
-## Development
+## Developing
 
 ### Prerequisites
 
@@ -23,37 +19,12 @@ Each page has a folder and has an index.html inside of its folder. The pages fol
 Run
 
 ```bash
-npm run start
+npm run dev
 ```
-
-You can also specify the page to host on the local server using the open flag (ie. `--open [page_to_host]`)
-
-```bash
-npm run start -- --open geolocation
-```
-
-> **NOTE:**
->
-> The first `--` is to separate flags for npm from flags we
-> want to pass into the start script.
 
 ### Hosting a local server live
 
-If you need to test the website from different devices, it's best to host the server live through a proxy. This repo has scripts to host from localtunnel or from ngrok.
-
-#### Using localtunnel
-
-Run
-
-```bash
-npm run start:live
-```
-
-> **NOTE:**
->
-> Localtunnel has recently put an ip password check when connecting to the tunnel.
-> If you're unable to get past this check, then consider using ngrok to host the
-> local serve online.
+If you need to test the website from different devices, it's best to host the server live through a proxy. This repo has scripts to host from ngrok.
 
 #### Using ngrok
 
@@ -62,7 +33,7 @@ Make sure you have [ngrok](https://ngrok.com/product) installed and have registe
 Run
 
 ```bash
-npm run start
+npm run dev
 ```
 
 In a separate terminal, run

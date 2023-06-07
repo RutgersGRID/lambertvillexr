@@ -1,21 +1,32 @@
 {
-  "name": "lambertville-xr",
+  "private": true,
   "scripts": {
-    "build": "vite build",
-    "start": "vite --force --host --port 4225",
-    "start:live": "concurrently --names 'vite,localtunnel' --prefix-colors 'green,yellow' --kill-others-on-fail \"npm start -- \" \"lt --port 4225\"",
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 4225",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
     "ngrok": "ngrok http 4225"
   },
   "devDependencies": {
-    "@types/node": "^20.1.5",
-    "@vitejs/plugin-legacy": "^4.0.3",
-    "concurrently": "^8.0.1",
-    "localtunnel": "^2.0.2",
-    "vite": "^4.3.5"
-  },
-  "dependencies": {
+    "@mdi/font": "^7.2.96",
+    "@nuxt/kit": "^3.4.2",
+    "@nuxthq/ui": "npm:@nuxthq/ui-edge@latest",
+    "@nuxtjs/google-fonts": "^3.0.0",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/aframe": "^1.2.2",
     "@types/three": "^0.152.1",
+    "autoprefixer": "^10.4.14",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nuxt": "^3.4.2",
+    "nuxt-svgo": "^3.0.1",
+    "postcss": "^8.4.23",
+    "sass": "^1.61.0",
+    "sass-loader": "^10.4.1"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^2.0.17",
     "aframe": "^1.4.2"
   }
 }
