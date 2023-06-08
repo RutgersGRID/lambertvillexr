@@ -1,0 +1,1 @@
+const t=window.document;function r(e){return t.querySelector(e)}function n(e){return Array.from(t.querySelectorAll(e))}function c(e){return t.createElement(e)}function o(e){return t.createElement(e)}const u={querySelector:r,querySelectorAll:n,createElement:c,createEntity:o};AFRAME.THREE.Object3D;export{n as a,o as c,u as d,r as q};
