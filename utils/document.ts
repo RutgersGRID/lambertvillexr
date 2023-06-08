@@ -1,7 +1,5 @@
 import { Entity } from 'aframe';
 
-const document = window.document;
-
 export function querySelector<T>(query: string) {
   return document.querySelector(query) as T;
 }

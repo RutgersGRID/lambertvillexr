@@ -129,7 +129,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.playPlane.setAttribute('height', smallestDim * percentageOfVideoPlane);
     this.videoPlane.setAttribute('height', this.data.height);
     this.videoPlane.setAttribute('src', this.data.src);
-    console.log('setting video plane src to ', this.data.src);
+
     this.videoElem = document.querySelector<HTMLMediaElement>(this.data.src);
     this.isVideoPlaying = !!(
       this.videoElem.currentTime > 0 &&

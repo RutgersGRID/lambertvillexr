@@ -15,7 +15,6 @@ export class BallSceneManagerSystem extends BaseSystem {
   init() {
     this.ballScenes = document.querySelectorAll<Entity>('[ball-scene]');
     this.currScene = undefined;
-    console.log('ball-scene-manager inited');
   }
 }
 
