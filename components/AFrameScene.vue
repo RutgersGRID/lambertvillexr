@@ -21,6 +21,7 @@ if (process.client) {
 
 <template>
   <ClientOnly>
+    <USkeleton class="absolute h-full w-full"></USkeleton>
     <a-scene
       v-if="aframeLoaded"
       v-bind="attributes"

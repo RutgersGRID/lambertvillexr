@@ -1,17 +1,16 @@
-<script setup lang="ts">
-const route = useRoute();
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div
-    class="bg-white dark:bg-gray-900 flex flex-col prose dark:prose-invert min-h-full min-w-full"
-  >
-    <div class="flex-auto relative">
-      <div class="absolute w-full h-full">
+  <div class="bg-white dark:bg-gray-900 flex flex-col min-h-full min-w-full">
+    <div class="flex-auto relative flex flex-row">
+      <SideNavMenu
+        class="hidden lg:flex flex-grow-0 w-96 p-8 self-stretch"
+      ></SideNavMenu>
+      <div class="flex-grow relative">
         <NuxtPage />
       </div>
     </div>
-    <BottomBar />
+    <BottomNavBar class="lg:hidden" />
   </div>
 </template>
 
@@ -32,5 +31,10 @@ body,
 #__nuxt {
   height: 100%;
   min-height: 100%;
+}
+
+.a-enter-vr-button,
+.a-enter-ar-button {
+  z-index: auto !important;
 }
 </style>
