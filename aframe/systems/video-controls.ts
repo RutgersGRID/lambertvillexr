@@ -1,4 +1,5 @@
 import { Entity, Schema } from 'aframe';
+import { Mesh, MeshStandardMaterial } from 'three';
 import {
   BaseComponent,
   component,
@@ -41,6 +42,7 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
     timeTextFont: { default: '70px Helvetica Neue' },
   };
 
+  last_time: number = 0;
   current_step: number = 0;
   bar_steps: number = 0;
   video_el?: HTMLMediaElement;
@@ -52,7 +54,8 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
   texture?: THREE.Texture;
   bar?: Entity;
   endedListener?: () => void;
-  endedListener?: () => void;
+  pauseListener?: () => void;
+  playingListener?: () => void;
 
   position_time_from_steps() {
     if (!this.video_el) return;
@@ -278,7 +281,7 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
    * Called when component is attached and when component data changes.
    * Generally modifies the entity based on the data.
    */
-  update(oldData: VideoControlsComponentData) {
+  update() {
     const video_selector = this.data.src;
     this.video_el = <HTMLVideoElement>(
       (<unknown>document.querySelector(video_selector))
@@ -294,8 +297,8 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
 
     if (this.video_el && this.endedListener)
       this.video_el.removeEventListener('ended', this.endedListener);
-    this.endedListener = function () {
-      this.play_image.setAttribute('src', this.play_image_src);
+    this.endedListener = () => {
+      this.video_el?.setAttribute('src', this.play_image_src);
     };
     this.video_el.addEventListener('ended', this.endedListener);
 
@@ -303,8 +306,8 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
 
     if (this.video_el && this.pauseListener)
       this.video_el.removeEventListener('pause', this.pauseListener);
-    this.pauseListener = function () {
-      this.play_image.setAttribute('src', self.play_image_src);
+    this.pauseListener = () => {
+      this.play_image?.setAttribute('src', this.play_image_src);
     };
     this.video_el.addEventListener('pause', this.pauseListener);
 
@@ -312,21 +315,21 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
 
     if (this.video_el && this.playingListener)
       this.video_el.removeEventListener('playing', this.playingListener);
-    this.playingListener = function () {
-      this.play_image.setAttribute('src', self.pause_image_src);
+    this.playingListener = () => {
+      this.play_image?.setAttribute('src', this.pause_image_src);
     };
     this.video_el.addEventListener('playing', this.playingListener);
 
     this.position_control_from_camera();
     this.el.setAttribute('visible', true);
 
-    this.bar.setAttribute('height', this.data.size / 4.0);
-    this.bar.setAttribute('width', this.data.size);
-    this.bar.setAttribute('position', '0.0 0.0 0');
+    this.bar?.setAttribute('height', this.data.size / 4.0);
+    this.bar?.setAttribute('width', this.data.size);
+    this.bar?.setAttribute('position', '0.0 0.0 0');
 
-    this.play_image.setAttribute('height', this.data.size / 4.0);
-    this.play_image.setAttribute('width', this.data.size / 4.0);
-    this.play_image.setAttribute(
+    this.play_image?.setAttribute('height', this.data.size / 4.0);
+    this.play_image?.setAttribute('width', this.data.size / 4.0);
+    this.play_image?.setAttribute(
       'position',
       (-this.data.size / 2.0) * 1.4 + ' 0 0'
     );
@@ -335,6 +338,8 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
    * Called on each scene tick.
    */
   tick(t: number) {
+    if (!this.video_el || !this.bar_canvas) return;
+
     // Refresh every 250 millis
 
     if (typeof this.last_time === 'undefined' || t - this.last_time > 250) {
@@ -388,6 +393,7 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
           );
 
           var ctx = this.context;
+          if (!ctx) return;
 
           ctx.fillStyle = this.data.backgroundColor;
           ctx.fillRect(0, 0, this.bar_canvas.width, this.bar_canvas.height);
@@ -488,16 +494,19 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
         // If material is not mapped yet to canvas texture and bar object3D is ready
         // assign canvas as a texture
 
-        if (this.bar.object3D.children.length > 0) {
+        if (this.bar && this.bar.object3D.children.length > 0) {
           // If material is not mapped yet to canvas texture...
 
-          if (this.bar.object3D.children[0].material.map === null) {
-            this.bar.object3D.children[0].material =
-              new THREE.MeshBasicMaterial();
-            this.bar.object3D.children[0].material.map = this.texture;
+          const mesh = this.bar.object3D.children[0] as Mesh;
+          const material = mesh.material as MeshStandardMaterial;
+
+          if (material?.map == null) {
+            const basicMaterial = new THREE.MeshBasicMaterial();
+            basicMaterial.map = this.texture ?? null;
+            mesh.material = basicMaterial;
           }
 
-          this.texture.needsUpdate = true;
+          if (this.texture) this.texture.needsUpdate = true;
         }
       }
 

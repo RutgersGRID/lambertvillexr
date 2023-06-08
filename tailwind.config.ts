@@ -21,6 +21,7 @@ const colors = {
 };
 
 export default <Partial<Config>>{
+  darkMode: 'class',
   theme: {
     screens,
     extend: {

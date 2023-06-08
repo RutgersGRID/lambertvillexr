@@ -34,5 +34,6 @@ function getCategoryNavLinks(category: RouteCategory) {
         }"
       ></UVerticalNavigation>
     </div>
+    <DarkModeToggle></DarkModeToggle>
   </div>
 </template>

@@ -1,6 +1,6 @@
-import * as THree from 'three';
+import * as Three from 'three';
+import { Entity } from 'aframe';
 declare module 'three' {
-  import Entity from 'aframe';
   interface Object3D {
     el: Entity;
   }
