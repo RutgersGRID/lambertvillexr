@@ -51,7 +51,12 @@ const getNextRoute = computed(() => {
       class="sm:absolute sm:right-4"
       @click="isSideBarOpen = true"
     ></UButton>
-    <USlideover v-model="isSideBarOpen">
+    <USlideover
+      v-model="isSideBarOpen"
+      :ui="{
+        width: 'w-screen max-w-xs',
+      }"
+    >
       <div class="p-8 flex flex-col h-full gap-8">
         <SideNavMenu class="flex-grow"></SideNavMenu>
         <UButton

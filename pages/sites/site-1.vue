@@ -1,13 +1,18 @@
 <script setup lang="ts">
+definePageMeta({
+  pageName: 'Entrance to Deleware Canal',
+});
+
 async function loadSystems() {
-  await import('@/aframe/systems/my-other-system');
+  //@ts-ignore
+  await import('aframe-sun-sky');
 }
 </script>
 
 <template>
   <AFrameScene :load-systems="loadSystems">
+    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-box position="0 0.5 -3"></a-box>
     <a-camera></a-camera>
-    <a-sky color="purple"></a-sky>
   </AFrameScene>
 </template>

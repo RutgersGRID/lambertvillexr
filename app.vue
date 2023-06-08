@@ -4,7 +4,7 @@
   <div class="bg-white dark:bg-gray-900 flex flex-col min-h-full min-w-full">
     <div class="flex-auto relative flex flex-row">
       <SideNavMenu
-        class="hidden lg:flex flex-grow-0 w-96 p-8 self-stretch"
+        class="hidden lg:flex flex-grow-0 w-screen max-w-xs p-8 self-stretch"
       ></SideNavMenu>
       <div class="flex-grow relative">
         <NuxtPage />
