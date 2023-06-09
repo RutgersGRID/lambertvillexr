@@ -1,5 +1,5 @@
 import { BaseSystem, system } from '~/manual_modules/aframe-class-components';
-import * as document from '@/utils/document';
+import document from '@/utils/document';
 import { VideoControlsComponent } from '../components/video-controls';
 import { Entity } from 'aframe';
 

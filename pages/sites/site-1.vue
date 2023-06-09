@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  pageName: 'Entrance to Deleware Canal',
+  pageName: 'Delaware Canal Entrance',
 });
 
 async function loadSystems() {
