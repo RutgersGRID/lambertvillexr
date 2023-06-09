@@ -14,8 +14,6 @@ async function loadSystems() {
         preload="auto"
         width="160"
         height="90"
-        autoplay
-        muted
         loop="true"
         src="@/assets/videos/avocado.mp4"
         crossorigin="anonymous"
@@ -25,21 +23,17 @@ async function loadSystems() {
         preload="auto"
         width="160"
         height="90"
-        autoplay
-        muted
         loop="true"
         src="@/assets/videos/avocado.mp4"
         crossorigin="anonymous"
       ></video>
       <video
-        id="avocado-video3"
+        id="trash-video"
         preload="auto"
         width="160"
         height="90"
-        autoplay
-        muted
         loop="true"
-        src="@/assets/videos/avocado.mp4"
+        src="@/assets/videos/trash-video.mp4"
         crossorigin="anonymous"
       ></video>
     </a-assets>
@@ -55,7 +49,7 @@ async function loadSystems() {
       rotation="0 -35 0"
     ></a-playback-video>
     <a-playback-video
-      src="#avocado-video3"
+      src="#trash-video"
       position="0 1.6 0"
       curved="true"
       radius="8"

@@ -1,7 +1,7 @@
 import { system, BaseSystem } from '@/manual_modules/aframe-class-components';
 import * as document from '@/utils/document';
 import { Entity } from 'aframe';
-import { VideoControlsComponent } from './video-controls';
+import { VideoControlsComponent } from '../components/video-controls';
 
 @system('hover-update-video-controls')
 export default class HoverUpdateVideoControlsSystem extends BaseSystem {

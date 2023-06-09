@@ -1,6 +1,6 @@
 import { BaseSystem, system } from '~/manual_modules/aframe-class-components';
 import * as document from '@/utils/document';
-import { VideoControlsComponent } from './video-controls';
+import { VideoControlsComponent } from '../components/video-controls';
 import { Entity } from 'aframe';
 
 @system('style-video-controls')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Scene } from 'aframe';
+import { Entity, Scene } from 'aframe';
 
 const aframeLoaded = ref(false);
 const sceneLoaded = ref(false);
@@ -15,8 +15,8 @@ onMounted(async () => {
   await import('aframe');
 
   async function loadDefaultSystems() {
-    await import('@/aframe/systems/video');
-    await import('@/aframe/systems/video-controls');
+    await import('@/aframe/components/video');
+    await import('@/aframe/components/video-controls');
     await import('@/aframe/systems/style-video-controls');
     await import('@/aframe/systems/ball-scene');
   }
@@ -26,7 +26,9 @@ onMounted(async () => {
 
   nextTick(() => {
     scene.value?.addEventListener('loaded', () => {
-      const camera = document.querySelector('[camera]');
+      if (!scene.value) return;
+      const camera = scene.value.querySelector<Entity>('[camera]');
+      if (!camera) return;
       camera.setAttribute('look-controls', 'enabled', false);
       camera.setAttribute('wasd-controls', 'enabled', false);
 
@@ -37,9 +39,16 @@ onMounted(async () => {
 });
 
 function onSceneEntered() {
-  const camera = document.querySelector('[camera]');
+  if (!scene.value) return;
+  const camera = scene.value.querySelector<Entity>('[camera]');
+  if (!camera) return;
   camera.setAttribute('look-controls', 'enabled', true);
   camera.setAttribute('wasd-controls', 'enabled', true);
+  const videos = scene.value.querySelectorAll<HTMLMediaElement>('video');
+  for (let video of videos) {
+    video.play();
+    video.pause();
+  }
 }
 </script>
 
@@ -58,11 +67,11 @@ function onSceneEntered() {
       </div>
     </div>
     <EnterASceneOverlay
-      :scene="scene"
       v-if="sceneLoaded"
       @scene-entered="onSceneEntered"
     ></EnterASceneOverlay>
     <a-scene
+      device-orientation-permission-ui="enabled: false"
       ref="scene"
       v-if="aframeLoaded"
       v-bind="attributes"

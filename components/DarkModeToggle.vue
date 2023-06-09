@@ -16,6 +16,7 @@ const isDark = computed({
     color="gray"
     :icon="isDark ? 'i-heroicons-moon' : 'i-heroicons-sun'"
     @click="isDark = !isDark"
-    >{{ isDark ? 'Dark' : 'Light' }}</UButton
   >
+    <ClientOnly>{{ isDark ? 'Dark' : 'Light' }}</ClientOnly>
+  </UButton>
 </template>
