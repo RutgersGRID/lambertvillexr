@@ -1,3 +1,9 @@
+<script setup lang="ts">
+function onFinished() {
+  navigateTo('/');
+}
+</script>
+
 <template>
-  <AFrameTutorial></AFrameTutorial>
+  <AFrameTutorial @finished="onFinished"></AFrameTutorial>
 </template>

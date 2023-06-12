@@ -12,14 +12,15 @@ const emit = defineEmits(['sceneEntered']);
 
 const startButtonText = ref(props.startButtonText ?? 'Start Experience');
 
-function startExperience(transition: boolean = true) {
-  emit('sceneEntered');
+function startExperience(userClicked: boolean = true) {
+  emit('sceneEntered', userClicked);
   experienceStarted.value = true;
-  if (transition)
+  if (userClicked) {
+    // We must transition out the UI if the user clicked to start the experience.
     setTimeout(() => {
       showUI.value = false;
     }, 300);
-  else showUI.value = false;
+  } else showUI.value = false;
 }
 
 function needsPermissions() {

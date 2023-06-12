@@ -58,7 +58,7 @@ onMounted(async () => {
   aframeLoaded.value = true;
 });
 
-function onSceneEntered() {
+function onSceneEntered(userClicked: boolean) {
   if (!scene.value) return;
   const camera = scene.value.querySelector<Entity>('[camera]');
   if (!camera) return;
@@ -67,15 +67,16 @@ function onSceneEntered() {
   if (cameraHasWASDControls)
     camera.setAttribute('wasd-controls', 'enabled', true);
   const videos = scene.value.querySelectorAll<HTMLMediaElement>('video');
-  for (let video of videos) {
-    video.play();
-    video.pause();
+  if (userClicked) {
+    for (let video of videos) {
+      video.play();
+      video.pause();
+    }
   }
   emit('sceneEntered');
 }
 
 function onTutorialFinished() {
-  console.log('Tutorial finished');
   showTutorial.value = false;
 }
 </script>

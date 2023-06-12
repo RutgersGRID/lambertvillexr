@@ -4,10 +4,11 @@ import VideoComponent from '~/aframe/components/video';
 
 const emit = defineEmits(['finished']);
 
-const tutorialFinished = localStorage.getItem('tutorialFinished') === 'true';
+let tutorialFinished = false;
+if (process.client)
+  tutorialFinished = localStorage.getItem('tutorialFinished') === 'true';
 
 onMounted(() => {
-  console.log('is cookie finished?  ', tutorialFinished, ' ', tutorialFinished);
   if (tutorialFinished) emit('finished');
 });
 
@@ -179,7 +180,6 @@ async function runTutorial() {
     currSegmentIndex.value++;
   }
   localStorage.setItem('tutorialFinished', 'true');
-  console.log('setting tutorial finished to true ', tutorialFinished);
   emit('finished');
 }
 
@@ -200,19 +200,19 @@ function onSceneEntered() {
           class="absolute h-full w-full bg-black opacity-75 xs:rounded-br-lg"
         ></div>
         <div class="relative p-4">
-          <div class="font-bold">{{ currSegment.name }}</div>
-          <div class="font-regular mt-2">{{ currSegment.description }}</div>
+          <div class="font-bold">{{ currSegment?.name }}</div>
+          <div class="font-regular mt-2">{{ currSegment?.description }}</div>
           <div
             class="font-regular mt-2"
-            v-if="currSegment.subSegments[currSubSegmentIndex]"
+            v-if="currSegment?.subSegments[currSubSegmentIndex]"
           >
-            {{ currSegment.subSegments[currSubSegmentIndex].instruction }}
+            {{ currSegment?.subSegments[currSubSegmentIndex].instruction }}
           </div>
           <div
             class="relative h-1 mt-4 flex flex-row justify-between items-center gap-2"
           >
             <div
-              v-for="index in currSegment.subSegments.length"
+              v-for="index in currSegment?.subSegments.length"
               class="h-full flex-1 rounded-full bg-gray-400 overflow-hidden"
             >
               <div
