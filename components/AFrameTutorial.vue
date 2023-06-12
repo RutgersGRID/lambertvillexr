@@ -3,10 +3,15 @@ import { Entity } from 'aframe';
 import VideoComponent from '~/aframe/components/video';
 
 const emit = defineEmits(['finished']);
+const props = defineProps<{
+  forceTutorial: boolean;
+}>();
 
 let tutorialFinished = false;
-if (process.client)
-  tutorialFinished = localStorage.getItem('tutorialFinished') === 'true';
+if (process.client) {
+  if (props.forceTutorial) tutorialFinished = false;
+  else tutorialFinished = localStorage.getItem('tutorialFinished') === 'true';
+}
 
 onMounted(() => {
   if (tutorialFinished) emit('finished');
@@ -15,7 +20,6 @@ onMounted(() => {
 async function loadSystems() {
   //@ts-ignore
   await import('aframe-sun-sky');
-  await import('@/aframe/systems/tutorial');
 }
 
 type TutorialSegment = {

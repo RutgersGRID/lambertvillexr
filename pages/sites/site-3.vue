@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { useAsset } from '@/composables/useAssets';
+
+const boatModel = useAsset('@/assets/deployment-assets/site3/boat.gltf');
+const interviewAudio = useAsset(
+  '@/assets/deployment-assets/site3/Site 3 Final Audio.mp3'
+);
+
+console.log('boat, uinterview ', boatModel, ' ', interviewAudio);
+
 definePageMeta({
   pageName: 'Union Street Bridge',
 });
@@ -22,15 +31,8 @@ async function loadSystems() {
         src="@/assets/deployment-assets/site3/trash-video.mp4"
         crossorigin="anonymous"
       ></video>
-      <audio
-        id="interview-audio"
-        preload="auto"
-        src="@/assets/deployment-assets/site3/Site 3 Final Audio.mp3"
-      ></audio>
-      <a-asset-item
-        id="boat"
-        src="@/assets/deployment-assets/site3/boat.gltf"
-      ></a-asset-item>
+      <audio id="interview-audio" preload="auto" :src="interviewAudio"></audio>
+      <a-asset-item id="boat" :src="boatModel"></a-asset-item>
     </a-assets>
 
     <a-playback-video

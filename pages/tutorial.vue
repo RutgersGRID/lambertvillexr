@@ -5,5 +5,8 @@ function onFinished() {
 </script>
 
 <template>
-  <AFrameTutorial @finished="onFinished"></AFrameTutorial>
+  <AFrameTutorial
+    @finished="onFinished"
+    :force-tutorial="true"
+  ></AFrameTutorial>
 </template>
