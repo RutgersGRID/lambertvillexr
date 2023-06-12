@@ -15,9 +15,3 @@ export function useAssets(path: string) {
   );
   return images[fileName];
 }
-
-export function useAsset(path: string) {
-  if (path[0] === '@')
-    return new URL('..' + path.substring(1), import.meta.url);
-  return path;
-}

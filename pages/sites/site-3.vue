@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { useAsset } from '@/composables/useAssets';
-
-const boatModel = useAsset('@/assets/deployment-assets/site3/boat.gltf');
-const interviewAudio = useAsset(
-  '@/assets/deployment-assets/site3/Site 3 Final Audio.mp3'
-);
+import boatModel from '@/assets/deployment-assets/site3/boat.gltf?url';
+import interviewAudio from '@/assets/deployment-assets/site3/Site 3 Final Audio.mp3?url';
 
 console.log('boat, uinterview ', boatModel, ' ', interviewAudio);
 
