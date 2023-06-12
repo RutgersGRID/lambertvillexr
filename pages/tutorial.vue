@@ -1,0 +1,3 @@
+<template>
+  <AFrameTutorial></AFrameTutorial>
+</template>

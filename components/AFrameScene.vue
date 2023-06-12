@@ -22,21 +22,9 @@ const scene = ref<Scene>();
 let cameraHasLookControls = false;
 let cameraHasWASDControls = false;
 
-onMounted(async () => {
-  await import('aframe');
-
-  async function loadDefaultSystems() {
-    await import('@/aframe/components/video');
-    await import('@/aframe/components/video-controls');
-    await import('@/aframe/systems/style-video-controls');
-    await import('@/aframe/systems/ball-scene');
-  }
-  await loadDefaultSystems();
-  if (props.loadSystems) await props.loadSystems();
-  aframeLoaded.value = true;
-
-  nextTick(() => {
-    scene.value?.addEventListener('loaded', () => {
+watch(scene, (newScene, oldScene) => {
+  if (newScene != undefined) {
+    newScene.addEventListener('loaded', () => {
       if (!scene.value) return;
       const camera = scene.value.querySelector<Entity>('[camera]');
       if (!camera) return;
@@ -49,10 +37,25 @@ onMounted(async () => {
         camera.setAttribute('wasd-controls', 'enabled', false);
       }
 
-      scene.value?.pause();
+      newScene.pause();
       sceneLoaded.value = true;
     });
-  });
+  }
+});
+
+onMounted(async () => {
+  await import('aframe');
+
+  async function loadDefaultSystems() {
+    await import('@/aframe/components/video');
+    await import('@/aframe/components/video-controls');
+    await import('@/aframe/systems/style-video-controls');
+    await import('@/aframe/systems/ball-scene');
+    await import('@/aframe/primitives/animated-cursor');
+  }
+  await loadDefaultSystems();
+  if (props.loadSystems) await props.loadSystems();
+  aframeLoaded.value = true;
 });
 
 function onSceneEntered() {
@@ -69,6 +72,11 @@ function onSceneEntered() {
     video.pause();
   }
   emit('sceneEntered');
+}
+
+function onTutorialFinished() {
+  console.log('Tutorial finished');
+  showTutorial.value = false;
 }
 </script>
 
@@ -110,7 +118,7 @@ function onSceneEntered() {
     <AFrameTutorial
       v-if="showTutorial"
       class="absolute"
-      @finished="showTutorial = false"
+      @finished="onTutorialFinished"
     ></AFrameTutorial>
   </ClientOnly>
 </template>

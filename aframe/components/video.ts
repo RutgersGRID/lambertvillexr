@@ -176,7 +176,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
 
     this.playPlane.setAttribute('material', 'transparent', true);
     this.playPlane.setAttribute('material', 'opacity', 0);
-    this.playPlane.setAttribute('animation__showcontrols_color', {
+    this.playPlane.setAttribute('animation__showcontrols_opacity', {
       property: 'material.opacity',
       to: 1,
       startEvents: 'showcontrols',
@@ -190,7 +190,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       dur: animDuration,
       easing: animEasing,
     });
-    this.videoPlane.setAttribute('animation__mouseenter_color', {
+    this.videoPlane.setAttribute('animation__showcontrols_color', {
       property: 'material.color',
       to: '#686868',
       startEvents: 'showcontrols',
