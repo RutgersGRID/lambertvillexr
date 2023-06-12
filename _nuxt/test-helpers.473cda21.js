@@ -1,1 +1,0 @@
-AFRAME.THREE.Object3D;
