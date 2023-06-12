@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { RouteRecordRaw, useRoute } from 'vue-router';
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import { getRouteName, useRouterCategories } from '@/utils/page';
 
 const isSideBarOpen = ref(false);
 
+const router = useRouter();
 const currRoute = useRoute();
 const { routeCategories } = useRouterCategories();
+
+router.beforeEach(() => {
+  isSideBarOpen.value = false;
+});
 
 const flattenedRoutes: RouteRecordRaw[] = [];
 routeCategories.forEach((x) => flattenedRoutes.push(...x.routes));
