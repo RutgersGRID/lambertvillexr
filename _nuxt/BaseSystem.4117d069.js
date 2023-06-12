@@ -1,0 +1,1 @@
+var m=Object.defineProperty;var o=(a,s,t)=>s in a?m(a,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[s]=t;var e=(a,s,t)=>(o(a,typeof s!="symbol"?s+"":s,t),t);var c;const h=(c=class{},e(c,"schema",{}),c);export{h as B};
