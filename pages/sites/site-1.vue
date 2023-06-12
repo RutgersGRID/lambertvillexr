@@ -20,9 +20,9 @@ onMounted(() => {
 <template>
   <AFrameScene>
     <a-assets>
-      <img id="image1" src="@/assets/images/image1.jpg" />
-      <img id="image2" src="@/assets/images/image2.jpg" />
-      <img id="image3" src="@/assets/images/image3.jpg" />
+      <img id="image1" :src="usePublic('assets/images/image1.jpg')" />
+      <img id="image2" :src="usePublic('assets/images/image2.jpg')" />
+      <img id="image3" :src="usePublic('assets/images/image3.jpg')" />
     </a-assets>
 
     <a-image

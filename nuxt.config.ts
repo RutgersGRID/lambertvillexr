@@ -103,7 +103,7 @@ export default defineNuxtConfig({
   },
   css: [
     '@mdi/font/css/materialdesignicons.min.css',
-    '@/assets/style/main.scss',
+    'public/assets/style/main.scss',
   ],
   postcss: {
     plugins: {
