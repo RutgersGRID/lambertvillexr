@@ -1,0 +1,1 @@
+import{b as c}from"./AFrameScene.vue.3db69a8e.js";import{i as r,c as t,o as e}from"./entry.26cd3bf8.js";const a={};function n(s,_){const o=c;return e(),t(o)}const m=r(a,[["render",n]]);export{m as default};
