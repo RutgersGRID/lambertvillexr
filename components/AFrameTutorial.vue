@@ -47,9 +47,7 @@ const segments: TutorialSegment[] = [
   {
     name: 'Looking Around',
     description:
-      'The circle at the center of your screen is your "cursor", which points to you are looking. You can look around by rotating your device around.',
-    desktopDescription:
-      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by clicking and dragging the screen.',
+      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by rotating your device around on mobile or by clicking and dragging the screen on a computer.',
     subSegments: [
       {
         instruction: 'Look at the ball above you',
@@ -259,14 +257,14 @@ function onSceneEntered() {
         ></a-sphere>
         <a-sphere
           ref="ballLeft"
-          position="10 0 -5"
+          position="-10 0 -5"
           visible="false"
           class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
         ></a-sphere>
         <a-sphere
           ref="ballRight"
-          position="-10 0 -5"
+          position="10 0 -5"
           visible="false"
           class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
