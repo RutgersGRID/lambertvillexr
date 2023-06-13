@@ -34,7 +34,7 @@ export class ButtonComponent extends BaseComponent {
   ) {
     this.el.setAttribute('animation__mouseenter_color', {
       property: 'material.color',
-      to: '#686868',
+      to: '#b0b0b0',
       startEvents: 'mouseenter',
       dur: animDuration,
       easing: animEasing,
@@ -48,7 +48,8 @@ export class ButtonComponent extends BaseComponent {
     });
     this.el.setAttribute('animation__mouseclick_color', {
       property: 'material.color',
-      to: '#4f4f4f',
+      from: '#828282',
+      to: '#b0b0b0',
       startEvents: 'click',
       dur: animDuration,
       easing: animEasing,
@@ -69,6 +70,7 @@ AFRAME.registerPrimitive(
         side: 'double',
         transparent: true,
       },
+      button: {},
     },
     mappings: {
       height: 'geometry.height',
