@@ -55,7 +55,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.playPlane.setAttribute('transparent', true);
     this.playPlane.setAttribute('alpha-test', 0.5);
     this.el.appendChild(this.videoPlane);
-    this.videoPlane.classList.add('clickable');
     this.videoPlane.appendChild(this.playPlane);
 
     this.update();
@@ -88,6 +87,22 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.videoElem?.addEventListener('ended', () => {
       this.updatePlaybackUI();
     });
+
+    this.el.addEventListener('componentchanged', (e) => {
+      if (e.detail.name === 'visible') this.updateClickable();
+    });
+    this.updateClickable();
+  }
+
+  updateClickable() {
+    if (!this.videoPlane) return;
+    const isVisible = this.el.getAttribute('visible');
+    console.log('is visible, ', isVisible);
+    if (this.videoPlane.classList.contains('clickable')) {
+      if (!isVisible) this.videoPlane.classList.remove('clickable');
+    } else {
+      if (isVisible) this.videoPlane.classList.add('clickable');
+    }
   }
 
   update() {

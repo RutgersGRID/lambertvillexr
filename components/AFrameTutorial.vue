@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Entity } from 'aframe';
-import VideoComponent from '~/aframe/components/video';
+import VideoComponent from '@/aframe/components/video';
+import useMobileCheck from '@/composables/useMobileCheck';
 
 const emit = defineEmits(['finished']);
 const props = defineProps<{
-  forceTutorial: boolean;
+  forceTutorial?: boolean;
 }>();
 
 let tutorialFinished = false;
@@ -12,6 +13,8 @@ if (process.client) {
   if (props.forceTutorial) tutorialFinished = false;
   else tutorialFinished = localStorage.getItem('tutorialFinished') === 'true';
 }
+
+const { isMobile } = useMobileCheck();
 
 onMounted(() => {
   if (tutorialFinished) emit('finished');
@@ -47,7 +50,9 @@ const segments: TutorialSegment[] = [
   {
     name: 'Looking Around',
     description:
-      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by rotating your device around on mobile or by clicking and dragging the screen on a computer.',
+      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by rotating your device around.',
+    desktopDescription:
+      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by clicking and dragging the screen with your mouse.',
     subSegments: [
       {
         instruction: 'Look at the ball above you',
@@ -55,6 +60,7 @@ const segments: TutorialSegment[] = [
           const entity = ballAbove.value;
           if (!entity) return;
           entity.setAttribute('visible', true);
+          entity.classList.add('clickable');
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
             resolve();
@@ -68,6 +74,7 @@ const segments: TutorialSegment[] = [
           const entity = ballLeft.value;
           if (!entity) return;
           entity.setAttribute('visible', true);
+          entity.classList.add('clickable');
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
             resolve();
@@ -81,6 +88,7 @@ const segments: TutorialSegment[] = [
           const entity = ballRight.value;
           if (!entity) return;
           entity.setAttribute('visible', true);
+          entity.classList.add('clickable');
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
             resolve();
@@ -94,6 +102,7 @@ const segments: TutorialSegment[] = [
           const entity = ballBelow.value;
           if (!entity) return;
           entity.setAttribute('visible', true);
+          entity.classList.add('clickable');
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
             resolve();
@@ -107,6 +116,8 @@ const segments: TutorialSegment[] = [
     name: 'Clicking',
     description:
       'To "click" on an object, move your cursor over to object, and then continue looking at the object until the cursor shrinks.',
+    desktopDescription:
+      'To "click" on an object, move your cursor over to object, and then left click your mouse.',
     subSegments: [
       {
         instruction:
@@ -189,6 +200,13 @@ function onSceneEntered() {
   sceneEntered.value = true;
   runTutorial();
 }
+
+function getSegmentDescription(segment?: TutorialSegment) {
+  if (!segment) return '';
+  if (segment.desktopDescription && !isMobile)
+    return segment.desktopDescription;
+  return segment.description;
+}
 </script>
 
 <template>
@@ -203,7 +221,9 @@ function onSceneEntered() {
         ></div>
         <div class="relative p-4">
           <div class="font-bold">{{ currSegment?.name }}</div>
-          <div class="font-regular mt-2">{{ currSegment?.description }}</div>
+          <div class="font-regular mt-2">
+            {{ getSegmentDescription(currSegment) }}
+          </div>
           <div
             class="font-regular mt-2"
             v-if="currSegment?.subSegments[currSubSegmentIndex]"
@@ -252,28 +272,24 @@ function onSceneEntered() {
           ref="ballAbove"
           position="0 10 -5"
           visible="false"
-          class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
         ></a-sphere>
         <a-sphere
           ref="ballLeft"
           position="-10 0 -5"
           visible="false"
-          class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
         ></a-sphere>
         <a-sphere
           ref="ballRight"
           position="10 0 -5"
           visible="false"
-          class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
         ></a-sphere>
         <a-sphere
           ref="ballBelow"
           position="0 -10 -5"
           visible="false"
-          class="clickable"
           animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
         ></a-sphere>
       </a-entity>
@@ -299,8 +315,7 @@ function onSceneEntered() {
         ></a-image>
       </a-entity>
       <a-camera position="0 1.6 0" look-controls wasd-controls="enabled:false">
-        <ACursor></ACursor>
-        <!-- <a-animated-cursor></a-animated-cursor> -->
+        <a-animated-cursor></a-animated-cursor>
       </a-camera>
     </AFrameScene>
   </div>
