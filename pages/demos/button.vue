@@ -10,7 +10,6 @@ async function loadSystems() {
 const myButton = ref<Entity>();
 
 function onSceneEntered() {
-  console.log('mounted my butotn, ', myButton.value);
   if (!myButton.value) return;
   myButton.value.addEventListener('click', () => {
     console.log('Button clicked!');
