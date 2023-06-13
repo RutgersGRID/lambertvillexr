@@ -409,7 +409,7 @@ export class VideoControlsComponent extends BaseComponent<VideoControlsComponent
           // Display time info text
 
           ctx.font = this.data.timeTextFont;
-          ctx.fillStyle = 'white';
+          ctx.fillStyle = '#FFF';
           ctx.textAlign = 'center';
           ctx.fillText(
             time_info_text,

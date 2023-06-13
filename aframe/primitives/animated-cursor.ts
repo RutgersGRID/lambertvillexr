@@ -13,7 +13,7 @@ AFRAME.registerPrimitive('a-animated-cursor', {
       segmentsTheta: 32,
     },
     material: {
-      color: 'white ',
+      color: '#FFF',
       shader: 'flat',
     },
     position: { x: 0, y: 0, z: -1 },

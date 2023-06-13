@@ -27,10 +27,8 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     thetaStart: { default: 0 },
   };
 
-  playImageSrc: string =
-    'https://res.cloudinary.com/dxbh0pppv/image/upload/c_scale,h_512,q_10/v1471016296/play_wvmogo.png';
-  pauseImageSrc: string =
-    'https://res.cloudinary.com/dxbh0pppv/image/upload/c_scale,h_512,q_25/v1471016296/pause_ndega5.png';
+  playImageSrc: string = usePublic('assets/images/play.png');
+  pauseImageSrc: string = usePublic('assets/images/pause.png');
 
   animDuration: number = 200;
   animEasing: string = 'easeOutCubic';
