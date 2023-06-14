@@ -5,6 +5,8 @@ import {
 import { Schema, Entity } from 'aframe';
 import * as document from '@/utils/document';
 import { arcLengthToDeg } from '@/utils/math';
+import { fixTextureToAspect } from '@/utils/three';
+
 const THREE = AFRAME.THREE;
 
 export interface VideoComponentData {
@@ -35,7 +37,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   playPlane?: Entity;
   videoPlane?: Entity;
   fadeControlsTimer?: NodeJS.Timeout;
-  videoElem?: HTMLMediaElement;
+  videoElem?: HTMLVideoElement;
 
   isHovering: boolean = false;
   isVideoPlaying: boolean = false;
@@ -55,7 +57,9 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.el.appendChild(this.videoPlane);
     this.videoPlane.appendChild(this.playPlane);
 
-    this.update();
+    this.videoPlane.addEventListener('loaded', () => {
+      this.update();
+    });
     this.updateAnimations(this.animDuration);
 
     this.videoPlane.addEventListener('mouseenter', () => {
@@ -104,11 +108,11 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   }
 
   update() {
+    if (!this.videoPlane || !this.playPlane) return;
+
     const percentageOfVideoPlane = 0.3;
     const smallestDim =
       this.data.width < this.data.height ? this.data.width : this.data.height;
-
-    if (!this.videoPlane || !this.playPlane) return;
 
     if (this.data.curved) {
       const circumference = 2 * Math.PI * this.data.radius;
@@ -141,9 +145,16 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
 
     this.playPlane.setAttribute('height', smallestDim * percentageOfVideoPlane);
     this.videoPlane.setAttribute('height', this.data.height);
-    this.videoPlane.setAttribute('src', this.data.src);
 
-    this.videoElem = document.querySelector<HTMLMediaElement>(this.data.src);
+    this.videoElem = document.querySelector<HTMLVideoElement>(this.data.src);
+    this.videoPlane.setAttribute('src', this.data.src);
+    if (this.videoPlane.getObject3D('mesh')) {
+      const mesh = this.videoPlane.getObject3D('mesh') as THREE.Mesh;
+      const meshMaterial = mesh.material as THREE.MeshBasicMaterial;
+      if (meshMaterial.map)
+        fixTextureToAspect(meshMaterial.map, this.data.width, this.data.height);
+    }
+
     this.isVideoPlaying = !!(
       this.videoElem.currentTime > 0 &&
       !this.videoElem.paused &&

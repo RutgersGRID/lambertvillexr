@@ -4,7 +4,7 @@ import {
 } from '@/manual_modules/aframe-class-components';
 import { Entity, Schema } from 'aframe';
 import document from '@/utils/document';
-import { MeshBasicMaterial } from 'three';
+import { loadTextureToAspect } from '@/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -40,8 +40,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   init() {
     console.log('init slide show with data ', this.data);
     this.displayPlane = document.createEntity('a-image');
-    this.displayPlane.setAttribute('width', this.data.width);
-    this.displayPlane.setAttribute('height', this.data.height);
 
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
@@ -75,7 +73,9 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     if (!this.displayPlane) return;
 
     const mesh = this.displayPlane.getObject3D('mesh') as THREE.Mesh;
-    (mesh.material as MeshBasicMaterial).map = newImage;
+    const meshMaterial = mesh.material as THREE.MeshBasicMaterial;
+    meshMaterial.map?.dispose();
+    meshMaterial.map = newImage;
   }
 
   gotoNextImage() {
@@ -97,26 +97,12 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       .querySelectorAll<HTMLImageElement>(this.data.imageQuery, this.el.sceneEl)
       .map((x) => x.src);
 
-    function fixTextureToAspect(planeWidth: number, planeHeight: number) {
-      return function (texture: THREE.Texture) {
-        const planeAspect = planeWidth / planeHeight;
-        const imageAspect = texture.image.width / texture.image.height;
-        const aspect = imageAspect / planeAspect;
-
-        texture.offset.x = aspect > 1 ? (1 - 1 / aspect) / 2 : 0;
-        texture.repeat.x = aspect > 1 ? 1 / aspect : 1;
-
-        texture.offset.y = aspect > 1 ? 0 : (1 - aspect) / 2;
-        texture.repeat.y = aspect > 1 ? 1 : aspect;
-      };
-    }
-
     this.images = [];
 
     imageSrcs.forEach((src) => {
       const texture = new THREE.TextureLoader().load(
         src,
-        fixTextureToAspect(this.data.width, this.data.height)
+        loadTextureToAspect(this.data.width, this.data.height)
       );
       texture.wrapS = THREE.ClampToEdgeWrapping;
       texture.wrapT = THREE.RepeatWrapping;
@@ -125,8 +111,27 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   }
 
   update() {
+    if (!this.displayPlane || !this.nextButton || !this.prevButton) return;
+
+    const percentageOfVideoPlane = 0.2;
+    const smallestDim =
+      this.data.width < this.data.height ? this.data.width : this.data.height;
+
+    this.displayPlane.setAttribute('width', this.data.width);
+    this.displayPlane.setAttribute('height', this.data.height);
+    this.nextButton.setAttribute('width', smallestDim * percentageOfVideoPlane);
+    this.nextButton.setAttribute(
+      'height',
+      smallestDim * percentageOfVideoPlane
+    );
+    this.prevButton.setAttribute('width', smallestDim * percentageOfVideoPlane);
+    this.prevButton.setAttribute(
+      'height',
+      smallestDim * percentageOfVideoPlane
+    );
+
     this.updateImageTextures();
-    if (this.displayPlane?.getObject3D('mesh')) {
+    if (this.displayPlane.getObject3D('mesh')) {
       this.updateImage(this.images[0]);
 
       this.currImageIndex = 0;

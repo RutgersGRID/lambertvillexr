@@ -47,6 +47,7 @@ async function loadSystems() {
       src="#avocado-video2"
       position="20 3 -20"
       rotation="0 -35 0"
+      width="32"
     ></a-playback-video>
     <a-playback-video
       src="#trash-video"
