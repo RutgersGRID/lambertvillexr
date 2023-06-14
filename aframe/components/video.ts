@@ -99,7 +99,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   updateClickable() {
     if (!this.videoPlane) return;
     const isVisible = this.el.getAttribute('visible');
-    console.log('is visible, ', isVisible);
     if (this.videoPlane.classList.contains('clickable')) {
       if (!isVisible) this.videoPlane.classList.remove('clickable');
     } else {

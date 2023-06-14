@@ -38,7 +38,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   autoplayInterval?: NodeJS.Timer;
 
   init() {
-    console.log('init slide show with data ', this.data);
     this.displayPlane = document.createEntity('a-image');
 
     this.prevButton = document.createEntity('a-button');
