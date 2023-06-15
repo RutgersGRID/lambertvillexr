@@ -48,12 +48,14 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
     this.titleElem = document.createEntity('a-text');
     this.titleElem.setAttribute('position', {
       x: 0,
-      y: -this.data.size / 2 + 0.5,
+      y: -(this.data.size / 2 + 1),
       z: 0,
     });
+    this.titleElem.setAttribute('wrap-count', 16);
+    this.titleElem.setAttribute('align', 'center');
     this.titleElem.setAttribute(
       'font',
-      usePublic('assets/fonts/Raleway/Raleway-Regular.json')
+      usePublic('assets/fonts/Raleway/Raleway-Bold.json')
     );
     this.titleElem.setAttribute('shader', 'msdf');
 
