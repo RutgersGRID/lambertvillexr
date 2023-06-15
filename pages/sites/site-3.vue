@@ -30,18 +30,25 @@ async function loadSystems() {
       ></audio>
     <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
     </a-assets>
-    <a-playback-video
+    <a-entity rotation="0 0 0">
+      <a-playback-video
       src="#trash-video"
-      position="0 0 -20"
-      rotation="0 0 0"
+      position="0 0 -10"
     ></a-playback-video>
-    <a-gltf-model src=#boat position="0 0 0"></a-gltf-model>
-    <a-audio-player
+    </a-entity>
+    <a-entity rotation="0 90 0">
+      <a-entity position="0 0 -10" rotation="0 90 0">
+        <a-gltf-model src="#boat" rotation="0 0 20" position="5.293 -0.03623 6.46695"></a-gltf-model>
+      </a-entity>
+    </a-entity>
+    <a-entity rotation="0 -90 0">
+      <a-audio-player
       src="#interview"
-      position="0 1.6 -5"
+      position="0 1 -10"
       title="Interview"
     ></a-audio-player>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    </a-entity>
+    <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
