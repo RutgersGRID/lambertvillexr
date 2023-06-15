@@ -28,16 +28,14 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site3/Site 3 Final Audio.mp3')"
       ></audio>
+    <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
     </a-assets>
     <a-playback-video
       src="#trash-video"
       position="0 0 -20"
       rotation="0 0 0"
     ></a-playback-video>
-    <a-entity
-      position="0 0 0"
-      :gltf-model="usePublic('assets/sites/site3/boat.glb')"
-    ></a-entity>
+    <a-gltf-model src=#boat position="0 0 0"></a-gltf-model>
     <a-audio-player
       src="#interview"
       position="0 1.6 -5"
