@@ -6,27 +6,37 @@ definePageMeta({
 async function loadSystems() {
   //@ts-ignore
   await import('aframe-sun-sky');
+  await import('@/aframe/components/button');
+  await import('@/aframe/components/audio-player');
 }
 </script>
 
 <template>
   <AFrameScene :load-systems="loadSystems">
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
-    <a-entity
-          position="0 0 0"
-          gltf-model="/assets/models/site6/Person1.glb"
-    ></a-entity>
+    <a-assets>
+      <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
+      <audio id="interview" :src="usePublic('assets/sites/site6/interview6.mp3')" preload="auto"></audio>
+      <a-asset-item id="Person1" :src="usePublic('assets/sites/site6/Person1.glb')"></a-asset-item>
+      <a-asset-item id="Person2" :src="usePublic('assets/sites/site6/Person2.glb')"></a-asset-item>
+      <a-asset-item id="Person3" :src="usePublic('assets/sites/site6/Person3.glb')"></a-asset-item>
+      <a-asset-item id="Person4" :src="usePublic('assets/sites/site6/Person4.glb')"></a-asset-item>
+      <a-asset-item id="Person5" :src="usePublic('assets/sites/site6/Person5.glb')"></a-asset-item>
+      <a-asset-item id="Person6" :src="usePublic('assets/sites/site6/Person6.glb')"></a-asset-item>
+    </a-assets>
+    <a-gltf-model src=#Person1 position="1 1 1"></a-gltf-model>
+    <a-gltf-model src=#Person2 position="6 6 6"></a-gltf-model>
+    <a-gltf-model src=#Person3 position="3 3 3"></a-gltf-model>
+    <a-gltf-model src=#Person4 position="4 4 4"></a-gltf-model>
+    <a-gltf-model src=#Person5 position="5 5 5"></a-gltf-model>
+    <a-gltf-model src=#Person6 position="7 7 7"></a-gltf-model>
+    <a-audio-player
+      src="#interview"
+      position="0 1.6 -5"
+      title="Interview"
+    ></a-audio-player>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
-      <a-cursor
-        id="cursor"
-        color="white"
-        rayOrigin="mouse"
-        raycaster="objects: .clickable"
-        fuseTimeout="500"
-        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-      ></a-cursor>
+      <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
 </template>
