@@ -36,7 +36,7 @@ async function loadSystems() {
     <a-entity
           sound="src: #interview; autoplay: true; loop: true; rolloffFactor: 8;"
           position="0 0 0"
-          gltf-model="/assets/models/boat.glb"
+          gltf-model="/assets/sites/site3/boat.glb"
     ></a-entity>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-cursor
