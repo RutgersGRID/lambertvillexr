@@ -47,11 +47,11 @@ onMounted(async () => {
   await import('aframe');
 
   async function loadDefaultSystems() {
-    await import('@/aframe/components/video');
-    await import('@/aframe/components/video-controls');
-    await import('@/aframe/systems/style-video-controls');
-    await import('@/aframe/systems/ball-scene');
     await import('@/aframe/primitives/animated-cursor');
+    await import('@/aframe/components/video');
+    await import('@/aframe/components/button');
+    await import('@/aframe/components/audio-player');
+    await import('@/aframe/components/slide-show');
   }
   await loadDefaultSystems();
   if (props.loadSystems) await props.loadSystems();
