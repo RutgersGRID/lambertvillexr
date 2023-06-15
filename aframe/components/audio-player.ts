@@ -53,15 +53,9 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
     });
     this.titleElem.setAttribute(
       'font',
-      // 'https://cdn.glitch.com/b4adbd04-68ad-4b83-8ff1-0cfe5e5c37ec%2Fgeorgia-msdf.json'
       usePublic('assets/fonts/Raleway/Raleway-Regular.json')
     );
-    this.titleElem.setAttribute(
-      'font-image',
-      // 'https://cdn.glitch.com/b4adbd04-68ad-4b83-8ff1-0cfe5e5c37ec%2Fgeorgia.png?v=1619693337804'
-      usePublic('assets/fonts/Raleway/Raleway-Regular.png')
-    );
-    // this.titleElem.setAttribute('color', 'white');
+    this.titleElem.setAttribute('shader', 'msdf');
 
     const geometry = new THREE.CircleGeometry(
       (this.data.size / 2) * 1.25,
