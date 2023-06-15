@@ -23,35 +23,21 @@ async function loadSystems() {
         crossorigin="anonymous"
       ></video>
       <audio
-        id="interview-audio"
+        id="interview"
+        src="/assets/sites/site3/Site 3 Final Audio.mp3"
         preload="auto"
-        :src="usePublic('assets/sites/site3/Site 3 Final Audio.mp3')"
       ></audio>
-      <a-asset-item
-        id="boat"
-        :src="usePublic('assets/sites/site3/boat.gltf')"
-      ></a-asset-item>
     </a-assets>
-
     <a-playback-video
       src="#trash-video"
       position="0 0 -20"
       rotation="0 0 0"
     ></a-playback-video>
-    <a-marker preset="hiro" smooth="true">
-      <a-entity
-        sound="src: #interview-audio; autoplay: true; loop: true; rolloffFactor: 8;"
-        position="0 0 0"
-        gltf-model="#boat"
-        scale="0.2 0.2 0.2"
-        rotation="-90 90 -90"
-      ></a-entity>
-      <a-box
-        position="0 0.25 0"
-        material="opacity: 0.5;"
-        scale="0.5 0.5 0.5"
-      ></a-box>
-    </a-marker>
+    <a-entity
+          sound="src: #interview; autoplay: true; loop: true; rolloffFactor: 8;"
+          position="0 0 0"
+          gltf-model="/assets/models/boat.glb"
+    ></a-entity>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-cursor
         id="cursor"
