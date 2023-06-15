@@ -1,11 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="bg-white dark:bg-gray-900 flex flex-col h-screen w-screen">
-    <div class="flex-auto relative flex flex-row overflow-auto">
-      <SideNavMenu
-        class="hidden lg:flex flex-grow-0 w-screen max-w-xs p-8 self-stretch"
-      ></SideNavMenu>
+  <div class="bg-white dark:bg-gray-900 flex flex-col min-h-full min-w-full">
+    <div class="flex-auto relative flex flex-row">
+      <div class="overflow-auto max-h-screen">
+        <SideNavMenu
+          class="hidden lg:flex flex-grow-0 w-screen max-w-xs p-8 self-stretch"
+        ></SideNavMenu>
+      </div>
       <div class="flex-grow relative">
         <NuxtPage />
       </div>
