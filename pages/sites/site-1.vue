@@ -3,34 +3,30 @@ definePageMeta({
   pageName: 'Delaware Canal Entrance',
 });
 
-const images = ['#image1', '#image2', '#image3'];
-const currentImageIndex = ref(0);
-const currentImage = ref('#image1');
-
-function showNextImage() {
-  currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
-  currentImage.value = images[currentImageIndex.value];
+async function loadSystems() {
+  //@ts-ignore
+  await import('aframe-sun-sky');
+  await import('@/aframe/components/button');
+  await import('@/aframe/components/slide-show');
 }
-
-onMounted(() => {
-  setInterval(showNextImage, 2000);
-});
 </script>
 
 <template>
-  <AFrameScene>
+  <AFrameScene :load-systems="loadSystems">
+    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
-      <img id="image1" :src="usePublic('assets/images/image1.jpg')" />
-      <img id="image2" :src="usePublic('assets/images/image2.jpg')" />
-      <img id="image3" :src="usePublic('assets/images/image3.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
     </a-assets>
-
-    <a-image
-      id="slideshow"
-      :src="currentImage"
-      scale="2 2 2"
-      position="0 0 -3"
-    ></a-image>
-    <a-entity camera look-controls wasd-controls></a-entity>
+    <a-slide-show
+      position="-10 1.6 -10"
+      rotation="0 30 0"
+      image-query=".slide-show"
+      autoplay="true"
+    ></a-slide-show>
+    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+      <a-animated-cursor></a-animated-cursor>
+    </a-entity>
   </AFrameScene>
 </template>

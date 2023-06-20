@@ -26,7 +26,7 @@ async function loadSystems() {
     ></video>
       <audio
         id="interview"
-        :src="usePublic('assets/sites/site3/Site 3 Final Audio.mp3')"
+        :src="usePublic('assets/sites/site3/interview3.mp3')"
       ></audio>
     <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
     </a-assets>
