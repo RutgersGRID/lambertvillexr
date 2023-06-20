@@ -25,8 +25,8 @@ async function loadSystems() {
     </a-assets>
     <a-playback-video
       src="#tree"
-      position="0 0 -20"
-      rotation="0 0 0"
+      position="-20 0 -5"
+      rotation="0 90 0"
     ></a-playback-video>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>

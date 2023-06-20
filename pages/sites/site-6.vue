@@ -24,15 +24,15 @@ async function loadSystems() {
       <a-asset-item id="Person5" :src="usePublic('assets/sites/site6/Person5.glb')"></a-asset-item>
       <a-asset-item id="Person6" :src="usePublic('assets/sites/site6/Person6.glb')"></a-asset-item>
     </a-assets>
-    <a-gltf-model src=#Person1 position="1 1 1"></a-gltf-model>
-    <a-gltf-model src=#Person2 position="6 6 6"></a-gltf-model>
-    <a-gltf-model src=#Person3 position="3 3 3"></a-gltf-model>
-    <a-gltf-model src=#Person4 position="4 4 4"></a-gltf-model>
-    <a-gltf-model src=#Person5 position="5 5 5"></a-gltf-model>
-    <a-gltf-model src=#Person6 position="7 7 7"></a-gltf-model>
+    <a-gltf-model src=#Person1 position="10 -1 -15"></a-gltf-model>
+    <a-gltf-model src=#Person2 position="14 -6 -55"></a-gltf-model>
+    <a-gltf-model src=#Person3 position="3 -3 -25"></a-gltf-model>
+    <a-gltf-model src=#Person4 position="4 -4 -35"></a-gltf-model>
+    <a-gltf-model src=#Person5 position="5 -5 -45"></a-gltf-model>
+    <a-gltf-model src=#Person6 position="7 -7 -65"></a-gltf-model>
     <a-audio-player
       src="#interview"
-      position="0 1.6 -5"
+      position="-5 1.6 -8"
       title="Interview"
     ></a-audio-player>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
