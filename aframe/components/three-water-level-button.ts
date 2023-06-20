@@ -36,6 +36,14 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
       this.waterController.data.waterLevel = this.data.waterLevel;
     });
     this.el.appendChild(this.textButton);
+    console.log(
+      'water controller: ',
+      this.waterController,
+      ' text button ',
+      this.textButton,
+      ' obj3D',
+      this.textButton.object3D
+    );
   }
 
   feetToMeters(feet: number) {

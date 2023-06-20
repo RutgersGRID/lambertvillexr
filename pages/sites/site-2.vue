@@ -37,6 +37,7 @@ async function loadSystems() {
       water-level="5"
       unit="ft"
       position="0 1.6 -10"
+      three-layer="layers: 1"
     ></a-three-water-level-button>
 
     <a-entity
