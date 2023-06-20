@@ -26,6 +26,8 @@
     "sass-loader": "^10.4.1"
   },
   "dependencies": {
+    "@ar-js-org/ar.js": "^3.4.5",
+    "@ar-js-org/artoolkit5-js": "^0.3.0",
     "@heroicons/vue": "^2.0.17",
     "aframe": "^1.4.2",
     "aframe-sun-sky": "^3.0.4"

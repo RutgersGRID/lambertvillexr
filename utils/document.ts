@@ -23,9 +23,30 @@ export function createEntity<T>(element: `a-${string}`) {
   return document.createElement(element) as Entity<T>;
 }
 
+export function isScriptLoaded(src: string) {
+  var scripts = document.getElementsByTagName('script');
+  for (var i = scripts.length; i--; ) {
+    if (scripts[i].src == src) return true;
+  }
+  return false;
+}
+
+export function addScript(src: string) {
+  if (isScriptLoaded(src)) return false;
+
+  const script: HTMLScriptElement = <any>document.createElement('script');
+  script.src = src;
+  script.type = 'text/javascript';
+  document.head.appendChild(script);
+
+  return true;
+}
+
 export default {
   querySelector,
   querySelectorAll,
   createElement,
   createEntity,
+  isScriptLoaded,
+  addScript,
 };

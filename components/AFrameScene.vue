@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Entity, Scene } from 'aframe';
 import AFrameTutorial from './AFrameTutorial.vue';
+import document from '@/utils/document';
 
 const aframeLoaded = ref(false);
 const sceneLoaded = ref(false);
@@ -46,6 +47,10 @@ watch(scene, (newScene, oldScene) => {
 onMounted(async () => {
   await import('aframe');
 
+  document.addScript(
+    'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
+  );
+
   async function loadDefaultSystems() {
     await import('@/aframe/primitives/animated-cursor');
     await import('@/aframe/components/video');
@@ -54,6 +59,7 @@ onMounted(async () => {
     await import('@/aframe/components/slide-show');
   }
   await loadDefaultSystems();
+
   if (props.loadSystems) await props.loadSystems();
   aframeLoaded.value = true;
 });

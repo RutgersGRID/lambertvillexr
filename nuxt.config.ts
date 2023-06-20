@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from 'nuxt/config';
+
 // Social card settings
 const title = 'Lambertville XR';
 const description = 'Website for Lambertville XR walking tour.';
