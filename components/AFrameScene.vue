@@ -47,10 +47,6 @@ watch(scene, (newScene, oldScene) => {
 onMounted(async () => {
   await import('aframe');
 
-  document.addScript(
-    'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
-  );
-
   async function loadDefaultSystems() {
     await import('@/aframe/primitives/animated-cursor');
     await import('@/aframe/components/video');

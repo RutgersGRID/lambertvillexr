@@ -78,3 +78,33 @@ AFRAME.registerPrimitive(
     },
   })
 );
+
+AFRAME.registerComponent(
+  'text-button',
+  utils.extendDeep({}, primitives.getMeshMixin(), {
+    defaultComponents: {
+      geometry: {
+        primitive: 'plane',
+      },
+      material: {
+        color: '#FFF',
+        shader: 'flat',
+        side: 'double',
+        transparent: true,
+      },
+      text: {
+        value: 'Text',
+        shader: 'msdf',
+        'wrap-count': 16,
+        align: 'center',
+        font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
+      },
+      button: {},
+    },
+    mappings: {
+      height: 'geometry.height',
+      width: 'geometry.width',
+      text: 'text.value',
+    },
+  })
+);

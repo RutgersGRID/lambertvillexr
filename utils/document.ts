@@ -1,4 +1,4 @@
-import { Entity } from 'aframe';
+import { Entity, Scene } from 'aframe';
 
 export function querySelector<T>(
   query: string,
@@ -42,6 +42,12 @@ export function addScript(src: string) {
   return true;
 }
 
+export function getSystem<T>(name: string) {
+  const scene = document.querySelector('a-scene') as Scene;
+  if (!scene) return;
+  return <T>scene.systems[name];
+}
+
 export default {
   querySelector,
   querySelectorAll,
@@ -49,4 +55,5 @@ export default {
   createEntity,
   isScriptLoaded,
   addScript,
+  getSystem,
 };
