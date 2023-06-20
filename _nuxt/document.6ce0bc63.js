@@ -1,1 +1,0 @@
-function r(e,t=document){return t instanceof Document,t.querySelector(e)}function n(e,t=document){return Array.from(t.querySelectorAll(e))}function c(e){return document.createElement(e)}function o(e){return document.createElement(e)}const u={querySelector:r,querySelectorAll:n,createElement:c,createEntity:o};export{o as c,u as d,r as q};
