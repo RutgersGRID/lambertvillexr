@@ -40,19 +40,19 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
     this.textButton.setAttribute('width', size);
     this.textButton.setAttribute('height', size);
     this.textButton.addEventListener('click', () => {
-      console.log('setting water level of contr ', this.data.waterLevel);
       this.el.sceneEl?.setAttribute('three-water-controller', {
         waterLevel: this.getWaterLevelUnitAmount(),
       });
     });
 
-    this.titleElem = document.createEntity('a-troika-text');
+    this.titleElem = document.createEntity('a-text');
+    this.titleElem.setAttribute('shader', 'msdf');
     this.titleElem.setAttribute(
       'font',
       usePublic('assets/fonts/Raleway/Raleway-Black.json')
     );
     this.titleElem.setAttribute('width', size);
-    this.titleElem.setAttribute('size', size * 0.5);
+    this.titleElem.setAttribute('wrapCount', 10);
     this.titleElem.setAttribute('align', 'center');
     this.titleElem.setAttribute('position', {
       x: 0,
@@ -66,7 +66,6 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
 
   update() {
     if (!this.titleElem) return;
-    console.log('button update', this.data);
     this.titleElem.setAttribute('value', this.data.title);
   }
 

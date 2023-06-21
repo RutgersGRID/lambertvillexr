@@ -11,7 +11,7 @@ export type ThreeWaterControllerSystemData = {
 @system('three-water-controller')
 export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerSystemData> {
   static schema: Schema<ThreeWaterControllerSystemData> = {
-    waterLevel: { default: 0 },
+    waterLevel: { default: -1 },
   };
 
   water?: Entity<{

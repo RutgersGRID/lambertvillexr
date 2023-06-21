@@ -78,12 +78,6 @@ const waterLevels: { date: string; crest: number }[] = [
       reflection-layer="31"
       three-layer="layers: 1"
     ></a-three-water>
-    <a-plane
-      height="1000"
-      width="1000"
-      rotation="-91 0 0"
-      color="#333"
-    ></a-plane>
 
     <a-entity position="0 0 -10">
       <a-gltf-model

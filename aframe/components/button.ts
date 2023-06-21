@@ -5,7 +5,6 @@ import {
 import { utils, primitives } from 'aframe';
 import './group-opacity';
 import './group-color';
-import '@/manual_modules/aframe-troika-text';
 
 @component('button')
 export class ButtonComponent extends BaseComponent {
@@ -59,21 +58,21 @@ export class ButtonComponent extends BaseComponent {
     });
     if (this.el.hasAttribute('text')) {
       this.el.setAttribute('animation__mouseenter_textopacity', {
-        property: 'troika-text.fillOpacity',
+        property: 'text.opacity',
         to: 0.8,
         startEvents: 'mouseenter',
         dur: animDuration,
         easing: animEasing,
       });
       this.el.setAttribute('animation__mouseleave_textopacity', {
-        property: 'troika-text.fillOpacity',
+        property: 'text.opacity',
         to: 1,
         startEvents: 'mouseleave',
         dur: animDuration,
         easing: animEasing,
       });
       this.el.setAttribute('animation__mouseclick_textopacity', {
-        property: 'troika-text.fillOpacity',
+        property: 'text.opacity',
         from: 0.5,
         to: 0.8,
         startEvents: 'click',
@@ -117,16 +116,17 @@ AFRAME.registerPrimitive(
     {},
     {
       defaultComponents: {
-        'troika-text': {
+        text: {
           align: 'center',
+          shader: 'msdf',
           font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
           baseline: 'top',
-          size: 10,
+          wrapCount: 10,
         },
       },
       mappings: {
-        label: 'troika-text.value',
-        'label-color': 'troika-text.color',
+        label: 'text.value',
+        'label-color': 'text.color',
       },
     },
     buttonMixin()

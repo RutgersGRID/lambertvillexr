@@ -30,7 +30,6 @@
     "@ar-js-org/artoolkit5-js": "^0.3.0",
     "@heroicons/vue": "^2.0.17",
     "aframe": "^1.4.2",
-    "aframe-sun-sky": "^3.0.4",
-    "troika-three-text": "^0.47.2"
+    "aframe-sun-sky": "^3.0.4"
   }
 }
