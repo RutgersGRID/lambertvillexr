@@ -57,7 +57,7 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
     this.titleElem.setAttribute('align', 'center');
     this.titleElem.setAttribute(
       'font',
-      usePublic('assets/fonts/Raleway/Raleway-Bold.json')
+      usePublic('assets/fonts/Raleway/Raleway-Bold.ttf')
     );
     this.titleElem.setAttribute('shader', 'msdf');
 

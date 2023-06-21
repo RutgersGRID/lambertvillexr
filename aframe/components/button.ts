@@ -1,18 +1,30 @@
 import {
   component,
   BaseComponent,
+  AnyData,
 } from '@/manual_modules/aframe-class-components';
-import { utils, primitives } from 'aframe';
+import { utils, primitives, Schema, Entity } from 'aframe';
 import './group-opacity';
 import './group-color';
 import '@/manual_modules/aframe-troika-text';
+import document from '@/utils/document';
+
+export type ButtonComponentData = {
+  text: string;
+  textColor: string;
+};
 
 @component('button')
-export class ButtonComponent extends BaseComponent {
+export class ButtonComponent extends BaseComponent<ButtonComponentData> {
+  static schema: Schema<ButtonComponentData> = {
+    text: { default: '' },
+    textColor: { type: 'color' },
+  };
   static dependencies = ['geometry', 'material'];
 
   animDuration: number = 200;
   animEasing: string = 'easeOutCubic';
+  textElem?: Entity;
 
   init() {
     this.el.addEventListener('componentchanged', (e) => {
@@ -20,6 +32,18 @@ export class ButtonComponent extends BaseComponent {
     });
     this.updateClickable();
     this.updateAnimations();
+
+    if (this.data.text != '') {
+      this.textElem = document.createEntity('a-troika-text');
+      this.textElem.setAttribute('value', this.data.text);
+      this.textElem.setAttribute('color', this.data.textColor);
+      this.textElem.setAttribute('position', {
+        x: 0,
+        y: 0,
+        z: 0.001,
+      });
+      this.el.append(this.textElem);
+    }
   }
 
   updateClickable() {
@@ -57,22 +81,22 @@ export class ButtonComponent extends BaseComponent {
       dur: animDuration,
       easing: animEasing,
     });
-    if (this.el.hasAttribute('text')) {
-      this.el.setAttribute('animation__mouseenter_textopacity', {
+    if (this.textElem) {
+      this.textElem.setAttribute('animation__mouseenter_textopacity', {
         property: 'troika-text.fillOpacity',
         to: 0.8,
         startEvents: 'mouseenter',
         dur: animDuration,
         easing: animEasing,
       });
-      this.el.setAttribute('animation__mouseleave_textopacity', {
+      this.textElem.setAttribute('animation__mouseleave_textopacity', {
         property: 'troika-text.fillOpacity',
         to: 1,
         startEvents: 'mouseleave',
         dur: animDuration,
         easing: animEasing,
       });
-      this.el.setAttribute('animation__mouseclick_textopacity', {
+      this.textElem.setAttribute('animation__mouseclick_textopacity', {
         property: 'troika-text.fillOpacity',
         from: 0.5,
         to: 0.8,
@@ -116,17 +140,9 @@ AFRAME.registerPrimitive(
   utils.extendDeep(
     {},
     {
-      defaultComponents: {
-        'troika-text': {
-          align: 'center',
-          font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
-          baseline: 'top',
-          size: 10,
-        },
-      },
       mappings: {
-        label: 'troika-text.value',
-        'label-color': 'troika-text.color',
+        label: 'button.text',
+        'label-color': 'button.textColor',
       },
     },
     buttonMixin()
