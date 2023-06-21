@@ -3,6 +3,8 @@ import {
   BaseComponent,
 } from '~/manual_modules/aframe-class-components';
 import { utils, primitives } from 'aframe';
+import './group-opacity';
+import './group-color';
 
 @component('button')
 export class ButtonComponent extends BaseComponent {
@@ -54,12 +56,36 @@ export class ButtonComponent extends BaseComponent {
       dur: animDuration,
       easing: animEasing,
     });
+    if (this.el.hasAttribute('text')) {
+      console.log('setting text anim for', this.el);
+      this.el.setAttribute('animation__mouseenter_textopacity', {
+        property: 'text.opacity',
+        to: 0.8,
+        startEvents: 'mouseenter',
+        dur: animDuration,
+        easing: animEasing,
+      });
+      this.el.setAttribute('animation__mouseleave_textopacity', {
+        property: 'text.opacity',
+        to: 1,
+        startEvents: 'mouseleave',
+        dur: animDuration,
+        easing: animEasing,
+      });
+      this.el.setAttribute('animation__mouseclick_textopacity', {
+        property: 'text.opacity',
+        from: 0.5,
+        to: 0.8,
+        startEvents: 'click',
+        dur: animDuration,
+        easing: animEasing,
+      });
+    }
   }
 }
 
-AFRAME.registerPrimitive(
-  'a-button',
-  utils.extendDeep({}, primitives.getMeshMixin(), {
+function buttonMixin() {
+  return utils.extendDeep({}, primitives.getMeshMixin(), {
     defaultComponents: {
       geometry: {
         primitive: 'plane',
@@ -71,33 +97,39 @@ AFRAME.registerPrimitive(
         transparent: true,
       },
       button: {},
+      'group-opacity': {},
+      'group-color': {
+        color: '#FFF',
+      },
     },
     mappings: {
       height: 'geometry.height',
       width: 'geometry.width',
     },
-  })
-);
+  });
+}
+
+AFRAME.registerPrimitive('a-button', buttonMixin());
 
 AFRAME.registerPrimitive(
   'a-text-button',
-  utils.extendDeep({}, primitives.getMeshMixin(), {
-    defaultComponents: {
-      geometry: {
-        primitive: 'plane',
+  utils.extendDeep(
+    {},
+    {
+      defaultComponents: {
+        text: {
+          shader: 'msdf',
+          align: 'center',
+          font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
+          baseline: 'top',
+          opacity: 0.5,
+        },
       },
-      material: {
-        color: '#FFF',
-        shader: 'flat',
-        side: 'double',
-        transparent: true,
+      mappings: {
+        label: 'text.value',
+        'label-color': 'text.color',
       },
-      button: {},
     },
-    mappings: {
-      height: 'geometry.height',
-      width: 'geometry.width',
-      text: 'text.value',
-    },
-  })
+    buttonMixin()
+  )
 );

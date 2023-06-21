@@ -8,6 +8,8 @@ import {
   newRadialFill,
   RadialFillShaderMaterial,
 } from '~/three/shaders/radial-fill';
+import './button';
+
 const THREE = AFRAME.THREE;
 
 export interface AudioPlayerData {

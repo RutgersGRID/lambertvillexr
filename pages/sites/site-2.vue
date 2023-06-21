@@ -35,18 +35,12 @@ async function loadSystems() {
 
     <a-three-water-level-button
       water-level="5"
-      unit="ft"
+      unit="feet"
       position="0 1.6 -10"
       three-layer="layers: 1"
     ></a-three-water-level-button>
 
-    <a-entity
-      camera
-      look-controls
-      wasd-controls
-      position="0 1.6 0"
-      three-layer="layers: 1"
-    >
+    <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

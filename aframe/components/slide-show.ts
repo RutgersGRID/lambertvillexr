@@ -5,6 +5,7 @@ import {
 import { Entity, Schema } from 'aframe';
 import document from '@/utils/document';
 import { loadTextureToAspect } from '@/utils/three';
+import './button';
 
 const THREE = AFRAME.THREE;
 

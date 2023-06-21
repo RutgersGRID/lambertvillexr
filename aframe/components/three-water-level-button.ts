@@ -5,6 +5,7 @@ import {
 import { Entity, Schema } from 'aframe';
 import { ThreeWaterControllerSystem } from '../systems/three-water-controller';
 import document from '@/utils/document';
+import './button';
 
 const THREE = AFRAME.THREE;
 
@@ -27,9 +28,11 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
     this.waterController = document.getSystem('three-water-controller');
     this.textButton = document.createEntity('a-text-button');
     this.textButton.setAttribute(
-      'text',
+      'label',
       this.getWaterLevelUnitAmount() + ' ' + this.getUnitAbbreviation()
     );
+    this.textButton.setAttribute('text', 'color', 'white');
+    this.textButton.setAttribute('text', 'wrapCount', 10);
     this.textButton.setAttribute('src', usePublic('assets/images/button.png'));
     this.textButton.addEventListener('click', () => {
       if (!this.waterController) return;
