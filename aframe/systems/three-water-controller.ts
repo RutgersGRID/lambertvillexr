@@ -11,7 +11,7 @@ export type ThreeWaterControllerSystemData = {
 @system('three-water-controller')
 export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerSystemData> {
   static schema: Schema<ThreeWaterControllerSystemData> = {
-    waterLevel: { default: 0 },
+    waterLevel: { default: -1 },
   };
 
   water?: Entity<{
@@ -66,7 +66,7 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
       this.waterLevelAnimation = AFRAME.ANIME({
         targets: this,
         currentWaterLevel: this.data.waterLevel,
-        easing: 'easeOutQuad',
+        easing: 'easeInOutQuad',
         duration: 1000,
       });
     }

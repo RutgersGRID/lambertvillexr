@@ -48,16 +48,13 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
 
   updateAllElem() {
     const setObject3D = (obj: THREE.Object3D) => {
-      console.log('\tupdatea all elm on obj', obj);
       obj.renderOrder = this.data.order;
       if (obj instanceof Mesh && obj.material instanceof Material) {
-        console.log('setting mat depth test to ', this.data.depthTest);
         obj.material.depthTest = this.data.depthTest;
       }
     };
 
     const recursiveSetElem = (elem: Entity) => {
-      console.log('recursive set elm', elem);
       if (elem.object3D) setObject3D(elem.object3D);
       Array.from(elem.childNodes).forEach((x) => {
         const child = x as Entity;

@@ -77,12 +77,14 @@ const waterLevels: { date: string; crest: number }[] = [
       sun-direction="0 -1 0"
       reflection-layer="31"
       three-layer="layers: 1"
+      position="0 -1 0"
     ></a-three-water>
     <a-plane
       height="1000"
       width="1000"
-      rotation="-91 0 0"
+      rotation="-90 0 0"
       color="#333"
+      opacity="0.5"
     ></a-plane>
 
     <a-entity position="0 0 -10">
