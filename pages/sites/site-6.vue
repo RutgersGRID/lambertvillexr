@@ -8,6 +8,7 @@ async function loadSystems() {
   await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
+  await import('@/aframe/components/slide-show');
 }
 </script>
 
@@ -23,6 +24,9 @@ async function loadSystems() {
       <a-asset-item id="Person4" :src="usePublic('assets/sites/site6/Person4.glb')"></a-asset-item>
       <a-asset-item id="Person5" :src="usePublic('assets/sites/site6/Person5.glb')"></a-asset-item>
       <a-asset-item id="Person6" :src="usePublic('assets/sites/site6/Person6.glb')"></a-asset-item>
+      <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
     </a-assets>
     <a-gltf-model src=#Person1 position="10 -1 -15"></a-gltf-model>
     <a-gltf-model src=#Person2 position="14 -6 -55"></a-gltf-model>
@@ -35,6 +39,12 @@ async function loadSystems() {
       position="-5 1.6 -8"
       title="Interview"
     ></a-audio-player>
+    <a-slide-show
+      position="-10 1.6 -10"
+      rotation="0 30 0"
+      image-query=".slide-show"
+      autoplay="true"
+    ></a-slide-show>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>

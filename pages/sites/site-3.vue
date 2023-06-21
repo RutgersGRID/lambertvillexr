@@ -8,6 +8,7 @@ async function loadSystems() {
   await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
+  await import('@/aframe/components/slide-show');
 }
 </script>
 
@@ -29,12 +30,21 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site3/interview3.mp3')"
       ></audio>
     <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
+    <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
     </a-assets>
     <a-entity rotation="0 0 0">
       <a-playback-video
       src="#trash-video"
       position="0 0 -10"
     ></a-playback-video>
+    <a-slide-show
+      position="10 5 -10"
+      rotation="0 30 0"
+      image-query=".slide-show"
+      autoplay="true"
+    ></a-slide-show>
     </a-entity>
     <a-entity rotation="0 90 0">
       <a-entity position="0 0 -10" rotation="0 90 0">
