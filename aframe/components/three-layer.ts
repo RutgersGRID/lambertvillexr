@@ -3,6 +3,13 @@ import {
   component,
 } from '@/manual_modules/aframe-class-components';
 import { Entity, Schema } from 'aframe';
+import {
+  ChangeDetectorComponent,
+  ChangeDetectorComponentData,
+} from './change-detector';
+import './change-detector';
+
+export const aframeCameraLayer = 21;
 
 export type ThreeLayerData = {
   layers: number[];
@@ -20,70 +27,64 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
 
   isArMode: boolean = false;
   mutationObserver?: MutationObserver;
+  changeDetector?: ChangeDetectorComponent;
 
   init() {
+    this.el.setAttribute('change-detector__three-layer', <
+      ChangeDetectorComponentData
+    >{
+      recursive: true,
+      object3DSet: true,
+    });
+    this.changeDetector = this.el.getAttribute('change-detector__three-layer');
+
+    if (!this.changeDetector) return;
+
+    this.el.addEventListener('detectorchanged__three-layer', () => {
+      this.updateAllElemLayers();
+    });
+
     this.el.sceneEl?.addEventListener('enter-vr', () => {
       if (this.el.sceneEl?.is('ar-mode')) {
         this.isArMode = true;
-        this.updateLayers();
+        this.updateAllElemLayers();
       }
     });
     this.el.sceneEl?.addEventListener('exit-vr', () => {
       this.isArMode = false;
-      this.updateLayers();
+      this.updateAllElemLayers();
     });
 
-    this.mutationObserver = new MutationObserver((mutationlist, observer) => {
-      mutationlist.forEach((mutation) => {
-        if (mutation.type == 'childList') {
-          console.log('mutation occur for ', mutation.target);
-          this.updateLayers();
-        }
-      });
-    });
-    this.mutationObserver.observe(this.el, { childList: true });
-
-    this.el.addEventListener('child-detached', () => {
-      this.updateLayers();
-    });
-
-    this.updateLayers();
+    this.updateAllElemLayers();
   }
 
-  remove() {
-    this.mutationObserver?.disconnect();
+  updateLayers(layers: THREE.Layers) {
+    layers.disableAll();
+    layers.enable(aframeCameraLayer);
+    this.data.layers.forEach((x) => layers.enable(x));
+    if (this.isArMode) this.data.arLayers.forEach((x) => layers.enable(x));
+    else this.data.desktopLayers.forEach((x) => layers.enable(x));
   }
 
-  updateLayers() {
+  updateAllElemLayers() {
     const recursiveSetObject3DLayers = (obj: THREE.Object3D) => {
-      obj.layers.disableAll();
-      this.data.layers.forEach((x) => obj.layers.enable(x));
-      if (this.isArMode)
-        this.data.arLayers.forEach((x) => obj.layers.enable(x));
-      else this.data.desktopLayers.forEach((x) => obj.layers.enable(x));
-      obj.children.forEach((child) => recursiveSetObject3DLayers(child));
+      this.updateLayers(obj.layers);
+      obj.children.forEach((child) => {
+        recursiveSetObject3DLayers(child);
+      });
     };
 
     const recursiveSetElemLayers = (elem: Entity) => {
-      console.log('set elem ', elem.tagName, ' with layers ', this.data.layers);
-      if (elem.object3D) {
-        console.log('\telement has object3D, proccessing');
-        recursiveSetObject3DLayers(elem.object3D);
-      } else {
-        console.log('\tadd loaded listener');
-        elem.addEventListener('loaded', () => {
-          console.log('loaded procced');
-          recursiveSetElemLayers(elem);
-        });
-        return;
+      if (elem.object3D) recursiveSetObject3DLayers(elem.object3D);
+      if (elem.hasAttribute('raycaster')) {
+        const raycaster: THREE.Raycaster = (<any>elem.components['raycaster'])
+          .raycaster;
+        this.updateLayers(raycaster.layers);
       }
       Array.from(elem.childNodes).forEach((x) => {
         const child = x as Entity;
-        console.log('\tprocess child ', child.tagName);
-        if (!child.getAttribute('three-layer')) {
-          console.log("\t\t child doesn't have three layer so recursing");
-          recursiveSetElemLayers(child);
-        }
+        if (child.getAttribute('three-layer')) return;
+        recursiveSetElemLayers(child);
       });
     };
 

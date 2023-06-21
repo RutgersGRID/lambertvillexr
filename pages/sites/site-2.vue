@@ -39,8 +39,30 @@ async function loadSystems() {
       position="0 1.6 -10"
       three-layer="layers: 1"
     ></a-three-water-level-button>
+    -->
 
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity three-layer="layers: 1">
+      <a-button
+        :src="usePublic('assets/images/button.png')"
+        position="0 1.6 -5"
+      ></a-button>
+    </a-entity>
+
+    <a-text-button
+      :src="usePublic('assets/images/button.png')"
+      position="0 1.6 -3"
+      three-layer="layers: 1"
+      label="hello"
+      label-color="white"
+    ></a-text-button>
+
+    <a-entity
+      camera
+      look-controls
+      wasd-controls
+      position="0 1.6 0"
+      three-layer="layers: 1"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

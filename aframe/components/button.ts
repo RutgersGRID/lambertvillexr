@@ -57,7 +57,6 @@ export class ButtonComponent extends BaseComponent {
       easing: animEasing,
     });
     if (this.el.hasAttribute('text')) {
-      console.log('setting text anim for', this.el);
       this.el.setAttribute('animation__mouseenter_textopacity', {
         property: 'text.opacity',
         to: 0.8,
@@ -123,6 +122,7 @@ AFRAME.registerPrimitive(
           font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
           baseline: 'top',
           opacity: 0.5,
+          wrapCount: 10,
         },
       },
       mappings: {

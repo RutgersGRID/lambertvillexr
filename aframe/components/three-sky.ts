@@ -56,18 +56,6 @@ export class ThreeSkyComponent extends BaseComponent<ThreeSkyComponentData> {
     sceneEl.object3D.environment = pmremGenerator.fromScene(
       <any>this.sky
     ).texture;
-
-    console.log(
-      'sky build sun, ',
-      sceneEl,
-      ' ',
-      sceneEl.renderer,
-      ' sun pos ',
-      this.data.sunPosition,
-      'sky mat',
-      this.sky.material
-    );
-    console.log('env, ', sceneEl.object3D.environment);
   }
 }
 
