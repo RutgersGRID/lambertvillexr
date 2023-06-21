@@ -24,9 +24,11 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site5/tree.mp4')"
         crossorigin="anonymous"
       ></video>
-      <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site5/slide1.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site5/slide2.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site5/slide3.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site5/slide4.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site5/slide5.jpg')" />
     </a-assets>
     <a-playback-video
       src="#tree"

@@ -24,9 +24,14 @@ async function loadSystems() {
       <a-asset-item id="Person4" :src="usePublic('assets/sites/site6/Person4.glb')"></a-asset-item>
       <a-asset-item id="Person5" :src="usePublic('assets/sites/site6/Person5.glb')"></a-asset-item>
       <a-asset-item id="Person6" :src="usePublic('assets/sites/site6/Person6.glb')"></a-asset-item>
-      <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide1.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide2.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide3.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide4.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide5.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide7.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide8.jpg')" />
+      <img class="slide-show" :src="usePublic('assets/sites/site6/slide9.jpg')" />
     </a-assets>
     <a-gltf-model src=#Person1 position="10 -1 -15"></a-gltf-model>
     <a-gltf-model src=#Person2 position="14 -6 -55"></a-gltf-model>

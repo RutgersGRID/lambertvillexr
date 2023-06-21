@@ -30,9 +30,20 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site3/interview3.mp3')"
       ></audio>
     <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
-    <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
-    <img class="slide-show" :src="usePublic('assets/images/image2.jpg')" />
-    <img class="slide-show" :src="usePublic('assets/images/image3.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide1.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide2.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide3.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide4.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide5.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide6.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide7.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide8.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide9.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide10.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide11.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide12.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide13.jpg')" />
+    <img class="slide-show" :src="usePublic('assets/sites/site3/slide14.jpg')" />
     </a-assets>
     <a-entity rotation="0 0 0">
       <a-playback-video
