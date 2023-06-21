@@ -10,6 +10,7 @@ import {
 import './change-detector';
 
 export const aframeCameraLayer = 21;
+export const aframeLightingLayer = 0;
 
 export type ThreeLayerData = {
   layers: number[];
@@ -26,7 +27,6 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
   };
 
   isArMode: boolean = false;
-  mutationObserver?: MutationObserver;
   changeDetector?: ChangeDetectorComponent;
 
   init() {
@@ -57,25 +57,31 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
 
     this.updateAllElemLayers();
   }
-
-  updateLayers(layers: THREE.Layers) {
+  updateLayers(layers: THREE.Layers, isCamera: boolean = false) {
     layers.disableAll();
-    layers.enable(aframeCameraLayer);
+    if (isCamera) {
+      layers.enable(aframeLightingLayer);
+      layers.enable(aframeCameraLayer);
+    }
     this.data.layers.forEach((x) => layers.enable(x));
     if (this.isArMode) this.data.arLayers.forEach((x) => layers.enable(x));
     else this.data.desktopLayers.forEach((x) => layers.enable(x));
   }
 
   updateAllElemLayers() {
-    const recursiveSetObject3DLayers = (obj: THREE.Object3D) => {
-      this.updateLayers(obj.layers);
+    const recursiveSetObject3DLayers = (
+      obj: THREE.Object3D,
+      isCamera: boolean
+    ) => {
+      this.updateLayers(obj.layers, isCamera);
       obj.children.forEach((child) => {
-        recursiveSetObject3DLayers(child);
+        recursiveSetObject3DLayers(child, isCamera);
       });
     };
 
     const recursiveSetElemLayers = (elem: Entity) => {
-      if (elem.object3D) recursiveSetObject3DLayers(elem.object3D);
+      if (elem.object3D)
+        recursiveSetObject3DLayers(elem.object3D, elem.hasAttribute('camera'));
       if (elem.hasAttribute('raycaster')) {
         const raycaster: THREE.Raycaster = (<any>elem.components['raycaster'])
           .raycaster;

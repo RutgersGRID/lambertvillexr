@@ -113,6 +113,7 @@ function onTutorialFinished() {
         v-bind="attributes"
         embedded
         class="absolute w-full h-full"
+        renderer="antialias: true; logarithmicDepthBuffer: true; colorManagement: true; sortObjects: true"
         loading-screen="enabled: false"
       >
         <slot></slot>

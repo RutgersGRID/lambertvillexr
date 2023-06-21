@@ -1,10 +1,11 @@
 import {
   component,
   BaseComponent,
-} from '~/manual_modules/aframe-class-components';
+} from '@/manual_modules/aframe-class-components';
 import { utils, primitives } from 'aframe';
 import './group-opacity';
 import './group-color';
+import '@/manual_modules/aframe-troika-text';
 
 @component('button')
 export class ButtonComponent extends BaseComponent {
@@ -58,21 +59,21 @@ export class ButtonComponent extends BaseComponent {
     });
     if (this.el.hasAttribute('text')) {
       this.el.setAttribute('animation__mouseenter_textopacity', {
-        property: 'text.opacity',
+        property: 'troika-text.fillOpacity',
         to: 0.8,
         startEvents: 'mouseenter',
         dur: animDuration,
         easing: animEasing,
       });
       this.el.setAttribute('animation__mouseleave_textopacity', {
-        property: 'text.opacity',
+        property: 'troika-text.fillOpacity',
         to: 1,
         startEvents: 'mouseleave',
         dur: animDuration,
         easing: animEasing,
       });
       this.el.setAttribute('animation__mouseclick_textopacity', {
-        property: 'text.opacity',
+        property: 'troika-text.fillOpacity',
         from: 0.5,
         to: 0.8,
         startEvents: 'click',
@@ -116,18 +117,16 @@ AFRAME.registerPrimitive(
     {},
     {
       defaultComponents: {
-        text: {
-          shader: 'msdf',
+        'troika-text': {
           align: 'center',
           font: usePublic('assets/fonts/Raleway/Raleway-Bold.json'),
           baseline: 'top',
-          opacity: 0.5,
-          wrapCount: 10,
+          size: 10,
         },
       },
       mappings: {
-        label: 'text.value',
-        'label-color': 'text.color',
+        label: 'troika-text.value',
+        'label-color': 'troika-text.color',
       },
     },
     buttonMixin()
