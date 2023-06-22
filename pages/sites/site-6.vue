@@ -49,7 +49,7 @@ async function loadSystems() {
       image-query=".slide-show"
       autoplay="true"
     ></a-slide-show>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
