@@ -24,24 +24,42 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site5/tree.mp4')"
         crossorigin="anonymous"
       ></video>
-      <img class="slide-show" :src="usePublic('assets/sites/site5/slide1.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site5/slide2.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site5/slide3.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site5/slide4.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site5/slide5.jpg')" />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site5/slide1.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site5/slide2.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site5/slide3.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site5/slide4.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site5/slide5.jpg')"
+      />
     </a-assets>
-    <a-playback-video
-      src="#tree"
-      position="-20 0 -5"
-      rotation="0 90 0"
-    ></a-playback-video>
-    <a-slide-show
-      position="10 1.6 -10"
-      rotation="0 30 0"
-      image-query=".slide-show"
-      autoplay="true"
-    ></a-slide-show>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity>
+      <a-entity rotation="0 -20 0">
+        <a-entity rotation="0 100 0">
+          <a-playback-video src="#tree" position="0 0 -15"></a-playback-video>
+        </a-entity>
+        <a-entity rotation="0 0 0">
+          <a-slide-show
+            position="0 0 -15"
+            image-query=".slide-show"
+            autoplay="true"
+          ></a-slide-show>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
