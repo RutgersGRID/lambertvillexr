@@ -31,7 +31,6 @@ async function loadSystems() {
       <img class="slide-show" :src="usePublic('assets/sites/site6/slide5.jpg')" />
       <img class="slide-show" :src="usePublic('assets/sites/site6/slide7.jpg')" />
       <img class="slide-show" :src="usePublic('assets/sites/site6/slide8.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site6/slide9.jpg')" />
     </a-assets>
     <a-gltf-model src=#Person1 position="10 -1 -15"></a-gltf-model>
     <a-gltf-model src=#Person2 position="14 -6 -55"></a-gltf-model>

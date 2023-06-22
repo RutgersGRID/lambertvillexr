@@ -5,7 +5,6 @@ definePageMeta({
 
 async function loadSystems() {
   //@ts-ignore
-  await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
@@ -29,6 +28,7 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site3/interview3.mp3')"
       ></audio>
+    <img class="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
     <a-asset-item id="boat" :src="usePublic('assets/sites/site3/boat.glb')"></a-asset-item>
     <img class="slide-show" :src="usePublic('assets/sites/site3/slide1.jpg')" />
     <img class="slide-show" :src="usePublic('assets/sites/site3/slide2.jpg')" />
@@ -45,6 +45,7 @@ async function loadSystems() {
     <img class="slide-show" :src="usePublic('assets/sites/site3/slide13.jpg')" />
     <img class="slide-show" :src="usePublic('assets/sites/site3/slide14.jpg')" />
     </a-assets>
+    <a-sky src="/assets/sites/site3/pano.jpg"></a-sky>
     <a-entity rotation="0 0 0">
       <a-playback-video
       src="#trash-video"
@@ -58,8 +59,8 @@ async function loadSystems() {
     ></a-slide-show>
     </a-entity>
     <a-entity rotation="0 90 0">
-      <a-entity position="0 0 -10" rotation="0 90 0">
-        <a-gltf-model src="#boat" rotation="0 0 20" position="5.293 -0.03623 6.46695"></a-gltf-model>
+      <a-entity position="50 0 30" rotation="0 90 0">
+        <a-gltf-model src="#boat" rotation="0 0 20" position="10.293 -10.03623 -20.46695"></a-gltf-model>
       </a-entity>
     </a-entity>
     <a-entity rotation="0 -90 0">
@@ -69,7 +70,7 @@ async function loadSystems() {
       title="Interview"
     ></a-audio-player>
     </a-entity>
-    <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">
+    <a-entity camera look-controls wasd-controls="enabled:true" position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
