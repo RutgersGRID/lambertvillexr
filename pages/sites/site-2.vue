@@ -70,6 +70,51 @@ const waterLevels: { date: string; crest: number }[] = [
         id="bike"
         :src="usePublic('assets/models/bike.glb')"
       ></a-asset-item>
+      <img
+        id="Apr2005"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Apr2005.jpg')"
+      />
+      <img
+        id="Aug1955"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Aug1955.jpg')"
+      />
+      <img
+        id="Aug2011"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Aug2011.jpg')"
+      />
+      <img
+        id="Jan1841"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Jan1841.jpg')"
+      />
+      <img
+        id="Jun2006"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Jun2006.jpg')"
+      />
+      <img
+        id="Mar1902"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Mar1902.jpg')"
+      />
+      <img
+        id="Mar1936"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Mar1936.jpg')"
+      />
+      <img
+        id="Oct1903"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Oct1903.jpg')"
+      />
+      <img
+        id="Sept2004"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Sept2004.jpg')"
+      />
     </a-assets>
 
     <a-sun-sky
@@ -91,15 +136,12 @@ const waterLevels: { date: string; crest: number }[] = [
       color="#333"
       opacity="0.5"
       transparent="true"
+      three-layer="layers: 1"
     ></a-plane>
 
-    <a-entity position="0 0 0">
+    <a-entity position="0 0 0" three-layer="layers: 1, 31">
       <a-entity position="0 0 0" rotation="0 70 0">
-        <a-entity
-          position="0 0 -6"
-          rotation="0 -50 0"
-          three-layer="layers: 1, 31"
-        >
+        <a-entity position="0 0 -6" rotation="0 -50 0">
           <!-- animation__rotation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 60000; easing: linear"
         > -->
           <a-cylinder
@@ -149,11 +191,17 @@ const waterLevels: { date: string; crest: number }[] = [
         position="0 0.1 0"
         rotation="0 -20 0"
       >
+        <a-entity rotation="0 -80 0">
+          <a-slide-show
+            position="0 7 -10"
+            image-query=".timeline-photo"
+          ></a-slide-show>
+        </a-entity>
+
         <a-entity rotation="0 20 0">
           <a-three-water-level-clear-button
             position="0 0 -5"
             rotation="-20 0 0"
-            three-layer="layers: 1"
           ></a-three-water-level-clear-button>
         </a-entity>
         <a-cylinder
@@ -189,7 +237,6 @@ const waterLevels: { date: string; crest: number }[] = [
             :title="waterLevel.date"
             position="0 0 -5"
             rotation="-20 0 0 "
-            three-layer="layers: 1"
           ></a-three-water-level-button>
         </a-entity>
       </a-entity>

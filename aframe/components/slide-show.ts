@@ -40,7 +40,9 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
   init() {
     this.displayPlane = document.createEntity('a-image');
-    this.displayPlane.setAttribute('transparent', false);
+    this.displayPlane.setAttribute('side', 'double');
+    this.displayPlane.setAttribute('transparent', true);
+    this.displayPlane.object3D.renderOrder = -10;
 
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
@@ -66,7 +68,9 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.el.appendChild(this.nextButton);
 
     this.displayPlane.addEventListener('loaded', () => {
-      this.update();
+      setTimeout(() => {
+        this.update();
+      }, 0);
     });
   }
 
@@ -77,6 +81,15 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     const meshMaterial = mesh.material as THREE.MeshBasicMaterial;
     meshMaterial.map?.dispose();
     meshMaterial.map = newImage;
+
+    console.log(
+      'udpate image with newImage: ',
+      newImage,
+      ' mesh: ',
+      mesh,
+      ' mat ',
+      meshMaterial
+    );
   }
 
   gotoNextImage() {
