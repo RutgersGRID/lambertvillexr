@@ -40,6 +40,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
   init() {
     this.displayPlane = document.createEntity('a-image');
+    this.displayPlane.setAttribute('transparent', false);
 
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));

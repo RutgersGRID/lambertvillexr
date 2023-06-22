@@ -48,7 +48,7 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
     this.titleElem = document.createEntity('a-troika-text');
     this.titleElem.setAttribute(
       'font',
-      usePublic('assets/fonts/Raleway/Raleway-Black.ttf')
+      usePublic('assets/fonts/Raleway/Raleway-Bold.ttf')
     );
     this.titleElem.setAttribute('width', size);
     this.titleElem.setAttribute('fontSize', 0.2);

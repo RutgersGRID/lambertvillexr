@@ -9,6 +9,7 @@ import {
   RadialFillShaderMaterial,
 } from '~/three/shaders/radial-fill';
 import './button';
+import '@/manual_modules/aframe-troika-text';
 
 const THREE = AFRAME.THREE;
 
@@ -47,19 +48,19 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
       this.updatePlayButton();
     });
 
-    this.titleElem = document.createEntity('a-text');
+    this.titleElem = document.createEntity('a-troika-text');
     this.titleElem.setAttribute('position', {
       x: 0,
-      y: -(this.data.size / 2 + 1),
+      y: -this.data.size * 0.8,
       z: 0,
     });
-    this.titleElem.setAttribute('wrap-count', 16);
+    console.log(' title elem', this.titleElem.components);
+    this.titleElem.setAttribute('font-size', 0.2 * this.data.size);
     this.titleElem.setAttribute('align', 'center');
     this.titleElem.setAttribute(
       'font',
       usePublic('assets/fonts/Raleway/Raleway-Bold.ttf')
     );
-    this.titleElem.setAttribute('shader', 'msdf');
 
     const geometry = new THREE.CircleGeometry(
       (this.data.size / 2) * 1.25,

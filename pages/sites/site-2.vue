@@ -10,6 +10,7 @@ async function loadSystems() {
   await import('@/aframe/components/three-water');
   await import('@/aframe/systems/three-water-controller');
   await import('@/aframe/components/three-water-level-button');
+  await import('@/aframe/components/three-water-level-clear-button');
   await import('@/aframe/components/three-layer');
   await import('@/aframe/components/render-order');
 }
@@ -149,14 +150,11 @@ const waterLevels: { date: string; crest: number }[] = [
         rotation="0 -20 0"
       >
         <a-entity rotation="0 20 0">
-          <a-three-water-level-button
-            :water-level="-1"
-            unit="feet"
-            title="Clear"
+          <a-three-water-level-clear-button
             position="0 0 -5"
             rotation="-20 0 0"
             three-layer="layers: 1"
-          ></a-three-water-level-button>
+          ></a-three-water-level-clear-button>
         </a-entity>
         <a-cylinder
           color="black"
