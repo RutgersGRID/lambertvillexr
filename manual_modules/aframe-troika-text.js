@@ -2952,16 +2952,16 @@
   function expandShaderIncludes(source) {
     const pattern = /^[ \t]*#include +<([\w\d./]+)>/gm;
     function replace(match, include) {
-      let chunk = THREE.ShaderChunk[include];
+      let chunk = AFRAME.THREE.ShaderChunk[include];
       return chunk ? expandShaderIncludes(chunk) : match;
     }
     return source.replace(pattern, replace);
   }
 
   /*
-   * This is a direct copy of MathUtils.generateUUID from Three.js, to preserve compatibility with three
+   * This is a direct copy of MathUtils.generateUUID from AFRAME.THREE.js, to preserve compatibility with three
    * versions before 0.113.0 as it was changed from Math to MathUtils in that version.
-   * https://github.com/mrdoob/three.js/blob/dd8b5aa3b270c17096b90945cd2d6d1b13aaec53/src/math/MathUtils.js#L16
+   * https://github.com/mrdoob/AFRAME.THREE.js/blob/dd8b5aa3b270c17096b90945cd2d6d1b13aaec53/src/math/MathUtils.js#L16
    */
 
   const _lut = [];
@@ -3034,7 +3034,7 @@
    * shaders. This allows you to inject custom shader logic and transforms into the
    * builtin ThreeJS materials without having to recreate them from scratch.
    *
-   * @param {THREE.Material} baseMaterial - the original material to derive from
+   * @param {AFRAME.THREE.Material} baseMaterial - the original material to derive from
    *
    * @param {Object} options - How the base material should be modified.
    * @param {Object} options.defines - Custom `defines` for the material
@@ -3078,7 +3078,7 @@
    *        to work with the original material like normal. But it can result in unexpected behavior if not
    *        handled carefully.
    *
-   * @return {THREE.Material}
+   * @return {AFRAME.THREE.Material}
    *
    * The returned material will also have two new methods, `getDepthMaterial()` and `getDistanceMaterial()`,
    * which can be called to get a variant of the derived material for use in shadow casting. If the
@@ -3208,7 +3208,10 @@
           ) {
             assign$1(this.extensions, source.extensions);
             assign$1(this.defines, source.defines);
-            assign$1(this.uniforms, THREE.UniformsUtils.clone(source.uniforms));
+            assign$1(
+              this.uniforms,
+              AFRAME.THREE.UniformsUtils.clone(source.uniforms)
+            );
           }
           return this;
         },
@@ -3236,8 +3239,8 @@
             depthMaterial = this._depthMaterial = createDerivedMaterial(
               baseMaterial.isDerivedMaterial
                 ? baseMaterial.getDepthMaterial()
-                : new THREE.MeshDepthMaterial({
-                    depthPacking: THREE.RGBADepthPacking,
+                : new AFRAME.THREE.MeshDepthMaterial({
+                    depthPacking: AFRAME.THREE.RGBADepthPacking,
                   }),
               options
             );
@@ -3261,7 +3264,7 @@
             distanceMaterial = this._distanceMaterial = createDerivedMaterial(
               baseMaterial.isDerivedMaterial
                 ? baseMaterial.getDistanceMaterial()
-                : new THREE.MeshDistanceMaterial(),
+                : new AFRAME.THREE.MeshDistanceMaterial(),
               options
             );
             distanceMaterial.defines.IS_DISTANCE_MATERIAL = '';
@@ -7285,7 +7288,7 @@ void main() {
     sdfExponent: 9,
     textureWidth: 2048,
   };
-  const tempColor = /*#__PURE__*/ new THREE.Color();
+  const tempColor = /*#__PURE__*/ new AFRAME.THREE.Color();
 
   function now$1() {
     return (self.performance || Date).now();
@@ -7392,13 +7395,13 @@ void main() {
         glyphCount: 0,
         sdfGlyphSize,
         sdfCanvas: canvas,
-        sdfTexture: new THREE.Texture(
+        sdfTexture: new AFRAME.THREE.Texture(
           canvas,
           undefined,
           undefined,
           undefined,
-          THREE.LinearFilter,
-          THREE.LinearFilter
+          AFRAME.THREE.LinearFilter,
+          AFRAME.THREE.LinearFilter
         ),
         contextLost: false,
         glyphsByFont: new Map(),
@@ -7717,12 +7720,12 @@ void main() {
       // Geometry is two planes back-to-back, which will always be rendered FrontSide only but
       // appear as DoubleSide by default. FrontSide/BackSide are emulated using drawRange.
       // We do it this way to avoid the performance hit of two draw calls for DoubleSide materials
-      // introduced by Three.js in r130 - see https://github.com/mrdoob/three.js/pull/21967
-      const front = new THREE.PlaneGeometry(1, 1, detail, detail);
+      // introduced by AFRAME.THREE.js in r130 - see https://github.com/mrdoob/AFRAME.THREE.js/pull/21967
+      const front = new AFRAME.THREE.PlaneGeometry(1, 1, detail, detail);
       const back = front.clone();
       const frontAttrs = front.attributes;
       const backAttrs = back.attributes;
-      const combined = new THREE.BufferGeometry();
+      const combined = new AFRAME.THREE.BufferGeometry();
       const vertCount = frontAttrs.uv.count;
       for (let i = 0; i < vertCount; i++) {
         backAttrs.position.array[i * 3] *= -1; // flip position x
@@ -7731,7 +7734,7 @@ void main() {
       ['position', 'normal', 'uv'].forEach((name) => {
         combined.setAttribute(
           name,
-          new THREE.Float32BufferAttribute(
+          new AFRAME.THREE.Float32BufferAttribute(
             [...frontAttrs[name].array, ...backAttrs[name].array],
             frontAttrs[name].itemSize
           )
@@ -7781,7 +7784,7 @@ void main() {
   which we could potentially work around with a fallback non-instanced implementation.
 
   */
-  class GlyphsGeometry extends THREE.InstancedBufferGeometry {
+  class GlyphsGeometry extends AFRAME.THREE.InstancedBufferGeometry {
     constructor() {
       super();
 
@@ -7796,8 +7799,8 @@ void main() {
       ];
 
       // Preallocate empty bounding objects
-      this.boundingSphere = new THREE.Sphere();
-      this.boundingBox = new THREE.Box3();
+      this.boundingSphere = new AFRAME.THREE.Sphere();
+      this.boundingBox = new AFRAME.THREE.Box3();
     }
 
     computeBoundingSphere() {
@@ -7813,8 +7816,8 @@ void main() {
     setSide(side) {
       const verts = this.getIndex().count;
       this.setDrawRange(
-        side === THREE.BackSide ? verts / 2 : 0,
-        side === THREE.DoubleSide ? verts : verts / 2
+        side === AFRAME.THREE.BackSide ? verts / 2 : 0,
+        side === AFRAME.THREE.DoubleSide ? verts : verts / 2
       );
     }
 
@@ -7957,13 +7960,13 @@ void main() {
       } else {
         geom.setAttribute(
           attrName,
-          new THREE.InstancedBufferAttribute(newArray, itemSize)
+          new AFRAME.THREE.InstancedBufferAttribute(newArray, itemSize)
         );
         // If the new attribute has a different size, we also have to (as of r117) manually clear the
-        // internal cached max instance count. See https://github.com/mrdoob/three.js/issues/19706
+        // internal cached max instance count. See https://github.com/mrdoob/AFRAME.THREE.js/issues/19706
         // It's unclear if this is a threejs bug or a truly unsupported scenario; discussion in
         // that ticket is ambiguous as to whether replacing a BufferAttribute with one of a
-        // different size is supported, but https://github.com/mrdoob/three.js/pull/17418 strongly
+        // different size is supported, but https://github.com/mrdoob/AFRAME.THREE.js/pull/17418 strongly
         // implies it should be supported. It's possible we need to
         delete geom._maxInstanceCount; //for r117+, could be fragile
         geom.dispose(); //for r118+, more robust feeling, but more heavy-handed than I'd like
@@ -8193,21 +8196,21 @@ if (edgeAlpha == 0.0) {
       },
       uniforms: {
         uTroikaSDFTexture: { value: null },
-        uTroikaSDFTextureSize: { value: new THREE.Vector2() },
+        uTroikaSDFTextureSize: { value: new AFRAME.THREE.Vector2() },
         uTroikaSDFGlyphSize: { value: 0 },
         uTroikaSDFExponent: { value: 0 },
-        uTroikaTotalBounds: { value: new THREE.Vector4(0, 0, 0, 0) },
-        uTroikaClipRect: { value: new THREE.Vector4(0, 0, 0, 0) },
+        uTroikaTotalBounds: { value: new AFRAME.THREE.Vector4(0, 0, 0, 0) },
+        uTroikaClipRect: { value: new AFRAME.THREE.Vector4(0, 0, 0, 0) },
         uTroikaDistanceOffset: { value: 0 },
         uTroikaOutlineOpacity: { value: 0 },
         uTroikaFillOpacity: { value: 1 },
-        uTroikaPositionOffset: { value: new THREE.Vector2() },
+        uTroikaPositionOffset: { value: new AFRAME.THREE.Vector2() },
         uTroikaCurveRadius: { value: 0 },
         uTroikaBlurRadius: { value: 0 },
         uTroikaStrokeWidth: { value: 0 },
-        uTroikaStrokeColor: { value: new THREE.Color() },
+        uTroikaStrokeColor: { value: new AFRAME.THREE.Color() },
         uTroikaStrokeOpacity: { value: 1 },
-        uTroikaOrient: { value: new THREE.Matrix3() },
+        uTroikaOrient: { value: new AFRAME.THREE.Matrix3() },
         uTroikaUseGlyphColors: { value: true },
         uTroikaSDFDebug: { value: false },
       },
@@ -8255,18 +8258,18 @@ if (edgeAlpha == 0.0) {
     return textMaterial;
   }
 
-  const defaultMaterial = /*#__PURE__*/ new THREE.MeshBasicMaterial({
+  const defaultMaterial = /*#__PURE__*/ new AFRAME.THREE.MeshBasicMaterial({
     color: 0xffffff,
-    side: THREE.DoubleSide,
+    side: AFRAME.THREE.DoubleSide,
     transparent: true,
   });
   const defaultStrokeColor = 0x808080;
 
-  const tempMat4 = /*#__PURE__*/ new THREE.Matrix4();
-  const tempVec3a = /*#__PURE__*/ new THREE.Vector3();
-  const tempVec3b = /*#__PURE__*/ new THREE.Vector3();
+  const tempMat4 = /*#__PURE__*/ new AFRAME.THREE.Matrix4();
+  const tempVec3a = /*#__PURE__*/ new AFRAME.THREE.Vector3();
+  const tempVec3b = /*#__PURE__*/ new AFRAME.THREE.Vector3();
   const tempArray = [];
-  const origin = /*#__PURE__*/ new THREE.Vector3();
+  const origin = /*#__PURE__*/ new AFRAME.THREE.Vector3();
   const defaultOrient = '+x+y';
 
   function first(o) {
@@ -8274,13 +8277,16 @@ if (edgeAlpha == 0.0) {
   }
 
   let getFlatRaycastMesh = () => {
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), defaultMaterial);
+    const mesh = new AFRAME.THREE.Mesh(
+      new AFRAME.THREE.PlaneGeometry(1, 1),
+      defaultMaterial
+    );
     getFlatRaycastMesh = () => mesh;
     return mesh;
   };
   let getCurvedRaycastMesh = () => {
-    const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(1, 1, 32, 1),
+    const mesh = new AFRAME.THREE.Mesh(
+      new AFRAME.THREE.PlaneGeometry(1, 1, 32, 1),
       defaultMaterial
     );
     getCurvedRaycastMesh = () => mesh;
@@ -8324,7 +8330,7 @@ if (edgeAlpha == 0.0) {
    * A ThreeJS Mesh that renders a string of text on a plane in 3D space using signed distance
    * fields (SDF).
    */
-  class Text extends THREE.Mesh {
+  class Text extends AFRAME.THREE.Mesh {
     constructor() {
       const geometry = new GlyphsGeometry();
       super(geometry, null);
@@ -8441,7 +8447,7 @@ if (edgeAlpha == 0.0) {
       // === Presentation properties: === //
 
       /**
-       * @member {THREE.Material} material
+       * @member {AFRAME.THREE.Material} material
        * Defines a _base_ material to be used when rendering the text. This material will be
        * automatically replaced with a material derived from it, that adds shader code to
        * decrease the alpha for each fragment (pixel) outside the text glyphs, with antialiasing.
@@ -8453,7 +8459,7 @@ if (edgeAlpha == 0.0) {
       this.material = null;
 
       /**
-       * @member {string|number|THREE.Color} color
+       * @member {string|number|AFRAME.THREE.Color} color
        * This is a shortcut for setting the `color` of the text's material. You can use this
        * if you don't want to specify a whole custom `material`. Also, if you do use a custom
        * `material`, this color will only be used for this particuar Text instance, even if
@@ -8467,8 +8473,8 @@ if (edgeAlpha == 0.0) {
        * This allows more fine-grained control of colors for individual or ranges of characters,
        * taking precedence over the material's `color`. Its format is an Object whose keys each
        * define a starting character index for a range, and whose values are the color for each
-       * range. The color value can be a numeric hex color value, a `THREE.Color` object, or
-       * any of the strings accepted by `THREE.Color`.
+       * range. The color value can be a numeric hex color value, a `AFRAME.THREE.Color` object, or
+       * any of the strings accepted by `AFRAME.THREE.Color`.
        */
       this.colorRanges = null;
 
@@ -8483,7 +8489,7 @@ if (edgeAlpha == 0.0) {
       this.outlineWidth = 0;
 
       /**
-       * @member {string|number|THREE.Color} outlineColor
+       * @member {string|number|AFRAME.THREE.Color} outlineColor
        * WARNING: This API is experimental and may change.
        * The color of the text outline, if `outlineWidth`/`outlineBlur`/`outlineOffsetX/Y` are set.
        * Defaults to black.
@@ -8536,7 +8542,7 @@ if (edgeAlpha == 0.0) {
       this.strokeWidth = 0;
 
       /**
-       * @member {string|number|THREE.Color} strokeColor
+       * @member {string|number|AFRAME.THREE.Color} strokeColor
        * WARNING: This API is experimental and may change.
        * The color of the text stroke, if `strokeWidth` is greater than zero. Defaults to gray.
        */
@@ -8703,11 +8709,11 @@ if (edgeAlpha == 0.0) {
       }
 
       // We need to force the material to FrontSide to avoid the double-draw-call performance hit
-      // introduced in Three.js r130: https://github.com/mrdoob/three.js/pull/21967 - The sidedness
+      // introduced in AFRAME.THREE.js r130: https://github.com/mrdoob/AFRAME.THREE.js/pull/21967 - The sidedness
       // is instead applied via drawRange in the GlyphsGeometry.
       material._hadOwnSide = material.hasOwnProperty('side');
       this.geometry.setSide((material._actualSide = material.side));
-      material.side = THREE.FrontSide;
+      material.side = AFRAME.THREE.FrontSide;
     }
 
     onAfterRender(renderer, scene, camera, geometry, material, group) {
@@ -8911,7 +8917,7 @@ if (edgeAlpha == 0.0) {
       } else {
         const colorObj = material.hasOwnProperty('color')
           ? material.color
-          : (material.color = new THREE.Color());
+          : (material.color = new AFRAME.THREE.Color());
         if (color !== colorObj._input || typeof color === 'object') {
           colorObj.set((colorObj._input = color));
         }
@@ -8950,7 +8956,7 @@ if (edgeAlpha == 0.0) {
     /**
      * Translate a point in local space to an x/y in the text plane.
      */
-    localPositionToTextCoords(position, target = new THREE.Vector2()) {
+    localPositionToTextCoords(position, target = new AFRAME.THREE.Vector2()) {
       target.copy(position); //simple non-curved case is 1:1
       const r = this.curveRadius;
       if (r) {
@@ -8965,7 +8971,7 @@ if (edgeAlpha == 0.0) {
     /**
      * Translate a point in world space to an x/y in the text plane.
      */
-    worldPositionToTextCoords(position, target = new THREE.Vector2()) {
+    worldPositionToTextCoords(position, target = new AFRAME.THREE.Vector2()) {
       tempVec3a.copy(position);
       return this.localPositionToTextCoords(
         this.worldToLocal(tempVec3a),

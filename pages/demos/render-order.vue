@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  pageName: 'Pittore Justice Center',
-});
-
 async function loadSystems() {
   //@ts-ignore
   await import('aframe-sun-sky');
@@ -90,6 +86,7 @@ const waterLevels: { date: string; crest: number }[] = [
       color="#333"
       opacity="0.5"
     ></a-plane>
+    <a-box position="0 0.5 -1" three-layer="layers: 1, 31"></a-box>
     <a-entity position="0 0 0">
       <a-entity position="0 0 0" rotation="0 50 0">
         <a-entity
