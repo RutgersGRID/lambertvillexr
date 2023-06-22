@@ -8,7 +8,7 @@ import {
   ChangeDetectorComponentData,
 } from './change-detector';
 import './change-detector';
-import { Material, Mesh } from 'three';
+import { Group, Material, Mesh } from 'three';
 
 export type RenderOrderData = {
   order: number;
@@ -40,10 +40,6 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
     this.el.addEventListener('detectorchanged__render-order', () => {
       this.updateAllElem();
     });
-
-    setTimeout(() => {
-      this.updateAllElem();
-    }, 2000);
   }
 
   updateAllElem() {
@@ -52,13 +48,21 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
       if (obj instanceof Mesh && obj.material instanceof Material) {
         obj.material.depthTest = this.data.depthTest;
       }
+      console.log('setting render stuff for ', obj);
+      obj.children.forEach((x) => setObject3D(x));
     };
 
     const recursiveSetElem = (elem: Entity) => {
       if (elem.object3D) setObject3D(elem.object3D);
       Array.from(elem.childNodes).forEach((x) => {
         const child = x as Entity;
-        if (child != this.el && child.getAttribute('render-order')) return;
+        console.log('render order child ', child);
+        if (
+          child != this.el &&
+          child.getAttribute &&
+          child.getAttribute('render-order')
+        )
+          return;
         recursiveSetElem(child);
       });
     };
