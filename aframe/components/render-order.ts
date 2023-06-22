@@ -54,7 +54,6 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
         if (obj.material instanceof THREE.Material)
           obj.material.depthTest = this.data.depthTest;
         else {
-          console.log('updating obj.material: ', obj.material);
           obj.material.forEach((x: THREE.Material) => {
             x.depthTest = this.data.depthTest;
           });

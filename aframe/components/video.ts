@@ -36,6 +36,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   animEasing: string = 'easeOutCubic';
   playPlane?: Entity;
   videoPlane?: Entity;
+  backgroundPlane?: Entity;
   fadeControlsTimer?: NodeJS.Timeout;
   videoElem?: HTMLVideoElement;
 
@@ -50,6 +51,16 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     } else {
       this.playPlane = document.createEntity('a-image');
       this.videoPlane = document.createEntity('a-image');
+      this.backgroundPlane = document.createEntity('a-plane');
+      this.backgroundPlane.setAttribute('color', 'black');
+      this.backgroundPlane.setAttribute('transparent', true);
+      this.backgroundPlane.setAttribute('opacity', 0.75);
+      this.backgroundPlane.setAttribute('position', {
+        x: 0,
+        y: 0,
+        z: -0.1,
+      });
+      this.el.appendChild(this.backgroundPlane);
     }
 
     this.playPlane.setAttribute('transparent', true);
@@ -107,8 +118,9 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   }
 
   update() {
-    if (!this.videoPlane || !this.playPlane) return;
+    if (!this.videoPlane || !this.playPlane || !this.backgroundPlane) return;
 
+    const outlineWidth = 0.3;
     const percentageOfVideoPlane = 0.3;
     const smallestDim =
       this.data.width < this.data.height ? this.data.width : this.data.height;
@@ -140,10 +152,18 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
         smallestDim * percentageOfVideoPlane
       );
       this.playPlane.object3D.position.copy(new THREE.Vector3(0, 0, 0.1));
+      this.backgroundPlane.setAttribute(
+        'width',
+        this.data.width + 2 * outlineWidth
+      );
     }
 
     this.playPlane.setAttribute('height', smallestDim * percentageOfVideoPlane);
     this.videoPlane.setAttribute('height', this.data.height);
+    this.backgroundPlane.setAttribute(
+      'height',
+      this.data.height + 2 * outlineWidth
+    );
 
     this.videoElem = document.querySelector<HTMLVideoElement>(this.data.src);
     this.videoPlane.setAttribute('src', this.data.src);
@@ -220,13 +240,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       dur: animDuration,
       easing: animEasing,
     });
-    this.videoPlane.setAttribute('animation__showcontrols_scale', {
-      property: 'scale',
-      to: { x: 1.025, y: 1.025, z: 1.025 },
-      startEvents: 'showcontrols',
-      dur: animDuration,
-      easing: animEasing,
-    });
     this.videoPlane.setAttribute('animation__hidecontrols_color', {
       property: 'material.color',
       to: '#FFFFFF',
@@ -234,13 +247,20 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       dur: animDuration,
       easing: animEasing,
     });
-    this.videoPlane.setAttribute('animation__hidecontrols_scale', {
-      property: 'scale',
-      to: { x: 1, y: 1, z: 1 },
-      startEvents: 'hidecontrols',
-      dur: animDuration,
-      easing: animEasing,
-    });
+    // this.videoPlane.setAttribute('animation__showcontrols_scale', {
+    //   property: 'scale',
+    //   to: { x: 1.025, y: 1.025, z: 1.025 },
+    //   startEvents: 'showcontrols',
+    //   dur: animDuration,
+    //   easing: animEasing,
+    // });
+    // this.videoPlane.setAttribute('animation__hidecontrols_scale', {
+    //   property: 'scale',
+    //   to: { x: 1, y: 1, z: 1 },
+    //   startEvents: 'hidecontrols',
+    //   dur: animDuration,
+    //   easing: animEasing,
+    // });
   }
 }
 

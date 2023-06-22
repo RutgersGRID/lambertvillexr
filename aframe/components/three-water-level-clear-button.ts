@@ -14,7 +14,6 @@ export class ThreeWaterLevelClearButtonComponent extends BaseComponent {
   textButton?: Entity;
 
   init() {
-    console.log('clear button init');
     const size = 1;
 
     this.textButton = document.createEntity('a-text-button');

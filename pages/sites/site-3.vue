@@ -99,8 +99,9 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide14.jpg')"
       />
+      <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
     </a-assets>
-    <a-sky src="/assets/sites/site3/pano.jpg" rotation="11.7 0 0"></a-sky>
+    <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
 
     <!-- Boat -->
     <a-entity rotation="0 0 0" position="-2 -2 -10">

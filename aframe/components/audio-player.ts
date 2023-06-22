@@ -27,6 +27,7 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
     title: { default: '' },
   };
 
+  backgroundPlane?: Entity;
   audioElem?: HTMLAudioElement;
   playButton?: Entity;
   radialFillMat?: RadialFillShaderMaterial;
@@ -36,6 +37,18 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
   pauseImageSrc = usePublic('assets/images/pause.png');
 
   init() {
+    this.backgroundPlane = document.createEntity('a-plane');
+    this.backgroundPlane.setAttribute('color', 'black');
+    this.backgroundPlane.setAttribute('opacity', 0.75);
+    this.backgroundPlane.setAttribute('transparent', true);
+    this.backgroundPlane.setAttribute('position', {
+      x: 0,
+      y: -this.data.size * 0.15,
+      z: -0.15,
+    });
+    this.backgroundPlane.setAttribute('width', this.data.size * 1.5);
+    this.backgroundPlane.setAttribute('height', this.data.size * 1.9);
+
     this.playButton = document.createEntity('a-button');
     this.playButton.setAttribute('height', this.data.size);
     this.playButton.setAttribute('width', this.data.size);
@@ -54,7 +67,6 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
       y: -this.data.size * 0.8,
       z: 0,
     });
-    console.log(' title elem', this.titleElem.components);
     this.titleElem.setAttribute('font-size', 0.2 * this.data.size);
     this.titleElem.setAttribute('align', 'center');
     this.titleElem.setAttribute(
@@ -80,6 +92,7 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
 
     this.el.setObject3D('CircleMesh', circleMesh);
     circleMesh.position.set(0, 0, -0.1);
+    this.el.appendChild(this.backgroundPlane);
     this.el.appendChild(this.playButton);
     this.el.appendChild(this.titleElem);
   }

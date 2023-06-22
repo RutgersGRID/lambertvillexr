@@ -31,6 +31,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
   animDuration: number = 200;
   animEasing: string = 'easeOutCubic';
+  backgroundPlane?: Entity;
   displayPlane?: Entity;
   prevButton?: Entity;
   nextButton?: Entity;
@@ -44,25 +45,26 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.displayPlane.setAttribute('transparent', true);
     this.displayPlane.object3D.renderOrder = -10;
 
+    this.backgroundPlane = document.createEntity('a-plane');
+    this.backgroundPlane.setAttribute('color', 'black');
+    this.backgroundPlane.setAttribute('transparent', true);
+    this.backgroundPlane.setAttribute('opacity', 0.75);
+    this.backgroundPlane.setAttribute('position', {
+      x: 0,
+      y: 0,
+      z: -0.1,
+    });
+
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
     this.prevButton.addEventListener('click', () => this.gotoPrevImage());
-    this.prevButton.setAttribute('position', {
-      x: this.data.width / 2,
-      y: 0,
-      z: 0.05,
-    });
 
     this.nextButton = document.createEntity('a-button');
     this.nextButton.setAttribute('src', usePublic('assets/images/play.png'));
     this.nextButton.addEventListener('click', () => this.gotoNextImage());
-    this.nextButton.setAttribute('position', {
-      x: -this.data.width / 2,
-      y: 0,
-      z: 0.05,
-    });
     this.nextButton.setAttribute('scale', '-1 1 1');
 
+    this.el.appendChild(this.backgroundPlane);
     this.el.appendChild(this.displayPlane);
     this.el.appendChild(this.prevButton);
     this.el.appendChild(this.nextButton);
@@ -81,15 +83,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     const meshMaterial = mesh.material as THREE.MeshBasicMaterial;
     meshMaterial.map?.dispose();
     meshMaterial.map = newImage;
-
-    console.log(
-      'udpate image with newImage: ',
-      newImage,
-      ' mesh: ',
-      mesh,
-      ' mat ',
-      meshMaterial
-    );
   }
 
   gotoNextImage() {
@@ -125,8 +118,15 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   }
 
   update() {
-    if (!this.displayPlane || !this.nextButton || !this.prevButton) return;
+    if (
+      !this.displayPlane ||
+      !this.nextButton ||
+      !this.prevButton ||
+      !this.backgroundPlane
+    )
+      return;
 
+    const outlineWidth = 0.3;
     const percentageOfVideoPlane = 0.2;
     const smallestDim =
       this.data.width < this.data.height ? this.data.width : this.data.height;
@@ -143,6 +143,25 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       'height',
       smallestDim * percentageOfVideoPlane
     );
+
+    this.backgroundPlane.setAttribute(
+      'width',
+      this.data.width + 2 * outlineWidth
+    );
+    this.backgroundPlane.setAttribute(
+      'height',
+      this.data.height + 2 * outlineWidth
+    );
+    this.prevButton.setAttribute('position', {
+      x: this.data.width / 2,
+      y: 0,
+      z: 0.05,
+    });
+    this.nextButton.setAttribute('position', {
+      x: -this.data.width / 2,
+      y: 0,
+      z: 0.05,
+    });
 
     this.updateImageTextures();
     if (this.displayPlane.getObject3D('mesh')) {
