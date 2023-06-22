@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ColorManagement } from 'three';
+
 definePageMeta({
   pageName: 'Union Street Bridge',
 });
@@ -13,7 +15,6 @@ async function loadSystems() {
 
 <template>
   <AFrameScene :load-systems="loadSystems">
-    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
       <video
         id="trash-video"
@@ -32,6 +33,15 @@ async function loadSystems() {
       <a-asset-item
         id="boat"
         :src="usePublic('assets/sites/site3/boat.glb')"
+      ></a-asset-item>
+      <a-asset-item
+        id="debris"
+        :src="usePublic('assets/sites/site3/debris_concrete_junk.glb')"
+      >
+      </a-asset-item>
+      <a-asset-item
+        id="slab"
+        :src="usePublic('assets/sites/site4/wall.glb')"
       ></a-asset-item>
       <img
         class="slide-show"
@@ -90,40 +100,63 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site3/slide14.jpg')"
       />
     </a-assets>
-    <a-sky src="/assets/sites/site3/pano.jpg"></a-sky>
-    <a-entity rotation="0 0 0">
-      <a-playback-video
-        src="#trash-video"
-        position="0 0 -10"
-      ></a-playback-video>
-    </a-entity>
-    <a-entity rotation="0 90 0">
-      <a-slide-show
-        position="0 0 -10"
-        image-query=".slide-show"
-        autoplay="true"
-      ></a-slide-show>
-    </a-entity>
-    <a-entity rotation="0 90 0">
-      <a-entity position="0 0 -10" rotation="0 0 0">
-        <a-box color="red"></a-box>
+    <a-sky src="/assets/sites/site3/pano.jpg" rotation="11.7 0 0"></a-sky>
+
+    <!-- Boat -->
+    <a-entity rotation="0 0 0" position="-2 -2 -10">
+      <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
         <a-gltf-model
           src="#boat"
-          position="10.293 -10.03623 -20.46695"
+          position="5.422 -1.64306 8.59925"
         ></a-gltf-model>
       </a-entity>
+      <a-gltf-model
+        src="#debris"
+        position="0 -3 3"
+        scale="1.3 1.3 1.3"
+      ></a-gltf-model>
+      <a-gltf-model
+        src="#debris"
+        position="0 -3 -3"
+        scale="1.3 1.3 1.3"
+      ></a-gltf-model>
+      <a-gltf-model
+        src="#slab"
+        scale="0.5 0.5 0.5"
+        position="2.5 -1 1.5"
+        rotation="0 50 0"
+      ></a-gltf-model>
     </a-entity>
-    <a-entity rotation="0 -90 0">
-      <a-audio-player
-        src="#interview"
-        position="0 0 -10"
-        title="Interview"
-      ></a-audio-player>
+    <!-- Content -->
+    <a-entity rotation="0 -20 0">
+      <!-- Video -->
+      <a-entity rotation="0 -60 0">
+        <a-playback-video
+          src="#trash-video"
+          position="0 0 -15"
+        ></a-playback-video>
+      </a-entity>
+      <!-- Slideshow -->
+      <a-entity rotation="0 -130 0">
+        <a-slide-show
+          position="0 0 -15"
+          image-query=".slide-show"
+          autoplay="true"
+        ></a-slide-show>
+      </a-entity>
+      <!-- Interview Audio -->
+      <a-entity rotation="0 -180 0">
+        <a-audio-player
+          src="#interview"
+          position="0 0 -10"
+          title="Interview"
+        ></a-audio-player>
+      </a-entity>
     </a-entity>
     <a-entity
       camera
       look-controls
-      wasd-controls="enabled:true"
+      wasd-controls="enabled:false"
       position="0 1.6 0"
     >
       <a-animated-cursor></a-animated-cursor>
