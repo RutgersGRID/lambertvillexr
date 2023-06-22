@@ -12,7 +12,6 @@ async function loadSystems() {
   await import('@/aframe/components/three-water-level-button');
   await import('@/aframe/components/three-layer');
   await import('@/aframe/components/render-order');
-  await import('@/aframe/components/overlay');
 }
 
 function getWaterLevelFromCrest(crest: number) {
@@ -76,53 +75,80 @@ const waterLevels: { date: string; crest: number }[] = [
       material="sunPosition: 0 1 0"
       three-layer="layers: 31; desktopLayers: 1;"
     ></a-sun-sky>
-
     <a-three-water
       sun-direction="0 -1 0"
       reflection-layer="31"
       three-layer="layers: 1"
+      transparent="true"
       position="0 -1 0"
     ></a-three-water>
     <a-plane
       height="1000"
       width="1000"
+      position="0 -0.2 0"
       rotation="-90 0 0"
       color="#333"
       opacity="0.5"
+      transparent="true"
     ></a-plane>
+
     <a-entity position="0 0 0">
-      <a-entity position="0 0 0" rotation="0 50 0">
+      <a-entity position="0 0 0" rotation="0 70 0">
         <a-entity
-          position="0 0 -5"
-          rotation="0 -40 0"
+          position="0 0 -6"
+          rotation="0 -50 0"
           three-layer="layers: 1, 31"
         >
-          <a-gltf-model
-            src="#person1"
-            position="1 0 0"
-            scale="0.2 0.2 0.2"
-          ></a-gltf-model>
-          <a-obj-model
-            src="#car-obj"
-            mtl="#car-mtl"
-            scale="0.6 0.6 0.6"
-            position="-1 0.8 0"
-            rotation="0 20 0"
-          ></a-obj-model>
-          <a-entity position="1.4 0 1" rotation="0 -20 0">
-            <a-entity rotation="0 0 10">
-              <a-gltf-model
-                src="#bike"
-                position="-9.25 0.5 2.8"
-                scale="0.015 0.015 0.015"
-              ></a-gltf-model>
+          <!-- animation__rotation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 60000; easing: linear"
+        > -->
+          <a-cylinder
+            height="0.25"
+            color="#888"
+            transparent="true"
+            position="0 -0.125 0"
+            radius="3"
+          >
+            <a-cylinder
+              height="0.25"
+              color="#555"
+              transparent="true"
+              position="0 -0.125 0"
+              radius="3.2"
+            ></a-cylinder>
+          </a-cylinder>
+          <a-entity position="1 0 0.2">
+            <a-gltf-model
+              src="#person1"
+              position="1 0 0"
+              scale="0.2 0.2 0.2"
+            ></a-gltf-model>
+            <a-obj-model
+              src="#car-obj"
+              mtl="#car-mtl"
+              scale="0.6 0.6 0.6"
+              position="-1 0.8 0"
+              rotation="0 20 0"
+            ></a-obj-model>
+            <a-entity position="1.3 0 0.5" rotation="0 -20 0">
+              <a-entity rotation="0 0 10">
+                <a-gltf-model
+                  src="#bike"
+                  position="-9.25 0.6 2.8"
+                  scale="0.015 0.015 0.015"
+                ></a-gltf-model>
+              </a-entity>
             </a-entity>
           </a-entity>
         </a-entity>
       </a-entity>
 
-      <a-entity id="water_controls" render-order="order: 100; depthTest: false">
-        <a-entity position="0 0.5 0" rotation="0 20 0">
+      <a-entity
+        id="water_controls"
+        render-order="order: 100; depthTest: false"
+        position="0 0.1 0"
+        rotation="0 -20 0"
+      >
+        <a-entity rotation="0 20 0">
           <a-three-water-level-button
             :water-level="-1"
             unit="feet"
@@ -134,17 +160,29 @@ const waterLevels: { date: string; crest: number }[] = [
         </a-entity>
         <a-cylinder
           color="black"
-          position="0 0.5 0"
-          height="0.25"
+          height="2"
           radius="5.2"
+          transparent="true"
+          opacity="0.5"
+          theta-start="50"
+          :theta-length="20 * (waterLevels.length - 1 + 2)"
+          open-ended="true"
+          side="double"
+          render-order="order: 80; depthTest: false"
+        ></a-cylinder>
+        <a-cylinder
+          color="white"
+          height="0.05"
+          radius="5.2"
+          transparent="true"
           theta-start="60"
           :theta-length="20 * (waterLevels.length - 1)"
           open-ended="true"
           side="double"
+          render-order="order: 90; depthTest: false"
         ></a-cylinder>
         <a-entity
           v-for="(waterLevel, index) in waterLevels"
-          position="0 0.5 0"
           :rotation="`0 ${index * -20} 0`"
         >
           <a-three-water-level-button

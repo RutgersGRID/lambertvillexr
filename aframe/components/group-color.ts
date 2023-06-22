@@ -24,22 +24,23 @@ export class GroupColorComponent extends BaseComponent<GroupColorComponentData> 
     if (this.el.hasAttribute('material'))
       this.el.setAttribute('material', 'color', this.data.color);
 
-    const recursiveSetElemColor = (elem: Entity) => {
+    const recursiveSetElem = (elem: Entity) => {
       if (elem.hasAttribute('material'))
         elem.setAttribute('material', 'color', this.data.color);
       Array.from(elem.children).forEach((child) => {
         if (
           child != this.el &&
+          child.hasAttribute &&
           child.hasAttribute('group-color') &&
           child.getAttribute('group-color').inherit
         ) {
           child.setAttribute('group-color', 'color', this.data.color);
           return;
         }
-        recursiveSetElemColor(<Entity>child);
+        recursiveSetElem(<Entity>child);
       });
     };
 
-    recursiveSetElemColor(this.el);
+    recursiveSetElem(this.el);
   }
 }

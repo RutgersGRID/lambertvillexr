@@ -8,7 +8,8 @@ import {
   ChangeDetectorComponentData,
 } from './change-detector';
 import './change-detector';
-import { Group, Material, Mesh } from 'three';
+
+const THREE = AFRAME.THREE;
 
 export type RenderOrderData = {
   order: number;
@@ -42,25 +43,40 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
     });
   }
 
+  update() {
+    this.updateAllElem();
+  }
+
   updateAllElem() {
     const setObject3D = (obj: THREE.Object3D) => {
       obj.renderOrder = this.data.order;
-      if (obj instanceof Mesh && obj.material instanceof Material) {
-        obj.material.depthTest = this.data.depthTest;
+      if (obj instanceof THREE.Mesh) {
+        if (obj.material instanceof THREE.Material)
+          obj.material.depthTest = this.data.depthTest;
+        else {
+          console.log('updating obj.material: ', obj.material);
+          obj.material.forEach((x: THREE.Material) => {
+            x.depthTest = this.data.depthTest;
+          });
+        }
       }
-      console.log('setting render stuff for ', obj);
-      obj.children.forEach((x) => setObject3D(x));
     };
 
     const recursiveSetElem = (elem: Entity) => {
-      if (elem.object3D) setObject3D(elem.object3D);
+      if (elem.object3D) {
+        Object.entries(elem.object3DMap).forEach(([key, object]) =>
+          setObject3D(object)
+        );
+      }
+      if (elem.getAttribute && elem.getAttribute('material'))
+        elem.setAttribute('material', 'depthTest', this.data.depthTest);
       Array.from(elem.childNodes).forEach((x) => {
         const child = x as Entity;
-        console.log('render order child ', child);
         if (
           child != this.el &&
+          //@ts-ignore
           child.getAttribute &&
-          child.getAttribute('render-order')
+          child.hasAttribute('render-order')
         )
           return;
         recursiveSetElem(child);

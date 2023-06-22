@@ -122,10 +122,6 @@ function buttonMixin() {
         alphaTest: 0.0000001,
       },
       button: {},
-      'group-opacity': {},
-      'group-color': {
-        color: '#FFF',
-      },
     },
     mappings: {
       height: 'geometry.height',
