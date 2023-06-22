@@ -119,6 +119,7 @@ function buttonMixin() {
         shader: 'flat',
         side: 'double',
         transparent: true,
+        alphaTest: 0.0000001,
       },
       button: {},
       'group-opacity': {},

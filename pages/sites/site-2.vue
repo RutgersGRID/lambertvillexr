@@ -66,6 +66,10 @@ const waterLevels: { date: string; crest: number }[] = [
         id="car-mtl"
         :src="usePublic('assets/models/car/car.mtl')"
       ></a-asset-item>
+      <a-asset-item
+        id="bike"
+        :src="usePublic('assets/models/bike.glb')"
+      ></a-asset-item>
     </a-assets>
 
     <a-sun-sky
@@ -86,47 +90,80 @@ const waterLevels: { date: string; crest: number }[] = [
       color="#333"
       opacity="0.5"
     ></a-plane>
+    <a-box position="0 0.5 -1" three-layer="layers: 1, 31"></a-box>
+    <a-entity position="0 0 0">
+      <a-entity position="0 0 0" rotation="0 50 0">
+        <a-entity
+          position="0 0 -5"
+          rotation="0 -40 0"
+          three-layer="layers: 1, 31"
+        >
+          <a-gltf-model
+            src="#person1"
+            position="1 0 0"
+            scale="0.2 0.2 0.2"
+          ></a-gltf-model>
+          <a-obj-model
+            src="#car-obj"
+            mtl="#car-mtl"
+            scale="0.6 0.6 0.6"
+            position="-1 0.8 0"
+            rotation="0 20 0"
+          ></a-obj-model>
+          <a-entity position="1.4 0 1" rotation="0 -20 0">
+            <a-entity rotation="0 0 10">
+              <a-gltf-model
+                src="#bike"
+                position="-9.25 0.5 2.8"
+                scale="0.015 0.015 0.015"
+              ></a-gltf-model>
+            </a-entity>
+          </a-entity>
+        </a-entity>
+      </a-entity>
 
-    <a-entity position="0 0 -10">
-      <a-gltf-model
-        src="#person1"
-        position="-5 0 0"
-        scale="0.2 0.2 0.2"
-        three-layer="layers: 1, 31"
-      ></a-gltf-model>
-      <a-obj-model
-        src="#car-obj"
-        mtl="#car-mtl"
-        three-layer="layers: 1"
-        scale="0.6 0.6 0.6"
-        position="-7 0.8 0"
-        rotation="0 20 0"
-      ></a-obj-model>
-      <a-entity position="0 0.5 0" rotation="-20 0 0">
-        <a-three-water-level-button
-          :water-level="-1"
-          unit="feet"
-          title="Clear"
-          :position="`-3 0 0 0`"
-          three-layer="layers: 1"
-          overlay
-        ></a-three-water-level-button>
-        <a-three-water-level-button
+      <a-entity id="water_controls" render-order="order: 100; depthTest: false">
+        <a-entity position="0 0.5 0" rotation="0 20 0">
+          <a-three-water-level-button
+            :water-level="-1"
+            unit="feet"
+            title="Clear"
+            position="0 0 -5"
+            rotation="-20 0 0"
+            three-layer="layers: 1"
+          ></a-three-water-level-button>
+        </a-entity>
+        <a-cylinder
+          color="black"
+          position="0 0.5 0"
+          height="0.25"
+          radius="5.2"
+          theta-start="60"
+          :theta-length="20 * (waterLevels.length - 1)"
+          open-ended="true"
+          side="double"
+        ></a-cylinder>
+        <a-entity
           v-for="(waterLevel, index) in waterLevels"
-          :water-level="getWaterLevelFromCrest(waterLevel.crest)"
-          unit="feet"
-          :title="waterLevel.date"
-          :position="`${index * 1.5} 0 0 0`"
-          three-layer="layers: 1"
-          render-order="order: 100; depthTest: false"
-        ></a-three-water-level-button>
+          position="0 0.5 0"
+          :rotation="`0 ${index * -20} 0`"
+        >
+          <a-three-water-level-button
+            :water-level="getWaterLevelFromCrest(waterLevel.crest)"
+            unit="feet"
+            :title="waterLevel.date"
+            position="0 0 -5"
+            rotation="-20 0 0 "
+            three-layer="layers: 1"
+          ></a-three-water-level-button>
+        </a-entity>
       </a-entity>
     </a-entity>
 
     <a-entity
       camera
       look-controls
-      wasd-controls
+      wasd-controls="enabled:true"
       position="0 1.6 0"
       three-layer="layers: 1"
     >

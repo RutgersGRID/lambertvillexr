@@ -54,3 +54,8 @@ Run
 ```bash
 npm run build
 ```
+
+### Credits
+
+- "Low Poly Bicycle" (https://skfb.ly/6VSyo) by tolotedesign is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Chevrolet Camaro SS Coupe" (https://free3d.com/3d-model/chevrolet-camaro-ss-coupe-373476.html) by thmacr

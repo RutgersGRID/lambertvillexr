@@ -9272,6 +9272,6 @@ if (edgeAlpha == 0.0) {
       ThreedleDum.MathUtils = ThreedleDum.Math;
     }
   })(THREE__namespace);
-})(AFRAME.geometriesTHREE, AFRAME);
+})(AFRAME.THREE, AFRAME);
 
 export default {};
