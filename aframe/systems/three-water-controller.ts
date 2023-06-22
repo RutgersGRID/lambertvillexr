@@ -33,8 +33,10 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
         color: 0x274569,
         opacity: 0.5,
         transparent: true,
+        depthTest: false,
       })
     );
+    this.plane.renderOrder = 200;
     this.camera?.setObject3D('tint', this.plane);
     this.plane.position.set(0, 0, -0.1);
     this.updateUnderwaterFX();

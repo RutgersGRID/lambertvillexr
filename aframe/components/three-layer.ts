@@ -69,31 +69,28 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
   }
 
   updateAllElemLayers() {
-    const recursiveSetObject3DLayers = (
-      obj: THREE.Object3D,
-      isCamera: boolean
-    ) => {
+    const setObject3D = (obj: THREE.Object3D, isCamera: boolean) => {
       this.updateLayers(obj.layers, isCamera);
-      obj.children.forEach((child) => {
-        recursiveSetObject3DLayers(child, isCamera);
-      });
     };
 
-    const recursiveSetElemLayers = (elem: Entity) => {
-      if (elem.object3D)
-        recursiveSetObject3DLayers(elem.object3D, elem.hasAttribute('camera'));
-      if (elem.hasAttribute('raycaster')) {
+    const recursiveSetElem = (elem: Entity) => {
+      if (elem.object3D) {
+        Object.entries(elem.object3DMap).forEach(([key, object]) =>
+          setObject3D(object, elem.hasAttribute('camera'))
+        );
+      }
+      if (elem.hasAttribute && elem.hasAttribute('raycaster')) {
         const raycaster: THREE.Raycaster = (<any>elem.components['raycaster'])
           .raycaster;
         this.updateLayers(raycaster.layers);
       }
       Array.from(elem.childNodes).forEach((x) => {
         const child = x as Entity;
-        if (child.getAttribute('three-layer')) return;
-        recursiveSetElemLayers(child);
+        if (child.getAttribute && child.getAttribute('three-layer')) return;
+        recursiveSetElem(child);
       });
     };
 
-    recursiveSetElemLayers(this.el);
+    recursiveSetElem(this.el);
   }
 }

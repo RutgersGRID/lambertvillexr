@@ -24,11 +24,12 @@ export class GroupOpacityComponent extends BaseComponent<GroupOpacityComponentDa
     if (this.el.hasAttribute('material'))
       this.el.setAttribute('material', 'opacity', this.data.opacity);
 
-    const recursiveSetElemOpacity = (elem: Entity) => {
+    const recursiveSetElem = (elem: Entity) => {
       const children = Array.from(elem.children);
       children.forEach((child) => {
         if (
           child != this.el &&
+          child.hasAttribute &&
           child.hasAttribute('group-opacity') &&
           child.getAttribute('group-opacity').inherit
         ) {
@@ -36,12 +37,12 @@ export class GroupOpacityComponent extends BaseComponent<GroupOpacityComponentDa
           return;
         }
 
-        if (child.hasAttribute('material'))
+        if (child.hasAttribute && child.hasAttribute('material'))
           child.setAttribute('material', 'opacity', this.data.opacity);
-        recursiveSetElemOpacity(<Entity>child);
+        recursiveSetElem(<Entity>child);
       });
     };
 
-    recursiveSetElemOpacity(this.el);
+    recursiveSetElem(this.el);
   }
 }

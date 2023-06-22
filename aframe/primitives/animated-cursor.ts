@@ -1,3 +1,5 @@
+import '../components/render-order';
+
 AFRAME.registerPrimitive('a-animated-cursor', {
   defaultComponents: {
     cursor: {
@@ -13,33 +15,38 @@ AFRAME.registerPrimitive('a-animated-cursor', {
       segmentsTheta: 32,
     },
     material: {
-      color: '#FFF',
+      color: 'white',
       shader: 'flat',
+      transparent: true,
     },
-    position: { x: 0, y: 0, z: -0.1 },
-    scale: { x: 0.1, y: 0.1, z: 0.1 },
+    position: { x: 0, y: 0, z: -1 },
+    scale: { x: 1, y: 1, z: 1 },
     animation__fusing: {
       property: 'scale',
       startEvents: 'fusing',
       easing: 'easeInCubic',
       dur: 500,
-      from: '0.1 0.1 0.1',
-      to: '0.01 0.01 0.01',
+      from: '1 1 1',
+      to: '0.1 0.1 0.1',
     },
     animation__click: {
       property: 'scale',
       startEvents: 'click',
       easing: 'easeInCubic',
       dur: 150,
-      to: '0.1 0.1 0.1',
-      from: '0.01 0.01 0.01',
+      to: '1 1 1',
+      from: '0.1 0.1 0.1',
     },
     animation__mouseleave: {
       property: 'scale',
       startEvents: 'mouseleave',
       easing: 'easeInCubic',
       dur: 500,
-      to: '0.1 0.1 0.1',
+      to: '1 1 1',
+    },
+    'render-order': {
+      order: 200,
+      depthTest: false,
     },
   },
 });
