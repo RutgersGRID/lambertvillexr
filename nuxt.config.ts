@@ -107,6 +107,9 @@ export default defineNuxtConfig({
     '@mdi/font/css/materialdesignicons.min.css',
     'public/assets/style/main.scss',
   ],
+  tailwindcss: {
+    configPath: '@/tailwind.config.ts',
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
