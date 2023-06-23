@@ -91,7 +91,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.descriptionText.addEventListener('loaded', () => {
       const textMesh = this.descriptionText?.getObject3D('mesh') as any;
       textMesh.addEventListener('synccomplete', () => {
-        console.log('sync complete');
         this.updateTitleDescriptionSizing();
       });
     });

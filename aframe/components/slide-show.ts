@@ -37,6 +37,14 @@ const titleMargin = 0.2;
 const descriptionMargin = 0.2;
 const percentageOfVideoPlane = 0.2;
 
+const slideDotRadius = 0.075;
+const slideDotSpacing = 0.4;
+const slideDotBottomMargin = 0.2;
+const slideDotActiveColor = '#FFF';
+const slideDotActiveOpacity = 1;
+const slideDotInactiveColor = '#b0b0b0';
+const slideDotInactiveOpacity = 0.8;
+
 @component('slide-show')
 export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   static schema: Schema<SlideShowComponentData> = {
@@ -64,6 +72,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   descriptionText?: Entity;
   slides: Slide[] = [];
   autoplayInterval?: NodeJS.Timer;
+  slideDots: Entity[] = [];
 
   init() {
     this.displayPlane = document.createEntity('a-image');
@@ -82,6 +91,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
     this.prevButton.addEventListener('click', () => this.gotoPrevImage());
+    this.prevButton.setAttribute('scale', '-1 1 1');
     this.prevButton.appendChild(this.prevButtonBg);
 
     this.nextButtonBg = document.createEntity('a-circle');
@@ -91,7 +101,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.nextButton = document.createEntity('a-button');
     this.nextButton.setAttribute('src', usePublic('assets/images/play.png'));
     this.nextButton.addEventListener('click', () => this.gotoNextImage());
-    this.nextButton.setAttribute('scale', '-1 1 1');
     this.nextButton.appendChild(this.nextButtonBg);
 
     this.titleText = document.createEntity('a-troika-text');
@@ -115,7 +124,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.descriptionText.addEventListener('loaded', () => {
       const textMesh = this.descriptionText?.getObject3D('mesh') as any;
       textMesh.addEventListener('synccomplete', () => {
-        console.log('sync complete');
         this.updateTitleDescriptionSizing();
       });
     });
@@ -196,6 +204,21 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
     const slide = this.currentSlide();
 
+    for (let i = 0; i < this.slideDots.length; i++) {
+      this.slideDots[i].setAttribute(
+        'color',
+        i == this.data.currentSlide
+          ? slideDotActiveColor
+          : slideDotInactiveColor
+      );
+      this.slideDots[i].setAttribute(
+        'opacity',
+        i == this.data.currentSlide
+          ? slideDotActiveOpacity
+          : slideDotInactiveOpacity
+      );
+    }
+
     this.titleText.setAttribute('value', slide.title);
     this.descriptionText.setAttribute('value', slide.description);
 
@@ -221,7 +244,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.updateSlide();
   }
 
-  updateImageTextures() {
+  updateSlidesArray() {
     this.slides = [];
 
     const imageElements = document.querySelectorAll<HTMLImageElement>(
@@ -301,17 +324,34 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     );
 
     this.prevButton.setAttribute('position', {
-      x: this.data.width / 2,
-      y: 0,
-      z: 0.05,
-    });
-    this.nextButton.setAttribute('position', {
       x: -this.data.width / 2,
       y: 0,
       z: 0.05,
     });
+    this.nextButton.setAttribute('position', {
+      x: this.data.width / 2,
+      y: 0,
+      z: 0.05,
+    });
 
-    this.updateImageTextures();
+    this.updateSlidesArray();
+
+    for (const dot of this.slideDots) this.el.removeChild(dot);
+    this.slideDots = [];
+    for (let i = 0; i < this.slides.length; i++) {
+      const slideDot = document.createEntity<any>('a-circle');
+      slideDot.setAttribute('radius', slideDotRadius);
+      slideDot.setAttribute('position', {
+        x: (i - this.slides.length / 2) * slideDotSpacing,
+        y: -this.data.height / 2 + slideDotRadius + slideDotBottomMargin,
+        z: 0.1,
+      });
+      slideDot.setAttribute('material', {
+        transparent: true,
+      });
+      this.el.appendChild(slideDot);
+      this.slideDots.push(slideDot);
+    }
 
     if (
       this.data.currentSlide < 0 ||
