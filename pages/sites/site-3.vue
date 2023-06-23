@@ -134,13 +134,13 @@ async function loadSystems() {
       <a-entity rotation="0 -60 0">
         <a-playback-video
           src="#trash-video"
-          position="0 0 -15"
+          position="0 0 -8"
         ></a-playback-video>
       </a-entity>
       <!-- Slideshow -->
       <a-entity rotation="0 -130 0">
         <a-slide-show
-          position="0 0 -15"
+          position="0 0 -8"
           image-query=".slide-show"
           autoplay="true"
         ></a-slide-show>
@@ -149,7 +149,7 @@ async function loadSystems() {
       <a-entity rotation="0 -180 0">
         <a-audio-player
           src="#interview"
-          position="0 0 -10"
+          position="0 0 -8"
           title="Interview"
         ></a-audio-player>
       </a-entity>
