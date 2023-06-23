@@ -36,7 +36,7 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
         depthTest: false,
       })
     );
-    this.plane.renderOrder = 200;
+    this.plane.renderOrder = 50;
     this.camera?.setObject3D('tint', this.plane);
     this.plane.position.set(0, 0, -0.1);
     this.updateUnderwaterFX();

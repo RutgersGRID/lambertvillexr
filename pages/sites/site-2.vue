@@ -49,6 +49,8 @@ const waterLevels: { date: string; crest: number }[] = [
     crest: 19.08,
   },
 ];
+
+const currentSlide = ref(0);
 </script>
 
 <template>
@@ -71,56 +73,53 @@ const waterLevels: { date: string; crest: number }[] = [
         :src="usePublic('assets/models/bike.glb')"
       ></a-asset-item>
       <img
-        id="Apr2005"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Apr2005.jpg')"
-        title="April 2005 Flooding"
-        description="Flooding in Lambertville during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005."
-      />
-      <img
-        id="Aug1955"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Aug1955.jpg')"
-        description="Flooding in Lambertville during August 1955. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. "
-      />
-      <img
-        id="Aug2011"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Aug2011.jpg')"
-        title="August 2011"
-        description="Flooding in Lambertville during August 2011."
-      />
-      <img
         id="Jan1841"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Jan1841.jpg')"
         title="Janurary 1841"
-        description="Flooding in Lambertville during Janurary 1841."
-      />
-      <img
-        id="Jun2006"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Jun2006.jpg')"
-      />
-      <img
-        id="Mar1902"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Mar1902.jpg')"
-      />
-      <img
-        id="Mar1936"
-        class="timeline-photo"
-        :src="usePublic('assets/sites/site2/flood-images/Mar1936.jpg')"
+        description="The first major flood recorded. Half of the wooden Lambertville - New Hope Bridge was swept away."
       />
       <img
         id="Oct1903"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Oct1903.jpg')"
+        title="October 1903"
+        description="The rebuilt Lambertville - New Hope bridge was destroyed again by a new flood."
+      />
+      <img
+        id="Mar1936"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Mar1936.jpg')"
+        title="March 1936"
+        description="Two successive rainstorms combined with snowmelt resulted in floods through New Jersey."
+      />
+      <img
+        id="Aug1955"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Aug1955.jpg')"
+        title="August 2005"
+        description="Hurricances Diane and Connie brought excess rainfall and winds. The Point Pleasant bridge was destroyed and was never rebuilt again."
       />
       <img
         id="Sept2004"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Sept2004.jpg')"
+        title="September 2004"
+        description="The remnants of Hurricane Ivan combined with a cold front produced excess rainfall across New Jersey."
+      />
+      <img
+        id="Apr2005"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Apr2005.jpg')"
+        title="April 2005"
+        description="The Delaware River flodded due to snow melt and unusually high precipitation."
+      />
+      <img
+        id="Jun2006"
+        class="timeline-photo"
+        :src="usePublic('assets/sites/site2/flood-images/Jun2006.jpg')"
+        title="June 2006"
+        description="FLood conditions resulted from a month of above-avaerage rainfall combined with a slow moving storm."
       />
     </a-assets>
 
@@ -200,11 +199,11 @@ const waterLevels: { date: string; crest: number }[] = [
       >
         <a-entity rotation="0 -80 0">
           <a-slide-show
-            position="0 7 -10"
+            position="0 5 -7"
             image-query=".timeline-photo"
-            show-controls="true"
-            description-height="3"
-            current-slide="1"
+            show-controls="false"
+            description-height="2"
+            :current-slide="currentSlide"
           ></a-slide-show>
         </a-entity>
 
@@ -247,6 +246,7 @@ const waterLevels: { date: string; crest: number }[] = [
             :title="waterLevel.date"
             position="0 0 -5"
             rotation="-20 0 0 "
+            @click="currentSlide = index"
           ></a-three-water-level-button>
         </a-entity>
       </a-entity>
@@ -255,7 +255,7 @@ const waterLevels: { date: string; crest: number }[] = [
     <a-entity
       camera
       look-controls
-      wasd-controls="enabled:true"
+      wasd-controls="enabled:false"
       position="0 1.6 0"
       three-layer="layers: 1"
     >
