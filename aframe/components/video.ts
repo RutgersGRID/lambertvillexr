@@ -13,9 +13,6 @@ export interface VideoComponentData {
   src: string;
   width: number;
   height: number;
-  curved: boolean;
-  radius: number;
-  thetaStart: number;
 }
 
 @component('video')
@@ -24,9 +21,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     src: { type: 'string' },
     width: { default: 16 },
     height: { default: 9 },
-    curved: { default: false },
-    radius: { default: 2 },
-    thetaStart: { default: 0 },
   };
 
   playImageSrc: string = usePublic('assets/images/play.png');
@@ -45,23 +39,18 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   controlsVisible: boolean = false;
 
   init() {
-    if (this.data.curved) {
-      this.playPlane = document.createEntity('a-curvedimage');
-      this.videoPlane = document.createEntity('a-curvedimage');
-    } else {
-      this.playPlane = document.createEntity('a-image');
-      this.videoPlane = document.createEntity('a-image');
-      this.backgroundPlane = document.createEntity('a-plane');
-      this.backgroundPlane.setAttribute('color', 'black');
-      this.backgroundPlane.setAttribute('transparent', true);
-      this.backgroundPlane.setAttribute('opacity', 0.75);
-      this.backgroundPlane.setAttribute('position', {
-        x: 0,
-        y: 0,
-        z: -0.1,
-      });
-      this.el.appendChild(this.backgroundPlane);
-    }
+    this.playPlane = document.createEntity('a-image');
+    this.videoPlane = document.createEntity('a-image');
+    this.backgroundPlane = document.createEntity('a-plane');
+    this.backgroundPlane.setAttribute('material', {
+      side: 'double',
+      opacity: 0.75,
+      shader: 'flat',
+      color: 'black',
+      transparent: true,
+    });
+    this.backgroundPlane.object3D.renderOrder = -20;
+    this.el.appendChild(this.backgroundPlane);
 
     this.playPlane.setAttribute('transparent', true);
     this.playPlane.setAttribute('alpha-test', 0.5);
@@ -120,43 +109,18 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   update() {
     if (!this.videoPlane || !this.playPlane || !this.backgroundPlane) return;
 
-    const outlineWidth = 0.3;
+    const outlineWidth = 0.2;
     const percentageOfVideoPlane = 0.3;
     const smallestDim =
       this.data.width < this.data.height ? this.data.width : this.data.height;
 
-    if (this.data.curved) {
-      const circumference = 2 * Math.PI * this.data.radius;
-      if (this.data.width > circumference) this.data.width = circumference;
-      const videoPlaneArcDeg = arcLengthToDeg(
-        this.data.width,
-        this.data.radius
-      );
-      this.videoPlane.setAttribute('theta-length', videoPlaneArcDeg);
-      this.videoPlane.setAttribute('theta-start', this.data.thetaStart);
-      this.videoPlane.setAttribute('radius', this.data.radius);
-      const playPlaneRadius = this.data.radius - 0.1;
-      const playPlaneArcDeg =
-        arcLengthToDeg(smallestDim, playPlaneRadius) * percentageOfVideoPlane;
-      const playPlaneThetaStart = this.data.thetaStart;
-      this.playPlane.setAttribute(
-        'theta-start',
-        playPlaneThetaStart + videoPlaneArcDeg / 2 - playPlaneArcDeg / 2
-      );
-      this.playPlane.setAttribute('radius', playPlaneRadius);
-      this.playPlane.setAttribute('theta-length', playPlaneArcDeg);
-    } else {
-      this.videoPlane.setAttribute('width', this.data.width);
-      this.playPlane.setAttribute(
-        'width',
-        smallestDim * percentageOfVideoPlane
-      );
-      this.playPlane.object3D.position.copy(new THREE.Vector3(0, 0, 0.1));
-      this.backgroundPlane.setAttribute(
-        'width',
-        this.data.width + 2 * outlineWidth
-      );
-    }
+    this.videoPlane.setAttribute('width', this.data.width);
+    this.playPlane.setAttribute('width', smallestDim * percentageOfVideoPlane);
+    this.playPlane.object3D.position.copy(new THREE.Vector3(0, 0, 0.1));
+    this.backgroundPlane.setAttribute(
+      'width',
+      this.data.width + 2 * outlineWidth
+    );
 
     this.playPlane.setAttribute('height', smallestDim * percentageOfVideoPlane);
     this.videoPlane.setAttribute('height', this.data.height);
@@ -247,20 +211,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       dur: animDuration,
       easing: animEasing,
     });
-    // this.videoPlane.setAttribute('animation__showcontrols_scale', {
-    //   property: 'scale',
-    //   to: { x: 1.025, y: 1.025, z: 1.025 },
-    //   startEvents: 'showcontrols',
-    //   dur: animDuration,
-    //   easing: animEasing,
-    // });
-    // this.videoPlane.setAttribute('animation__hidecontrols_scale', {
-    //   property: 'scale',
-    //   to: { x: 1, y: 1, z: 1 },
-    //   startEvents: 'hidecontrols',
-    //   dur: animDuration,
-    //   easing: animEasing,
-    // });
   }
 }
 
@@ -272,8 +222,5 @@ AFRAME.registerPrimitive('a-playback-video', {
     src: 'video.src',
     width: 'video.width',
     height: 'video.height',
-    curved: 'video.curved',
-    'theta-start': 'video.thetaStart',
-    radius: 'video.radius',
   },
 });

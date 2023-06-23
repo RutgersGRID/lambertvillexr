@@ -74,21 +74,28 @@ const waterLevels: { date: string; crest: number }[] = [
         id="Apr2005"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Apr2005.jpg')"
+        title="April 2005 Flooding"
+        description="Flooding in Lambertville during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005."
       />
       <img
         id="Aug1955"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Aug1955.jpg')"
+        description="Flooding in Lambertville during August 1955. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. Flooding during April 2005. "
       />
       <img
         id="Aug2011"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Aug2011.jpg')"
+        title="August 2011"
+        description="Flooding in Lambertville during August 2011."
       />
       <img
         id="Jan1841"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Jan1841.jpg')"
+        title="Janurary 1841"
+        description="Flooding in Lambertville during Janurary 1841."
       />
       <img
         id="Jun2006"
@@ -195,6 +202,9 @@ const waterLevels: { date: string; crest: number }[] = [
           <a-slide-show
             position="0 7 -10"
             image-query=".timeline-photo"
+            show-controls="false"
+            description-height="3"
+            current-slide="1"
           ></a-slide-show>
         </a-entity>
 

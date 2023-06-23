@@ -49,14 +49,16 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
 
   updateAllElem() {
     const setObject3D = (obj: THREE.Object3D) => {
-      obj.renderOrder = this.data.order;
+      if ((obj as any).relativeRenderOrder)
+        obj.renderOrder = this.data.order + (obj as any).relativeRenderOrder;
+      else obj.renderOrder = this.data.order;
       if (obj instanceof THREE.Mesh) {
         if (obj.material instanceof THREE.Material)
           obj.material.depthTest = this.data.depthTest;
         else {
-          obj.material.forEach((x: THREE.Material) => {
-            x.depthTest = this.data.depthTest;
-          });
+          for (const material of obj.material) {
+            material.depthTest = this.data.depthTest;
+          }
         }
       }
     };

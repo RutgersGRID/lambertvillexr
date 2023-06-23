@@ -51,10 +51,8 @@ async function loadSystems() {
     ></a-playback-video>
     <a-playback-video
       src="#trash-video"
-      position="0 1.6 0"
-      curved="true"
-      radius="8"
-      theta-start="210"
+      position="0 1.6 -5"
+      rotation="0 180 0"
     ></a-playback-video>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>

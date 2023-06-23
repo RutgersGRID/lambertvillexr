@@ -38,9 +38,13 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
 
   init() {
     this.backgroundPlane = document.createEntity('a-plane');
-    this.backgroundPlane.setAttribute('color', 'black');
-    this.backgroundPlane.setAttribute('opacity', 0.75);
-    this.backgroundPlane.setAttribute('transparent', true);
+    this.backgroundPlane.setAttribute('material', {
+      side: 'double',
+      opacity: 0.75,
+      shader: 'flat',
+      color: 'black',
+      transparent: true,
+    });
     this.backgroundPlane.setAttribute('position', {
       x: 0,
       y: -this.data.size * 0.15,

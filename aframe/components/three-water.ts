@@ -23,7 +23,7 @@ export class WaterComponent extends BaseComponent<WaterComponentData> {
   waterShaderMaterial?: THREE.ShaderMaterial;
 
   init() {
-    const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+    const waterGeometry = new THREE.CircleGeometry(500);
     const threeScene = this.el.sceneEl?.object3D;
     this.water = new Water(waterGeometry, {
       textureWidth: 512,
