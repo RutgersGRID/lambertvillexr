@@ -51,11 +51,11 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
   init() {
     this.backgroundPlane = document.createEntity('a-plane');
     configureBackgroundEntity(this.backgroundPlane);
-    this.backgroundPlane.object3D.renderOrder = -20;
+    setRenderOrder(this.backgroundPlane.object3D, -20);
 
     this.backgroundCircle = document.createEntity('a-circle');
     configureBackgroundEntity(this.backgroundCircle);
-    this.backgroundCircle.object3D.renderOrder = -20;
+    setRenderOrder(this.backgroundCircle.object3D, -20);
 
     this.playButton = document.createEntity('a-button');
     this.playButton.addEventListener('click', () => {

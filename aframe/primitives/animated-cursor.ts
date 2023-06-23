@@ -1,4 +1,16 @@
+import {
+  BaseComponent,
+  component,
+} from '@/manual_modules/aframe-class-components';
 import '../components/render-order';
+import { setRenderOrder } from '@/utils/three';
+
+@component('cursor-render-order')
+export class CursorRenderOrderComponent extends BaseComponent {
+  init() {
+    setRenderOrder(this.el.object3D, 200);
+  }
+}
 
 AFRAME.registerPrimitive('a-animated-cursor', {
   defaultComponents: {
@@ -48,6 +60,7 @@ AFRAME.registerPrimitive('a-animated-cursor', {
       order: 200,
       depthTest: false,
     },
+    'cursor-render-order': {},
   },
 });
 

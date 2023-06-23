@@ -1,6 +1,7 @@
 import { BaseSystem, system } from '@/manual_modules/aframe-class-components';
 import { WaterComponent } from '../components/three-water';
-import { AFrame, ANIME, Entity, Schema } from 'aframe';
+import { ANIME, Entity, Schema } from 'aframe';
+import { setRenderOrder } from '@/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -36,7 +37,7 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
         depthTest: false,
       })
     );
-    this.plane.renderOrder = 50;
+    setRenderOrder(this.plane, 50);
     this.camera?.setObject3D('tint', this.plane);
     this.plane.position.set(0, 0, -0.1);
     this.updateUnderwaterFX();

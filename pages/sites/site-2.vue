@@ -201,7 +201,7 @@ const currentSlide = ref(0);
           <a-slide-show
             position="0 5 -7"
             image-query=".timeline-photo"
-            show-controls="false"
+            show-controls="true"
             description-height="2"
             :current-slide="currentSlide"
           ></a-slide-show>
@@ -218,7 +218,7 @@ const currentSlide = ref(0);
           height="2"
           radius="5.2"
           transparent="true"
-          opacity="0.5"
+          opacity="0.75"
           theta-start="50"
           :theta-length="20 * (waterLevels.length - 1 + 2)"
           open-ended="true"

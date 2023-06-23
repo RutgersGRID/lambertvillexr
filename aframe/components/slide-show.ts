@@ -6,7 +6,7 @@ import { Entity, Schema } from 'aframe';
 import document from '@/utils/document';
 import { loadTextureToAspect } from '@/utils/three';
 import './button';
-import { configureBackgroundEntity } from '@/utils/three';
+import { configureBackgroundEntity, setRenderOrder } from '@/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -81,18 +81,15 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.displayPlane = document.createEntity('a-image');
     this.displayPlane.setAttribute('side', 'double');
     this.displayPlane.setAttribute('transparent', true);
-    this.displayPlane.object3D.renderOrder = 0;
-    (this.displayPlane.object3D as any).relativeRenderOrder = 0;
+    setRenderOrder(this.displayPlane.object3D, 5);
 
     this.backgroundPlane = document.createEntity('a-plane');
     configureBackgroundEntity(this.backgroundPlane);
-    this.backgroundPlane.object3D.renderOrder = -10;
-    (this.backgroundPlane.object3D as any).relativeRenderOrder = -10;
+    setRenderOrder(this.backgroundPlane.object3D, 0);
 
     this.prevButtonBg = document.createEntity('a-circle');
     configureBackgroundEntity(this.prevButtonBg, -0.075);
-    this.prevButtonBg.object3D.renderOrder = -10;
-    (this.prevButtonBg.object3D as any).relativeRenderOrder = -10;
+    setRenderOrder(this.prevButtonBg.object3D, 0);
 
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
@@ -102,13 +99,11 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     });
     this.prevButton.setAttribute('scale', '-1 1 1');
     this.prevButton.appendChild(this.prevButtonBg);
-    this.prevButton.object3D.renderOrder = 5;
-    (this.prevButton.object3D as any).relativeRenderOrder = 5;
+    setRenderOrder(this.prevButton.object3D, 10);
 
     this.nextButtonBg = document.createEntity('a-circle');
     configureBackgroundEntity(this.nextButtonBg, -0.075);
-    this.nextButtonBg.object3D.renderOrder = -10;
-    (this.nextButtonBg.object3D as any).relativeRenderOrder = -10;
+    setRenderOrder(this.nextButtonBg.object3D, 0);
 
     this.nextButton = document.createEntity('a-button');
     this.nextButton.setAttribute('src', usePublic('assets/images/play.png'));
@@ -117,8 +112,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       this.gotoNextImage();
     });
     this.nextButton.appendChild(this.nextButtonBg);
-    this.nextButton.object3D.renderOrder = 5;
-    (this.nextButton.object3D as any).relativeRenderOrder = 5;
+    setRenderOrder(this.nextButton.object3D, 10);
 
     this.titleText = document.createEntity('a-troika-text');
     this.titleText.setAttribute('fontSize', fontSize);
@@ -128,6 +122,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     );
     this.titleText.setAttribute('color', 'white');
     this.titleText.setAttribute('baseline', 'top');
+    setRenderOrder(this.titleText.object3D, 5);
 
     this.descriptionText = document.createEntity('a-troika-text');
     this.descriptionText.setAttribute('fontSize', fontSize);
@@ -137,6 +132,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     );
     this.descriptionText.setAttribute('color', 'white');
     this.descriptionText.setAttribute('baseline', 'top');
+    setRenderOrder(this.descriptionText.object3D, 5);
 
     this.descriptionText.addEventListener('loaded', () => {
       const textMesh = this.descriptionText?.getObject3D('mesh') as any;
@@ -157,6 +153,12 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
         this.update();
       }, 0);
     });
+
+    // console.log('init slide show');
+    // console.log('\tprevButton', this.prevButton.object3D);
+    // console.log('\tnextButton', this.nextButton.object3D);
+    // console.log('\tdisplay', this.displayPlane.object3D);
+    // console.log('\tbg', this.backgroundPlane.object3D);
   }
 
   currentSlide() {
@@ -366,8 +368,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       slideDot.setAttribute('material', {
         transparent: true,
       });
-      slideDot.object3D.renderOrder = 15;
-      (slideDot.object3D as any).relativeRenderOrder = 15;
+      setRenderOrder(slideDot.object3D, 15);
       const slideDotBg = document.createEntity('a-circle');
       slideDotBg.setAttribute('radius', slideDotRadius * 1.75);
       slideDotBg.setAttribute('material', {
@@ -378,8 +379,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       slideDotBg.setAttribute('position', {
         z: -0.025,
       });
-      slideDotBg.object3D.renderOrder = 14;
-      (slideDotBg.object3D as any).relativeRenderOrder = 14;
+      setRenderOrder(slideDotBg.object3D, 14);
       slideDot.append(slideDotBg);
 
       this.el.appendChild(slideDot);

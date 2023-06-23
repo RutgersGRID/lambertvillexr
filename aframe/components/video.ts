@@ -5,7 +5,7 @@ import {
 import { Schema, Entity } from 'aframe';
 import * as document from '@/utils/document';
 import { fixTextureToAspect } from '@/utils/three';
-import { configureBackgroundEntity } from '@/utils/three';
+import { configureBackgroundEntity, setRenderOrder } from '@/utils/three';
 import '@/manual_modules/aframe-troika-text';
 
 const THREE = AFRAME.THREE;
@@ -62,7 +62,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
 
     this.backgroundPlane = document.createEntity('a-plane');
     configureBackgroundEntity(this.backgroundPlane);
-    this.backgroundPlane.object3D.renderOrder = -20;
+    setRenderOrder(this.backgroundPlane.object3D, -20);
     this.el.appendChild(this.backgroundPlane);
 
     this.playPlane.setAttribute('transparent', true);

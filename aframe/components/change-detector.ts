@@ -41,6 +41,8 @@ export class ChangeDetectorComponent extends BaseComponent<ChangeDetectorCompone
 
   isArMode: boolean = false;
   mutationObserver?: MutationObserver;
+  bufferTimeout?: NodeJS.Timeout;
+  bufferTimeoutEntities: Entity[] = [];
 
   init() {
     if (this.data.enterVr)
@@ -59,8 +61,29 @@ export class ChangeDetectorComponent extends BaseComponent<ChangeDetectorCompone
     this.mutationObserver = new MutationObserver((mutationlist, observer) => {
       mutationlist.forEach((mutation) => {
         if (mutation.type == 'childList') {
-          this.tryTrackEntity(mutation.target as Entity);
-          if (this.data.elemTreeChanged) this.emitChanged();
+          if (!this.bufferTimeout) {
+            this.bufferTimeout = setTimeout(() => {
+              // console.log(
+              //   'mutated ',
+              //   this.bufferTimeoutEntities,
+              //   ' origin elem ',
+              //   this.el,
+              //   ' comp: ',
+              //   this.el.components
+              // );
+              for (const entity of this.bufferTimeoutEntities) {
+                this.tryTrackEntity(entity);
+              }
+              if (this.data.elemTreeChanged) this.emitChanged();
+              this.bufferTimeout = undefined;
+              this.bufferTimeoutEntities = [];
+            }, 0);
+          }
+
+          for (const entity of this.bufferTimeoutEntities) {
+            if (entity == mutation.target) return;
+          }
+          this.bufferTimeoutEntities.push(mutation.target as Entity);
         }
       });
     });
@@ -69,10 +92,6 @@ export class ChangeDetectorComponent extends BaseComponent<ChangeDetectorCompone
     this.mutationObserver.observe(this.el, {
       childList: true,
       subtree: this.data.recursive,
-    });
-
-    this.el.addEventListener('child-detached', () => {
-      this.emitChanged();
     });
   }
 

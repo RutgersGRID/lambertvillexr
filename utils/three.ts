@@ -1,5 +1,7 @@
 import { Entity } from 'aframe';
 
+const THREE = AFRAME.THREE;
+
 export function loadTextureToAspect(planeWidth: number, planeHeight: number) {
   return function (texture: THREE.Texture) {
     const planeAspect = planeWidth / planeHeight;
@@ -48,4 +50,13 @@ export function configureBackgroundEntity(
   entity.setAttribute('position', {
     z: zOffset,
   });
+}
+
+export function setRenderOrder(
+  obj: THREE.Object3D,
+  renderOrder: number,
+  setRelativeOrder: boolean = true
+) {
+  obj.renderOrder = renderOrder;
+  if (setRelativeOrder) (obj as any).relativeRenderOrder = renderOrder;
 }

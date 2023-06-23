@@ -48,6 +48,8 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
   }
 
   updateAllElem() {
+    // let canPrint = false;
+
     const setObject3D = (obj: THREE.Object3D) => {
       if ((obj as any).relativeRenderOrder)
         obj.renderOrder = this.data.order + (obj as any).relativeRenderOrder;
@@ -65,9 +67,15 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
 
     const recursiveSetElem = (elem: Entity) => {
       if (elem.object3D) {
-        Object.entries(elem.object3DMap).forEach(([key, object]) =>
-          setObject3D(object)
-        );
+        // canPrint =
+        //   (elem.parentNode as HTMLElement).tagName == 'A-SLIDE-SHOW' ||
+        //   elem.tagName == 'A-CURSOR';
+        // if (canPrint) console.log('render order elem: ', elem);
+        for (const key in elem.object3DMap) {
+          const object = elem.object3DMap[key];
+          // if (canPrint) console.log('\tkey: ', key, ' obj: ', object);
+          setObject3D(object);
+        }
       }
       if (elem.getAttribute && elem.getAttribute('material'))
         elem.setAttribute('material', 'depthTest', this.data.depthTest);
