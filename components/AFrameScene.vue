@@ -112,7 +112,7 @@ function onTutorialFinished() {
         v-if="aframeLoaded"
         v-bind="attributes"
         embedded
-        renderer="logarithmicBuffer: true;"
+        renderer="logarithmicBuffer: true; sortObjects: true;"
         class="absolute w-full h-full"
         loading-screen="enabled: false"
       >

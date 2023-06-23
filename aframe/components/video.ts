@@ -4,8 +4,8 @@ import {
 } from '@/manual_modules/aframe-class-components';
 import { Schema, Entity } from 'aframe';
 import * as document from '@/utils/document';
-import { arcLengthToDeg } from '@/utils/math';
 import { fixTextureToAspect } from '@/utils/three';
+import { configureBackgroundEntity } from '@/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -19,8 +19,8 @@ export interface VideoComponentData {
 export default class VideoComponent extends BaseComponent<VideoComponentData> {
   static schema: Schema<VideoComponentData> = {
     src: { type: 'string' },
-    width: { default: 16 },
-    height: { default: 9 },
+    width: { default: 8 },
+    height: { default: 4.5 },
   };
 
   playImageSrc: string = usePublic('assets/images/play.png');
@@ -42,13 +42,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.playPlane = document.createEntity('a-image');
     this.videoPlane = document.createEntity('a-image');
     this.backgroundPlane = document.createEntity('a-plane');
-    this.backgroundPlane.setAttribute('material', {
-      side: 'double',
-      opacity: 0.75,
-      shader: 'flat',
-      color: 'black',
-      transparent: true,
-    });
+    configureBackgroundEntity(this.backgroundPlane);
     this.backgroundPlane.object3D.renderOrder = -20;
     this.el.appendChild(this.backgroundPlane);
 

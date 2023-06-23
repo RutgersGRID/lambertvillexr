@@ -10,6 +10,7 @@ import {
 } from '~/three/shaders/radial-fill';
 import './button';
 import '@/manual_modules/aframe-troika-text';
+import { configureBackgroundEntity } from '~/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -38,13 +39,7 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
 
   init() {
     this.backgroundPlane = document.createEntity('a-plane');
-    this.backgroundPlane.setAttribute('material', {
-      side: 'double',
-      opacity: 0.75,
-      shader: 'flat',
-      color: 'black',
-      transparent: true,
-    });
+    configureBackgroundEntity(this.backgroundPlane);
     this.backgroundPlane.setAttribute('position', {
       x: 0,
       y: -this.data.size * 0.15,

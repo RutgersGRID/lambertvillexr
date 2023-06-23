@@ -6,6 +6,7 @@ import { Entity, Schema } from 'aframe';
 import document from '@/utils/document';
 import { loadTextureToAspect } from '@/utils/three';
 import './button';
+import { configureBackgroundEntity } from '@/utils/three';
 
 const THREE = AFRAME.THREE;
 
@@ -71,24 +72,11 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.displayPlane.object3D.renderOrder = -10;
 
     this.backgroundPlane = document.createEntity('a-plane');
-    this.backgroundPlane.setAttribute('material', {
-      side: 'double',
-      opacity: 0.75,
-      shader: 'flat',
-      color: 'black',
-      transparent: true,
-    });
+    configureBackgroundEntity(this.backgroundPlane);
     this.backgroundPlane.object3D.renderOrder = -20;
 
     this.prevButtonBg = document.createEntity('a-circle');
-    this.prevButtonBg.setAttribute('material', {
-      side: 'double',
-      opacity: 0.75,
-      shader: 'flat',
-      color: 'black',
-      transparent: true,
-    });
-    this.prevButtonBg.setAttribute('opacity', 0.75);
+    configureBackgroundEntity(this.prevButtonBg, -0.075);
     this.prevButtonBg.object3D.renderOrder = -20;
 
     this.prevButton = document.createEntity('a-button');
@@ -97,14 +85,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.prevButton.appendChild(this.prevButtonBg);
 
     this.nextButtonBg = document.createEntity('a-circle');
-    this.nextButtonBg.setAttribute('material', {
-      side: 'double',
-      opacity: 0.75,
-      shader: 'flat',
-      color: 'black',
-      transparent: true,
-    });
-    this.nextButtonBg.setAttribute('opacity', 0.75);
+    configureBackgroundEntity(this.nextButtonBg, -0.075);
     this.nextButtonBg.object3D.renderOrder = -20;
 
     this.nextButton = document.createEntity('a-button');
@@ -138,6 +119,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.descriptionText.addEventListener('loaded', () => {
       const textMesh = this.descriptionText?.getObject3D('mesh') as any;
       textMesh.addEventListener('synccomplete', () => {
+        console.log('sync complete');
         this.updateTitleDescriptionSizing();
       });
     });
@@ -165,9 +147,10 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       return;
 
     const descriptionTextMesh = this.descriptionText.getObject3D('mesh') as any;
-    const descriptionTextHeight = Math.abs(
-      descriptionTextMesh.textRenderInfo.visibleBounds[1]
-    );
+    const descriptionTextHeight = this.currentSlide().description
+      ? Math.abs(descriptionTextMesh.textRenderInfo.visibleBounds[1]) +
+        descriptionMargin
+      : 0;
 
     const trueTitleHeight = this.currentSlide().title
       ? titleHeight + titleMargin
@@ -182,8 +165,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       this.descriptionText.setAttribute(
         'clip-rect',
         `${-this.data.width / 2} ${
-          -this.data.descriptionHeight +
-          (descriptionMargin + (this.currentSlide().title ? titleMargin : 0))
+          -this.data.descriptionHeight + (descriptionMargin + trueTitleHeight)
         } ${this.data.width / 2} 0`
       );
     } else {
@@ -203,15 +185,13 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     this.backgroundPlane.setAttribute(
       'height',
       this.data.height +
-        (this.data.showDescription ? usedDescriptionHeight + outlineWidth : 0) +
+        (this.data.showDescription ? usedDescriptionHeight : 0) +
         2 * outlineWidth
     );
     this.backgroundPlane.setAttribute('position', {
       x: 0,
-      y: this.data.showDescription
-        ? (-outlineWidth - usedDescriptionHeight) / 2
-        : 0,
-      z: 0,
+      y: this.data.showDescription ? -usedDescriptionHeight / 2 : 0,
+      z: -0.05,
     });
   }
 
