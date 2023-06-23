@@ -78,10 +78,6 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     );
     this.titleText.setAttribute('color', 'white');
     this.titleText.setAttribute('baseline', 'top');
-    this.titleText.setAttribute(
-      'clip-rect',
-      `${-this.data.width / 2} ${-lineHeight} ${this.data.width / 2} 0`
-    );
 
     this.descriptionText = document.createEntity('a-troika-text');
     this.descriptionText.setAttribute('fontSize', fontSize);
@@ -172,6 +168,10 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       y: -titleMargin - this.data.height / 2,
       z: 0,
     });
+    this.titleText.setAttribute(
+      'clip-rect',
+      `${-this.data.width / 2} ${-lineHeight} ${this.data.width / 2} 0`
+    );
 
     this.videoPlane.setAttribute('width', this.data.width);
     this.playPlane.setAttribute('width', smallestDim * percentageOfVideoPlane);
