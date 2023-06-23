@@ -20,6 +20,7 @@ export interface SlideShowComponentData {
   showControls: boolean;
   showDescription: boolean;
   descriptionHeight: number;
+  restartAutoplayDelay: number;
   currentSlide: number;
 }
 
@@ -57,6 +58,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     showControls: { default: true },
     showDescription: { default: true },
     descriptionHeight: { default: 1 },
+    restartAutoplayDelay: { default: 5000 },
     currentSlide: { default: 0 },
   };
 
@@ -73,6 +75,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
   slides: Slide[] = [];
   autoplayInterval?: NodeJS.Timer;
   slideDots: Entity[] = [];
+  restartAutoplayTimeout?: NodeJS.Timeout;
 
   init() {
     this.displayPlane = document.createEntity('a-image');
@@ -90,7 +93,10 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
     this.prevButton = document.createEntity('a-button');
     this.prevButton.setAttribute('src', usePublic('assets/images/play.png'));
-    this.prevButton.addEventListener('click', () => this.gotoPrevImage());
+    this.prevButton.addEventListener('click', () => {
+      this.onClickInterruptAutoplay();
+      this.gotoPrevImage();
+    });
     this.prevButton.setAttribute('scale', '-1 1 1');
     this.prevButton.appendChild(this.prevButtonBg);
 
@@ -100,7 +106,10 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
 
     this.nextButton = document.createEntity('a-button');
     this.nextButton.setAttribute('src', usePublic('assets/images/play.png'));
-    this.nextButton.addEventListener('click', () => this.gotoNextImage());
+    this.nextButton.addEventListener('click', () => {
+      this.onClickInterruptAutoplay();
+      this.gotoNextImage();
+    });
     this.nextButton.appendChild(this.nextButtonBg);
 
     this.titleText = document.createEntity('a-troika-text');
@@ -349,6 +358,18 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       slideDot.setAttribute('material', {
         transparent: true,
       });
+      const slideDotBg = document.createEntity('a-circle');
+      slideDotBg.setAttribute('radius', slideDotRadius * 1.75);
+      slideDotBg.setAttribute('material', {
+        color: 'black',
+        opacity: 0.75,
+        transparent: true,
+      });
+      slideDotBg.setAttribute('position', {
+        z: -0.025,
+      });
+      slideDot.append(slideDotBg);
+
       this.el.appendChild(slideDot);
       this.slideDots.push(slideDot);
     }
@@ -362,17 +383,38 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
     if (this.displayPlane.getObject3D('mesh')) {
       this.updateSlide();
 
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-        this.autoplayInterval = undefined;
-      }
+      if (this.restartAutoplayTimeout)
+        clearTimeout(this.restartAutoplayTimeout);
 
-      if (this.data.autoplay) {
-        this.autoplayInterval = setInterval(
-          () => this.gotoNextImage(),
-          this.data.autoplayDuration
-        );
-      }
+      this.stopAutoplayInterval();
+      this.startAutoplayInterval();
+    }
+  }
+
+  onClickInterruptAutoplay() {
+    if (!this.data.autoplay) return;
+
+    if (this.restartAutoplayTimeout) clearTimeout(this.restartAutoplayTimeout);
+
+    this.stopAutoplayInterval();
+    this.restartAutoplayTimeout = setTimeout(() => {
+      this.startAutoplayInterval();
+    }, this.data.restartAutoplayDelay);
+  }
+
+  stopAutoplayInterval() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = undefined;
+    }
+  }
+
+  startAutoplayInterval() {
+    if (this.data.autoplay) {
+      this.autoplayInterval = setInterval(
+        () => this.gotoNextImage(),
+        this.data.autoplayDuration
+      );
     }
   }
 
