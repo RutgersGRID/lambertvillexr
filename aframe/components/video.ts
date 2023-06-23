@@ -6,6 +6,7 @@ import { Schema, Entity } from 'aframe';
 import * as document from '@/utils/document';
 import { fixTextureToAspect } from '@/utils/three';
 import { configureBackgroundEntity } from '@/utils/three';
+import '@/manual_modules/aframe-troika-text';
 
 const THREE = AFRAME.THREE;
 
@@ -13,7 +14,17 @@ export interface VideoComponentData {
   src: string;
   width: number;
   height: number;
+  showDescription: boolean;
+  descriptionHeight: number;
 }
+
+const fontSize = 0.2;
+const lineHeight = fontSize * 1.2;
+const outlineWidth = 0.2;
+const titleHeight = 0.2;
+const titleMargin = 0.2;
+const descriptionMargin = 0.2;
+const percentageOfVideoPlane = 0.3;
 
 @component('video')
 export default class VideoComponent extends BaseComponent<VideoComponentData> {
@@ -21,6 +32,8 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     src: { type: 'string' },
     width: { default: 8 },
     height: { default: 4.5 },
+    showDescription: { default: true },
+    descriptionHeight: { default: 1 },
   };
 
   playImageSrc: string = usePublic('assets/images/play.png');
@@ -31,8 +44,13 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   playPlane?: Entity;
   videoPlane?: Entity;
   backgroundPlane?: Entity;
+  titleText?: Entity;
+  descriptionText?: Entity;
   fadeControlsTimer?: NodeJS.Timeout;
   videoElem?: HTMLVideoElement;
+
+  title: string = '';
+  description: string = '';
 
   isHovering: boolean = false;
   isVideoPlaying: boolean = false;
@@ -41,6 +59,7 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   init() {
     this.playPlane = document.createEntity('a-image');
     this.videoPlane = document.createEntity('a-image');
+
     this.backgroundPlane = document.createEntity('a-plane');
     configureBackgroundEntity(this.backgroundPlane);
     this.backgroundPlane.object3D.renderOrder = -20;
@@ -50,6 +69,38 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     this.playPlane.setAttribute('alpha-test', 0.5);
     this.el.appendChild(this.videoPlane);
     this.videoPlane.appendChild(this.playPlane);
+
+    this.titleText = document.createEntity('a-troika-text');
+    this.titleText.setAttribute('fontSize', fontSize);
+    this.titleText.setAttribute(
+      'font',
+      usePublic('assets/fonts/Raleway/Raleway-Bold.ttf')
+    );
+    this.titleText.setAttribute('color', 'white');
+    this.titleText.setAttribute('baseline', 'top');
+    this.titleText.setAttribute(
+      'clip-rect',
+      `${-this.data.width / 2} ${-lineHeight} ${this.data.width / 2} 0`
+    );
+
+    this.descriptionText = document.createEntity('a-troika-text');
+    this.descriptionText.setAttribute('fontSize', fontSize);
+    this.descriptionText.setAttribute(
+      'font',
+      usePublic('assets/fonts/Raleway/Raleway-Regular.ttf')
+    );
+    this.descriptionText.setAttribute('color', 'white');
+    this.descriptionText.setAttribute('baseline', 'top');
+
+    this.descriptionText.addEventListener('loaded', () => {
+      const textMesh = this.descriptionText?.getObject3D('mesh') as any;
+      textMesh.addEventListener('synccomplete', () => {
+        console.log('sync complete');
+        this.updateTitleDescriptionSizing();
+      });
+    });
+    this.el.appendChild(this.titleText);
+    this.el.appendChild(this.descriptionText);
 
     this.videoPlane.addEventListener('loaded', () => {
       this.update();
@@ -101,12 +152,26 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
   }
 
   update() {
-    if (!this.videoPlane || !this.playPlane || !this.backgroundPlane) return;
+    if (
+      !this.videoPlane ||
+      !this.playPlane ||
+      !this.backgroundPlane ||
+      !this.titleText ||
+      !this.descriptionText
+    )
+      return;
 
-    const outlineWidth = 0.2;
-    const percentageOfVideoPlane = 0.3;
     const smallestDim =
       this.data.width < this.data.height ? this.data.width : this.data.height;
+
+    this.titleText.setAttribute('visible', this.data.showDescription);
+    this.titleText.setAttribute('width', this.data.width);
+    this.titleText.setAttribute('max-width', this.data.width);
+    this.titleText.setAttribute('position', {
+      x: 0,
+      y: -titleMargin - this.data.height / 2,
+      z: 0,
+    });
 
     this.videoPlane.setAttribute('width', this.data.width);
     this.playPlane.setAttribute('width', smallestDim * percentageOfVideoPlane);
@@ -124,6 +189,10 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
     );
 
     this.videoElem = document.querySelector<HTMLVideoElement>(this.data.src);
+    this.title = this.videoElem.getAttribute('title') ?? '';
+    this.description = this.videoElem.getAttribute('description') ?? '';
+    this.titleText.setAttribute('value', this.title);
+    this.descriptionText.setAttribute('value', this.description);
     this.videoPlane.setAttribute('src', this.data.src);
     if (this.videoPlane.getObject3D('mesh')) {
       const mesh = this.videoPlane.getObject3D('mesh') as THREE.Mesh;
@@ -139,6 +208,57 @@ export default class VideoComponent extends BaseComponent<VideoComponentData> {
       this.videoElem.readyState > 2
     );
     this.updatePlaybackUI();
+  }
+
+  updateTitleDescriptionSizing() {
+    if (!this.descriptionText || !this.titleText || !this.backgroundPlane)
+      return;
+
+    const descriptionTextMesh = this.descriptionText.getObject3D('mesh') as any;
+    const descriptionTextHeight = this.description
+      ? Math.abs(descriptionTextMesh.textRenderInfo.visibleBounds[1]) +
+        descriptionMargin
+      : 0;
+
+    const trueTitleHeight = this.title ? titleHeight + titleMargin : 0;
+
+    const trueDescriptionTitleTextHeight =
+      descriptionTextHeight + trueTitleHeight;
+    const useMaxDescriptionHeight =
+      trueDescriptionTitleTextHeight > this.data.descriptionHeight;
+
+    if (useMaxDescriptionHeight) {
+      this.descriptionText.setAttribute(
+        'clip-rect',
+        `${-this.data.width / 2} ${
+          -this.data.descriptionHeight + (descriptionMargin + trueTitleHeight)
+        } ${this.data.width / 2} 0`
+      );
+    } else {
+      this.descriptionText.removeAttribute('clip-rect');
+    }
+
+    this.descriptionText.setAttribute('position', {
+      x: 0,
+      y: -descriptionMargin - this.data.height / 2 - trueTitleHeight,
+      z: 0,
+    });
+
+    const usedDescriptionHeight = useMaxDescriptionHeight
+      ? this.data.descriptionHeight
+      : trueDescriptionTitleTextHeight;
+
+    this.backgroundPlane.setAttribute(
+      'height',
+      this.data.height +
+        (this.data.showDescription ? usedDescriptionHeight : 0) +
+        2 * outlineWidth
+    );
+    this.backgroundPlane.setAttribute('position', {
+      x: 0,
+      y: this.data.showDescription ? -usedDescriptionHeight / 2 : 0,
+      z: -0.05,
+    });
   }
 
   showControls(animDuration: number = this.animDuration) {

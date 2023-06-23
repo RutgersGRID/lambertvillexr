@@ -17,6 +17,7 @@ async function loadSystems() {
         loop="true"
         :src="usePublic('assets/videos/avocado.mp4')"
         crossorigin="anonymous"
+        title="This is a Title"
       ></video>
       <video
         id="avocado-video2"
@@ -26,6 +27,8 @@ async function loadSystems() {
         loop="true"
         :src="usePublic('assets/videos/avocado.mp4')"
         crossorigin="anonymous"
+        title="This is a Title"
+        description="This is a description. This is a description. This is a description. This is a description. This is a description."
       ></video>
       <video
         id="trash-video"
