@@ -5,12 +5,27 @@ export type RouteCategory = {
   routes: RouteRecordRaw[];
 };
 
+export function routeRemoveExtraBackslash(path: string) {
+  if (path.length > 0 && path.endsWith('/'))
+    path = path.substring(0, path.length - 1);
+  return path;
+}
+
+export function routePathEquals(path: string, otherPath: string) {
+  return (
+    routeRemoveExtraBackslash(path) == routeRemoveExtraBackslash(otherPath)
+  );
+}
+
 export function getRouteName(route: RouteLocationNormalized | RouteRecordRaw) {
   if (route.meta) {
     const pageName = route.meta['pageName'] as string;
     if (pageName) return kebabToTitleCase(pageName);
   }
-  const routeKebabName = route.path.substring(route.path.lastIndexOf('/') + 1);
+  const processedPath = routeRemoveExtraBackslash(route.path);
+  const routeKebabName = processedPath.substring(
+    processedPath.lastIndexOf('/') + 1
+  );
   return kebabToTitleCase(routeKebabName);
 }
 

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
-import { getRouteName, useRouterCategories } from '@/utils/page';
+import {
+  getRouteName,
+  useRouterCategories,
+  routePathEquals,
+} from '@/utils/page';
 
 const isSideBarOpen = ref(false);
 
@@ -17,51 +21,51 @@ routeCategories.forEach((x) => flattenedRoutes.push(...x.routes));
 
 const getPrevRoute = computed(() => {
   if (!currRoute.name || typeof currRoute.name == 'symbol') return null;
-  const index = flattenedRoutes.findIndex((x) => x.path == currRoute.fullPath);
+  const index = flattenedRoutes.findIndex((x) =>
+    routePathEquals(x.path, currRoute.fullPath)
+  );
   if (index == 0) return null;
   return flattenedRoutes[index - 1];
 });
 
 const getNextRoute = computed(() => {
   if (!currRoute.name || typeof currRoute.name == 'symbol') return null;
-  const index = flattenedRoutes.findIndex((x) => x.path == currRoute.fullPath);
+  const index = flattenedRoutes.findIndex((x) =>
+    routePathEquals(x.path, currRoute.fullPath)
+  );
   if (index == flattenedRoutes.length - 1) return null;
   return flattenedRoutes[index + 1];
 });
-
-console.log('CurrRoute: ', currRoute, ' path ', currRoute.path);
 </script>
 
 <template>
   <div class="p-4 lg:px-16 flex flex-row justify-center gap-4">
-    <ClientOnly>
-      <UButton
-        icon="i-heroicons-arrow-left"
-        color="gray"
-        class="opacity-100 disabled:opacity-30"
-        :disabled="getPrevRoute == null"
-        :to="getPrevRoute?.path"
-      ></UButton>
-      <div
-        class="my-auto flex-1 sm:flex-none sm:w-64 sm:flex-grow-0 text-center font-bold overflow-hidden"
-      >
-        <div class="overflow-ellipsis whitespace-nowrap overflow-hidden">
-          {{ getRouteName(currRoute) }}
-        </div>
+    <UButton
+      icon="i-heroicons-arrow-left"
+      color="gray"
+      class="opacity-100 disabled:opacity-30"
+      :disabled="getPrevRoute == null"
+      :to="getPrevRoute?.path"
+    ></UButton>
+    <div
+      class="my-auto flex-1 sm:flex-none sm:w-64 sm:flex-grow-0 text-center font-bold overflow-hidden"
+    >
+      <div class="overflow-ellipsis whitespace-nowrap overflow-hidden">
+        {{ getRouteName(currRoute) }}
       </div>
-      <UButton
-        icon="i-heroicons-arrow-right"
-        color="gray"
-        class="opacity-100 disabled:opacity-30"
-        :disabled="getNextRoute == null"
-        :to="getNextRoute?.path"
-      ></UButton>
-      <UButton
-        icon="i-heroicons-bars-4"
-        class="sm:absolute sm:right-4"
-        @click="isSideBarOpen = true"
-      ></UButton>
-    </ClientOnly>
+    </div>
+    <UButton
+      icon="i-heroicons-arrow-right"
+      color="gray"
+      class="opacity-100 disabled:opacity-30"
+      :disabled="getNextRoute == null"
+      :to="getNextRoute?.path"
+    ></UButton>
+    <UButton
+      icon="i-heroicons-bars-4"
+      class="sm:absolute sm:right-4"
+      @click="isSideBarOpen = true"
+    ></UButton>
     <USlideover
       v-model="isSideBarOpen"
       :ui="{
