@@ -45,18 +45,21 @@ async function loadSystems() {
         :src="usePublic('assets/sites/site5/slide5.jpg')"
       />
     </a-assets>
-    <a-entity>
-      <a-entity rotation="0 -20 0">
-        <a-entity rotation="0 100 0">
-          <a-playback-video src="#tree" position="0 0 -15"></a-playback-video>
-        </a-entity>
-        <a-entity rotation="0 0 0">
-          <a-slide-show
-            position="0 0 -15"
-            image-query=".slide-show"
-            autoplay="true"
-          ></a-slide-show>
-        </a-entity>
+    <a-entity rotation="0 -90 0">
+      <!-- Video -->
+      <a-entity rotation="0 250 0">
+        <a-playback-video
+          src="#tree"
+          position="0 1.8 -8"
+        ></a-playback-video>
+      </a-entity>
+      <!-- Slideshow -->
+      <a-entity rotation="0 180 0">
+        <a-slide-show
+          position="0 1.8 -8"
+          image-query=".slide-show"
+          autoplay="true"
+        ></a-slide-show>
       </a-entity>
     </a-entity>
     <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">

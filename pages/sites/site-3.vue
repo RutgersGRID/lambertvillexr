@@ -104,7 +104,7 @@ async function loadSystems() {
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
 
     <!-- Boat -->
-    <a-entity rotation="0 0 0" position="-2 -2 -10">
+    <a-entity rotation="0 20 0" position="-23 -2 -15">
       <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
         <a-gltf-model
           src="#boat"
@@ -129,7 +129,7 @@ async function loadSystems() {
       ></a-gltf-model>
     </a-entity>
     <!-- Content -->
-    <a-entity rotation="0 -20 0">
+    <a-entity rotation="0 -90 0">
       <!-- Video -->
       <a-entity rotation="0 -60 0">
         <a-playback-video

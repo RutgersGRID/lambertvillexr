@@ -15,18 +15,33 @@ async function loadSystems() {
   <AFrameScene :load-systems="loadSystems">
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
-      <img class="slide-show" :src="usePublic('assets/sites/site1/slide1.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site1/slide2.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site1/slide3.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site1/slide4.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site1/slide5.jpg')" />
+      <img 
+      class="slide-show" 
+      :src="usePublic('assets/sites/site1/slide1.jpg')"
+      title="Delaware River" 
+      description="The river has helped Lambertville's rich history" />
+      <img class="slide-show" :src="usePublic('assets/sites/site1/slide2.jpg')"
+      title="Transformation" 
+      description="The Lambertville station being reconstructed into an hotel and inn. " />
+      <img class="slide-show" :src="usePublic('assets/sites/site1/slide3.jpg')"
+      title="Transformation" 
+      description="The Lambertville ACME screening room being reconstructed into Justice Center" />
+      <img class="slide-show" :src="usePublic('assets/sites/site1/slide4.jpg')"
+      title="Transformation" 
+      description="The Hibernia Firehouse has become a major site of history. Now rumored its being sold." />
+      <img class="slide-show" :src="usePublic('assets/sites/site1/slide5.jpg')"
+      title="Transformation" 
+      description="Before and After" />
     </a-assets>
-    <a-slide-show
-      position="-10 1.6 -10"
-      rotation="0 30 0"
-      image-query=".slide-show"
-      autoplay="true"
-    ></a-slide-show>
+    <a-entity rotation="0 10 0">
+      <a-slide-show
+        position="0 1.6 -8"
+        height="6"
+        width="8.95960311837"
+        image-query=".slide-show"
+        autoplay="true"
+      ></a-slide-show>
+    </a-entity>
     <a-entity camera look-controls wasd-controls position="0 1.6 0">
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
