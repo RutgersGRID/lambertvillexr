@@ -81,17 +81,25 @@ async function loadSystems() {
     <a-gltf-model src="#Person4" position="4 -4 -35"></a-gltf-model>
     <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
     <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
-    <a-audio-player
-      src="#interview"
-      position="-5 1.6 -8"
-      title="Interview"
-    ></a-audio-player>
-    <a-slide-show
-      position="-10 1.6 -10"
-      rotation="0 30 0"
-      image-query=".slide-show"
-      autoplay="true"
-    ></a-slide-show>
+    <a-entity rotation="0 -90 0">
+      <!-- Interview Audio -->
+        <a-entity rotation="0 200 0">
+        <a-audio-player
+          src="#interview"
+          position="0 1.6 -8"
+          title="Interview"
+        ></a-audio-player>
+      </a-entity>
+      <!-- Slideshow -->
+      <a-entity rotation="0 140 0">
+        <a-slide-show
+          position="0 1.6 -8"
+          image-query=".slide-show"
+          autoplay="true"
+        ></a-slide-show>
+      </a-entity>
+    </a-entity>
+
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"
