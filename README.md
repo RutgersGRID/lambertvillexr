@@ -59,3 +59,4 @@ npm run build
 
 - "Low Poly Bicycle" (https://skfb.ly/6VSyo) by tolotedesign is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - "Chevrolet Camaro SS Coupe" (https://free3d.com/3d-model/chevrolet-camaro-ss-coupe-373476.html) by thmacr
+- "Debris Concrete Junk" (https://sketchfab.com/3d-models/debris-concrete-junk-3f161258ebde4bd8afc98e57c9e06890) by matousekfoto

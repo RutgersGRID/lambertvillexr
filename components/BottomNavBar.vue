@@ -28,6 +28,8 @@ const getNextRoute = computed(() => {
   if (index == flattenedRoutes.length - 1) return null;
   return flattenedRoutes[index + 1];
 });
+
+console.log('CurrRoute: ', currRoute, ' path ', currRoute.path);
 </script>
 
 <template>
