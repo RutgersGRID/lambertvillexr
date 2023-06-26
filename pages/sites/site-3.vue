@@ -10,6 +10,7 @@ async function loadSystems() {
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
+  await import('@/aframe/components/click-move');
 }
 </script>
 
@@ -104,7 +105,14 @@ async function loadSystems() {
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
 
     <!-- Boat -->
-    <a-entity rotation="0 20 0" position="-23 -2 -15">
+    <a-entity id="close-boat-pos" position="-3 -2 -5" rotation="0 30 0">
+      <a-box></a-box>
+    </a-entity>
+    <a-entity
+      rotation="0 20 0"
+      position="-23 -2 -15"
+      click-move="toEntity: #close-boat-pos; spinOnToEntity: true"
+    >
       <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
         <a-gltf-model
           src="#boat"

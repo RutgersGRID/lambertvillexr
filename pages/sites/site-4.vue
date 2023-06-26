@@ -83,7 +83,7 @@ async function loadSystems() {
     <a-gltf-model src=#rail2 position="-16 -4 4"></a-gltf-model>
     <a-gltf-model src=#post1 position="-16 -5 5"></a-gltf-model>
     <a-gltf-model src=#post2 position="-16 -7 7"></a-gltf-model> -->
-    <a-entity rotation="0 -10 0">
+    <a-entity rotation="0 -10 0" position="0 1.6 0">
       <!-- Slideshow -->
       <a-entity rotation="0 60 0">
         <a-slide-show

@@ -24,26 +24,26 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide2.jpg')"
-        title="Transformation"
+        title="Lambertville Station"
         description="The Lambertville station being reconstructed into an hotel and inn. "
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide3.jpg')"
-        title="Transformation"
+        title="ACME Building"
         description="The Lambertville ACME screening room being reconstructed into Justice Center"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide4.jpg')"
-        title="Transformation"
+        title="Hibernia Firehouse"
         description="The Hibernia Firehouse has become a major site of history. Now rumored its being sold."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide5.jpg')"
-        title="Transformation"
-        description="Before and After"
+        title="41 Quarry St"
+        description="Before and after of 41 Quarry St"
       />
     </a-assets>
     <a-entity rotation="0 10 0">
