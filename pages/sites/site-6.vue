@@ -49,30 +49,44 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide1.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide2.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide3.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide4.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide5.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide7.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide8.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
     </a-assets>
     <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>

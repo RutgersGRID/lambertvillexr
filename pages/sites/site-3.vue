@@ -47,58 +47,86 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide1.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide2.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide3.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide4.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide5.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide6.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide7.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide8.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide9.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide10.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide11.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide12.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide13.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide14.jpg')"
+        title="Transformation"
+        description="Before and After"
       />
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
     </a-assets>
