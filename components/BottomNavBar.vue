@@ -32,32 +32,34 @@ const getNextRoute = computed(() => {
 
 <template>
   <div class="p-4 lg:px-16 flex flex-row justify-center gap-4">
-    <UButton
-      icon="i-heroicons-arrow-left"
-      color="gray"
-      class="opacity-100 disabled:opacity-30"
-      :disabled="getPrevRoute == null"
-      :to="getPrevRoute?.path"
-    ></UButton>
-    <div
-      class="my-auto flex-1 sm:flex-none sm:w-64 sm:flex-grow-0 text-center font-bold overflow-hidden"
-    >
-      <div class="overflow-ellipsis whitespace-nowrap overflow-hidden">
-        {{ getRouteName(currRoute) }}
+    <ClientOnly>
+      <UButton
+        icon="i-heroicons-arrow-left"
+        color="gray"
+        class="opacity-100 disabled:opacity-30"
+        :disabled="getPrevRoute == null"
+        :to="getPrevRoute?.path"
+      ></UButton>
+      <div
+        class="my-auto flex-1 sm:flex-none sm:w-64 sm:flex-grow-0 text-center font-bold overflow-hidden"
+      >
+        <div class="overflow-ellipsis whitespace-nowrap overflow-hidden">
+          {{ getRouteName(currRoute) }}
+        </div>
       </div>
-    </div>
-    <UButton
-      icon="i-heroicons-arrow-right"
-      color="gray"
-      class="opacity-100 disabled:opacity-30"
-      :disabled="getNextRoute == null"
-      :to="getNextRoute?.path"
-    ></UButton>
-    <UButton
-      icon="i-heroicons-bars-4"
-      class="sm:absolute sm:right-4"
-      @click="isSideBarOpen = true"
-    ></UButton>
+      <UButton
+        icon="i-heroicons-arrow-right"
+        color="gray"
+        class="opacity-100 disabled:opacity-30"
+        :disabled="getNextRoute == null"
+        :to="getNextRoute?.path"
+      ></UButton>
+      <UButton
+        icon="i-heroicons-bars-4"
+        class="sm:absolute sm:right-4"
+        @click="isSideBarOpen = true"
+      ></UButton>
+    </ClientOnly>
     <USlideover
       v-model="isSideBarOpen"
       :ui="{
