@@ -60,7 +60,7 @@ watch(scene, (newScene, oldScene) => {
             .getUserMedia({
               video: {
                 facingMode: {
-                  exact: 'environment',
+                  ideal: 'environment',
                 },
               },
             })
@@ -74,7 +74,7 @@ watch(scene, (newScene, oldScene) => {
               scene.value.emit('enter-manual-vr');
             })
             .catch((error) => {
-              console.log('Something went wrong!');
+              console.log('Something went wrong! ', error);
             });
         }
       }
@@ -114,6 +114,8 @@ function onSceneEntered(userClicked: boolean) {
       video.play();
       video.pause();
     }
+
+    webcamVideo.value?.play();
   }
   emit('sceneEntered');
 }
@@ -141,6 +143,7 @@ function onTutorialFinished() {
       <div class="absolute h-full w-full">
         <video
           autoplay="true"
+          playsinline
           ref="webcamVideo"
           class="h-full w-full object-cover"
         ></video>

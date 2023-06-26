@@ -30,6 +30,7 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
   changeDetector?: ChangeDetectorComponent;
 
   init() {
+    console.log('three layer init');
     this.el.setAttribute('change-detector__three-layer', <
       ChangeDetectorComponentData
     >{
@@ -45,7 +46,8 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
     });
 
     this.el.sceneEl?.addEventListener('enter-manual-vr', () => {
-      if (this.el.sceneEl?.is('manual-ar-mode')) {
+      console.log('enter manual ar mode');
+      if (this.el.sceneEl?.hasAttribute('manual-ar-mode')) {
         this.isArMode = true;
         this.updateAllElemLayers();
       }
