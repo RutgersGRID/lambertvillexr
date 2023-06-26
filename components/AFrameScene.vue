@@ -3,21 +3,30 @@ import { Entity, Scene } from 'aframe';
 import AFrameTutorial from './AFrameTutorial.vue';
 import document from '@/utils/document';
 
+const route = useRoute();
+
 const aframeLoaded = ref(false);
 const sceneLoaded = ref(false);
 
-const props = defineProps<{
-  loadSystems?: () => Promise<void>;
-  attributes?: { [key: string]: any };
-  startButtonText?: string;
-  startTitle?: string;
-  startDescription?: string;
-  hideTutorial?: boolean;
-  alwaysShowOverlay?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    loadSystems?: () => Promise<void>;
+    attributes?: { [key: string]: any };
+    startButtonText?: string;
+    startTitle?: string;
+    startDescription?: string;
+    hideTutorial?: boolean;
+    alwaysShowOverlay?: boolean;
+    arMode?: boolean;
+  }>(),
+  {
+    arMode: undefined,
+  }
+);
 const emit = defineEmits(['sceneEntered']);
 
 const showTutorial = ref(!props.hideTutorial);
+const webcamVideo = ref<HTMLVideoElement>();
 
 const scene = ref<Scene>();
 let cameraHasLookControls = false;
@@ -39,6 +48,37 @@ watch(scene, (newScene, oldScene) => {
       }
 
       newScene.pause();
+
+      let arMode = props.arMode;
+      if (arMode === undefined) {
+        console.log('ar: ', route.query['ar']);
+        arMode = route.query['ar'] == 'true';
+      }
+      if (arMode) {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({
+              video: {
+                facingMode: {
+                  exact: 'environment',
+                },
+              },
+            })
+            .then((stream) => {
+              console.log('then ', webcamVideo.value, ' scene ', scene.value);
+              if (!webcamVideo.value || !scene.value) return;
+              webcamVideo.value.srcObject = stream;
+
+              console.log('has loaded', scene.value.hasLoaded);
+              scene.value.setAttribute('manual-ar-mode', true);
+              scene.value.emit('enter-manual-vr');
+            })
+            .catch((error) => {
+              console.log('Something went wrong!');
+            });
+        }
+      }
+
       sceneLoaded.value = true;
     });
   }
@@ -98,6 +138,13 @@ function onTutorialFinished() {
           <div class="ml-4 text-4xl font-bold">LOADING...</div>
         </div>
       </div>
+      <div class="absolute h-full w-full">
+        <video
+          autoplay="true"
+          ref="webcamVideo"
+          class="h-full w-full object-cover"
+        ></video>
+      </div>
       <EnterASceneOverlay
         v-if="sceneLoaded"
         :start-button-text="startButtonText"
@@ -115,6 +162,7 @@ function onTutorialFinished() {
         renderer="logarithmicBuffer: true; sortObjects: true;"
         class="absolute w-full h-full"
         loading-screen="enabled: false"
+        vr-mode-ui="enabled: false"
       >
         <slot></slot>
       </a-scene>

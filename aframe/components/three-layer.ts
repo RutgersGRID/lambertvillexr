@@ -44,6 +44,17 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
       this.updateAllElemLayers();
     });
 
+    this.el.sceneEl?.addEventListener('enter-manual-vr', () => {
+      if (this.el.sceneEl?.is('manual-ar-mode')) {
+        this.isArMode = true;
+        this.updateAllElemLayers();
+      }
+    });
+    this.el.sceneEl?.addEventListener('exit-manual-vr', () => {
+      this.isArMode = false;
+      this.updateAllElemLayers();
+    });
+
     this.el.sceneEl?.addEventListener('enter-vr', () => {
       if (this.el.sceneEl?.is('ar-mode')) {
         this.isArMode = true;

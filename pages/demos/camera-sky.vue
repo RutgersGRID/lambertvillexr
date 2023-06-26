@@ -12,7 +12,7 @@ async function loadSystems() {
 
 <template>
   <AFrameScene :load-systems="loadSystems">
-    <a-camera-sky></a-camera-sky>
+    <!-- <a-camera-sky></a-camera-sky> -->
     <a-box
       position="0 1.6 -5"
       material="shader: flat; color: white; opacity: 0.5"

@@ -125,7 +125,7 @@ const currentSlide = ref(0);
 
     <a-sun-sky
       material="sunPosition: 0 1 0"
-      three-layer="layers: 31; desktopLayers: 1;"
+      three-layer="layers: 31; arLayers: 1;"
     ></a-sun-sky>
     <a-three-water
       sun-direction="0 -1 0"
