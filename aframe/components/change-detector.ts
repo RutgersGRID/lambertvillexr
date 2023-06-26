@@ -63,14 +63,6 @@ export class ChangeDetectorComponent extends BaseComponent<ChangeDetectorCompone
         if (mutation.type == 'childList') {
           if (!this.bufferTimeout) {
             this.bufferTimeout = setTimeout(() => {
-              // console.log(
-              //   'mutated ',
-              //   this.bufferTimeoutEntities,
-              //   ' origin elem ',
-              //   this.el,
-              //   ' comp: ',
-              //   this.el.components
-              // );
               for (const entity of this.bufferTimeoutEntities) {
                 this.tryTrackEntity(entity);
               }

@@ -67,13 +67,8 @@ export class RenderOrderComopnent extends BaseComponent<RenderOrderData> {
 
     const recursiveSetElem = (elem: Entity) => {
       if (elem.object3D) {
-        // canPrint =
-        //   (elem.parentNode as HTMLElement).tagName == 'A-SLIDE-SHOW' ||
-        //   elem.tagName == 'A-CURSOR';
-        // if (canPrint) console.log('render order elem: ', elem);
         for (const key in elem.object3DMap) {
           const object = elem.object3DMap[key];
-          // if (canPrint) console.log('\tkey: ', key, ' obj: ', object);
           setObject3D(object);
         }
       }

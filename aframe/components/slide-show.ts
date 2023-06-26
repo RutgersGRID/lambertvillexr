@@ -153,12 +153,6 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
         this.update();
       }, 0);
     });
-
-    // console.log('init slide show');
-    // console.log('\tprevButton', this.prevButton.object3D);
-    // console.log('\tnextButton', this.nextButton.object3D);
-    // console.log('\tdisplay', this.displayPlane.object3D);
-    // console.log('\tbg', this.backgroundPlane.object3D);
   }
 
   currentSlide() {
