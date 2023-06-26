@@ -94,7 +94,7 @@ async function loadSystems() {
     ></a-slide-show>
     <a-entity
       camera
-      look-controls
+      look-controls="pointerLockEnabled: true"
       wasd-controls="enabled:true"
       position="0 1.6 0"
     >

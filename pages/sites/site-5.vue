@@ -48,10 +48,7 @@ async function loadSystems() {
     <a-entity rotation="0 -90 0">
       <!-- Video -->
       <a-entity rotation="0 250 0">
-        <a-playback-video
-          src="#tree"
-          position="0 1.8 -8"
-        ></a-playback-video>
+        <a-playback-video src="#tree" position="0 1.8 -8"></a-playback-video>
       </a-entity>
       <!-- Slideshow -->
       <a-entity rotation="0 180 0">
@@ -62,7 +59,12 @@ async function loadSystems() {
         ></a-slide-show>
       </a-entity>
     </a-entity>
-    <a-entity camera look-controls wasd-controls="enabled:false" position="0 1.6 0">
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls="enabled:false"
+      position="0 1.6 0"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

@@ -39,6 +39,10 @@ const ballAbove = ref<Entity>();
 const ballBelow = ref<Entity>();
 const ballRight = ref<Entity>();
 const ballLeft = ref<Entity>();
+const rightArrow = ref<Entity>();
+const leftArrow = ref<Entity>();
+const upArrow = ref<Entity>();
+const downArrow = ref<Entity>();
 const video = ref<
   Entity<{
     video: VideoComponent;
@@ -52,31 +56,37 @@ const segments: TutorialSegment[] = [
     description:
       'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by rotating your device around.',
     desktopDescription:
-      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by clicking and dragging the screen with your mouse.',
+      'The circle at the center of your screen is your "cursor", which points to where you are looking. You can look around by moving your your mouse.',
     subSegments: [
       {
         instruction: 'Look at the ball above you',
         init: (resolve) => {
-          const entity = ballAbove.value;
-          if (!entity) return;
-          entity.setAttribute('visible', true);
-          entity.classList.add('clickable');
+          const ball = ballAbove.value;
+          const arrow = upArrow.value;
+          if (!ball || !arrow) return;
+          ball.setAttribute('visible', true);
+          ball.classList.add('clickable');
+          arrow.setAttribute('visible', true);
           const mouseEnterListener = () => {
-            entity.removeEventListener('mouseenter', mouseEnterListener);
+            ball.removeEventListener('mouseenter', mouseEnterListener);
+            arrow.setAttribute('visible', false);
             resolve();
           };
-          entity.addEventListener('mouseenter', mouseEnterListener);
+          ball.addEventListener('mouseenter', mouseEnterListener);
         },
       },
       {
         instruction: 'Look at the ball to the left of you',
         init: (resolve) => {
           const entity = ballLeft.value;
-          if (!entity) return;
+          const arrow = leftArrow.value;
+          if (!entity || !arrow) return;
           entity.setAttribute('visible', true);
           entity.classList.add('clickable');
+          arrow.setAttribute('visible', true);
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
+            arrow.setAttribute('visible', false);
             resolve();
           };
           entity.addEventListener('mouseenter', mouseEnterListener);
@@ -86,11 +96,14 @@ const segments: TutorialSegment[] = [
         instruction: 'Look at the ball to the right of you',
         init: (resolve) => {
           const entity = ballRight.value;
-          if (!entity) return;
+          const arrow = rightArrow.value;
+          if (!entity || !arrow) return;
           entity.setAttribute('visible', true);
           entity.classList.add('clickable');
+          arrow.setAttribute('visible', true);
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
+            arrow.setAttribute('visible', false);
             resolve();
           };
           entity.addEventListener('mouseenter', mouseEnterListener);
@@ -100,11 +113,14 @@ const segments: TutorialSegment[] = [
         instruction: 'Look at the ball below you',
         init: (resolve) => {
           const entity = ballBelow.value;
-          if (!entity) return;
+          const arrow = downArrow.value;
+          if (!entity || !arrow) return;
           entity.setAttribute('visible', true);
           entity.classList.add('clickable');
+          arrow.setAttribute('visible', true);
           const mouseEnterListener = () => {
             entity.removeEventListener('mouseenter', mouseEnterListener);
+            arrow.setAttribute('visible', false);
             resolve();
           };
           entity.addEventListener('mouseenter', mouseEnterListener);
@@ -265,33 +281,71 @@ function getSegmentDescription(segment?: TutorialSegment) {
           :src="usePublic('assets/videos/avocado.mp4')"
           crossorigin="anonymous"
         ></video>
+        <a-asset-item
+          id="arrow"
+          :src="usePublic('assets/models/arrow.glb')"
+        ></a-asset-item>
       </a-assets>
       <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
       <a-entity id="looking-around" position="0 1.6 0">
-        <a-sphere
-          ref="ballAbove"
-          position="0 10 -5"
-          visible="false"
-          animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
-        ></a-sphere>
-        <a-sphere
-          ref="ballLeft"
-          position="-10 0 -5"
-          visible="false"
-          animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
-        ></a-sphere>
-        <a-sphere
-          ref="ballRight"
-          position="10 0 -5"
-          visible="false"
-          animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
-        ></a-sphere>
-        <a-sphere
-          ref="ballBelow"
-          position="0 -10 -5"
-          visible="false"
-          animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
-        ></a-sphere>
+        <!-- Arrows -->
+        <a-entity position="0 0.2 -8">
+          <a-gltf-model
+            ref="leftArrow"
+            src="#arrow"
+            position="-2 0 0"
+            rotation="0 90 90"
+            visible="false"
+          ></a-gltf-model>
+          <a-gltf-model
+            ref="rightArrow"
+            src="#arrow"
+            position="2 0 0"
+            rotation="0 -90 90"
+            visible="false"
+          ></a-gltf-model>
+          <a-gltf-model
+            ref="upArrow"
+            src="#arrow"
+            position="0 2 0"
+            rotation="90 90 90"
+            visible="false"
+          ></a-gltf-model>
+          <a-gltf-model
+            ref="downArrow"
+            src="#arrow"
+            position="0 -2 0"
+            rotation="-90 90 90"
+            visible="false"
+          ></a-gltf-model>
+        </a-entity>
+        <!-- Balls -->
+        <a-entity>
+          <a-sphere
+            ref="ballAbove"
+            position="0 10 -5"
+            visible="false"
+            animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
+          ></a-sphere>
+          <a-sphere
+            ref="ballLeft"
+            position="-10 0 -5"
+            visible="false"
+            animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
+          ></a-sphere>
+          <a-sphere
+            ref="ballRight"
+            position="10 0 -5"
+            visible="false"
+            animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
+          ></a-sphere>
+          <a-sphere
+            ref="ballBelow"
+            position="0 -10 -5"
+            visible="false"
+            animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
+          ></a-sphere>
+        </a-entity>
       </a-entity>
       <a-entity id="clicking">
         <a-playback-video
@@ -314,7 +368,11 @@ function getSegmentDescription(segment?: TutorialSegment) {
           visible="false"
         ></a-image>
       </a-entity>
-      <a-camera position="0 1.6 0" look-controls wasd-controls="enabled:false">
+      <a-camera
+        position="0 1.6 0"
+        look-controls="pointerLockEnabled: true"
+        wasd-controls="enabled:false"
+      >
         <a-animated-cursor></a-animated-cursor>
       </a-camera>
     </AFrameScene>

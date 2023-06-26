@@ -254,7 +254,7 @@ const currentSlide = ref(0);
 
     <a-entity
       camera
-      look-controls
+      look-controls="pointerLockEnabled: true"
       wasd-controls="enabled:false"
       position="0 1.6 0"
       three-layer="layers: 1"

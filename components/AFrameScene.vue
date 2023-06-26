@@ -51,7 +51,6 @@ watch(scene, (newScene, oldScene) => {
 
       let arMode = props.arMode;
       if (arMode === undefined) {
-        console.log('ar: ', route.query['ar']);
         arMode = route.query['ar'] == 'true';
       }
       if (arMode) {

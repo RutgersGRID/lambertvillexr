@@ -17,25 +17,65 @@ async function loadSystems() {
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
       <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
-      <audio id="interview" :src="usePublic('assets/sites/site4/interview4.mp3')" preload="auto"></audio>
+      <audio
+        id="interview"
+        :src="usePublic('assets/sites/site4/interview4.mp3')"
+        preload="auto"
+      ></audio>
       <!-- <a-asset-item id="wall1" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
       <a-asset-item id="wall2" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
       <a-asset-item id="rail1" :src="usePublic('assets/sites/site4/rail.glb')"></a-asset-item>
       <a-asset-item id="rail2" :src="usePublic('assets/sites/site4/rail.glb')"></a-asset-item>
       <a-asset-item id="post1" :src="usePublic('assets/sites/site4/post.glb')"></a-asset-item>
       <a-asset-item id="post2" :src="usePublic('assets/sites/site4/post.glb')"></a-asset-item> -->
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide1.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide2.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide3.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide4.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide5.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide6.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide7.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide8.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide9.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide10.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide11.jpg')" />
-      <img class="slide-show" :src="usePublic('assets/sites/site4/slide12.jpg')" />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide1.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide2.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide3.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide4.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide5.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide6.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide7.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide8.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide9.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide10.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide11.jpg')"
+      />
+      <img
+        class="slide-show"
+        :src="usePublic('assets/sites/site4/slide12.jpg')"
+      />
     </a-assets>
     <!-- <a-gltf-model src=#wall1 position="-16 -1 1"></a-gltf-model>
     <a-gltf-model src=#wall2 position="-16 -6 6"></a-gltf-model>
@@ -61,7 +101,12 @@ async function loadSystems() {
         ></a-audio-player>
       </a-entity>
     </a-entity>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls
+      position="0 1.6 0"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
