@@ -13,7 +13,6 @@ async function loadSystems() {
 
 <template>
   <AFrameScene :load-systems="loadSystems">
-    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
       <img
         class="slide-show"
@@ -45,7 +44,11 @@ async function loadSystems() {
         title="41 Quarry St"
         description="Before and after of 41 Quarry St"
       />
+      <img id="pano" :src="usePublic('assets/sites/site1/pano.jpg')" />
     </a-assets>
+
+    <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
+
     <a-entity rotation="0 10 0">
       <a-slide-show
         position="0 1.6 -8"
