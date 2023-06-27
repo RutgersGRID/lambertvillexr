@@ -18,7 +18,7 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide1.jpg')"
         title="Delaware River"
-        description="The river has helped Lambertville's rich history"
+        description="The river has helped Lambertville's rich history."
       />
       <img
         class="slide-show"
@@ -30,7 +30,7 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide3.jpg')"
         title="ACME Building"
-        description="The Lambertville ACME screening room being reconstructed into Justice Center"
+        description="The Lambertville ACME screening room being reconstructed into Justice Center."
       />
       <img
         class="slide-show"
@@ -42,7 +42,7 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide5.jpg')"
         title="41 Quarry St"
-        description="Before and after of 41 Quarry St"
+        description="Before and after of 41 Quarry St."
       />
       <img id="pano" :src="usePublic('assets/sites/site1/pano.jpg')" />
     </a-assets>
