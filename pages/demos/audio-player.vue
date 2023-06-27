@@ -51,7 +51,12 @@ async function loadSystems() {
     <a-audio-player src="#interview4" position="-6 0 -10"></a-audio-player>
     <a-audio-player src="#interview5" position="0 0 -10"></a-audio-player>
     <a-audio-player src="#interview6" position="6 0 -10"></a-audio-player>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls
+      position="0 1.6 0"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

@@ -227,41 +227,7 @@ function getSegmentDescription(segment?: TutorialSegment) {
 
 <template>
   <div class="h-full w-full">
-    <div
-      class="absolute h-full w-full z-10 opacity-0 transition-all duration-200 bg-transparent pointer-events-none"
-      :class="{ 'opacity-100': sceneEntered }"
-    >
-      <div class="relative w-full xs:max-w-xs text-white">
-        <div
-          class="absolute h-full w-full bg-black opacity-75 xs:rounded-br-lg"
-        ></div>
-        <div class="relative p-4">
-          <div class="font-bold">{{ currSegment?.name }}</div>
-          <div class="font-regular mt-2">
-            {{ getSegmentDescription(currSegment) }}
-          </div>
-          <div
-            class="font-regular mt-2"
-            v-if="currSegment?.subSegments[currSubSegmentIndex]"
-          >
-            {{ currSegment?.subSegments[currSubSegmentIndex].instruction }}
-          </div>
-          <div
-            class="relative h-1 mt-4 flex flex-row justify-between items-center gap-2"
-          >
-            <div
-              v-for="index in currSegment?.subSegments.length"
-              class="h-full flex-1 rounded-full bg-gray-400 overflow-hidden"
-            >
-              <div
-                class="h-full w-0 bg-white transition-all duration-200"
-                :class="{ 'w-full': index <= currSubSegmentIndex }"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Scene -->
     <AFrameScene
       :load-systems="loadSystems"
       :hide-tutorial="true"
@@ -269,6 +235,7 @@ function getSegmentDescription(segment?: TutorialSegment) {
       start-title="Welcome"
       start-description="This is a tutorial on how to interact with an AR experience. These experiences are audio and visual so make sure to have your volume on!"
       :always-show-overlay="true"
+      :disable-ar-mode="true"
       @scene-entered="onSceneEntered"
     >
       <a-assets>
@@ -351,7 +318,7 @@ function getSegmentDescription(segment?: TutorialSegment) {
         <a-playback-video
           ref="video"
           src="#avocado-video"
-          position="0 0 -10"
+          position="0 0 -8"
           rotation="0 0 0"
           visible="false"
         ></a-playback-video>
@@ -376,5 +343,41 @@ function getSegmentDescription(segment?: TutorialSegment) {
         <a-animated-cursor></a-animated-cursor>
       </a-camera>
     </AFrameScene>
+    <!-- Tutorial UI -->
+    <div
+      class="absolute h-full w-full opacity-0 transition-all duration-200 bg-transparent pointer-events-none"
+      :class="{ 'opacity-100': sceneEntered }"
+    >
+      <div class="relative w-full xs:max-w-xs text-white">
+        <div
+          class="absolute h-full w-full bg-black opacity-75 xs:rounded-br-lg"
+        ></div>
+        <div class="relative p-4">
+          <div class="font-bold">{{ currSegment?.name }}</div>
+          <div class="font-regular mt-2">
+            {{ getSegmentDescription(currSegment) }}
+          </div>
+          <div
+            class="font-regular mt-2"
+            v-if="currSegment?.subSegments[currSubSegmentIndex]"
+          >
+            {{ currSegment?.subSegments[currSubSegmentIndex].instruction }}
+          </div>
+          <div
+            class="relative h-1 mt-4 flex flex-row justify-between items-center gap-2"
+          >
+            <div
+              v-for="index in currSegment?.subSegments.length"
+              class="h-full flex-1 rounded-full bg-gray-400 overflow-hidden"
+            >
+              <div
+                class="h-full w-0 bg-white transition-all duration-200"
+                :class="{ 'w-full': index <= currSubSegmentIndex }"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

@@ -30,7 +30,7 @@ async function loadSystems() {
 
     <a-entity
       camera
-      look-controls
+      look-controls="pointerLockEnabled: true"
       wasd-controls
       position="0 1.6 0"
       three-layer="layers: 1"

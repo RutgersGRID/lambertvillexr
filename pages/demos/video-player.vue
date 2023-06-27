@@ -57,7 +57,12 @@ async function loadSystems() {
       position="0 1.6 -5"
       rotation="0 180 0"
     ></a-playback-video>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls
+      position="0 1.6 0"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

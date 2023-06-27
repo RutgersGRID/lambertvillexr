@@ -2,6 +2,7 @@
 import { Entity, Scene } from 'aframe';
 import AFrameTutorial from './AFrameTutorial.vue';
 import document from '@/utils/document';
+import { watchPostEffect } from 'nuxt/dist/app/compat/capi';
 
 const route = useRoute();
 
@@ -17,10 +18,12 @@ const props = withDefaults(
     startDescription?: string;
     hideTutorial?: boolean;
     alwaysShowOverlay?: boolean;
+    disableArMode?: boolean;
     arMode?: boolean;
   }>(),
   {
     arMode: undefined,
+    disableArMode: false,
   }
 );
 const emit = defineEmits(['sceneEntered']);
@@ -31,6 +34,48 @@ const webcamVideo = ref<HTMLVideoElement>();
 const scene = ref<Scene>();
 let cameraHasLookControls = false;
 let cameraHasWASDControls = false;
+
+let arMode = ref(props.arMode);
+if (arMode.value === undefined) {
+  if (props.disableArMode) arMode.value = false;
+  else arMode.value = route.query['ar'] == 'true';
+}
+
+function updateArMode() {
+  if (!webcamVideo.value || !scene.value) return;
+
+  if (arMode.value) {
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            facingMode: {
+              ideal: 'environment',
+            },
+          },
+        })
+        .then((stream) => {
+          if (!webcamVideo.value || !scene.value) return;
+          webcamVideo.value.srcObject = stream;
+
+          scene.value.setAttribute('manual-ar-mode', true);
+          scene.value.emit('enter-manual-vr');
+        })
+        .catch((error) => {
+          console.log('Something went wrong! ', error);
+        });
+    }
+  } else {
+    if (webcamVideo.value.srcObject instanceof MediaStream) {
+      for (const track of webcamVideo.value.srcObject.getTracks()) {
+        track.stop();
+      }
+      scene.value.removeAttribute('manual-ar-mode');
+      scene.value.emit('exit-manual-vr');
+      webcamVideo.value.srcObject = null;
+    }
+  }
+}
 
 watch(scene, (newScene, oldScene) => {
   if (newScene != undefined) {
@@ -49,34 +94,7 @@ watch(scene, (newScene, oldScene) => {
 
       newScene.pause();
 
-      let arMode = props.arMode;
-      if (arMode === undefined) {
-        arMode = route.query['ar'] == 'true';
-      }
-      if (arMode) {
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices
-            .getUserMedia({
-              video: {
-                facingMode: {
-                  ideal: 'environment',
-                },
-              },
-            })
-            .then((stream) => {
-              console.log('then ', webcamVideo.value, ' scene ', scene.value);
-              if (!webcamVideo.value || !scene.value) return;
-              webcamVideo.value.srcObject = stream;
-
-              console.log('has loaded', scene.value.hasLoaded);
-              scene.value.setAttribute('manual-ar-mode', true);
-              scene.value.emit('enter-manual-vr');
-            })
-            .catch((error) => {
-              console.log('Something went wrong! ', error);
-            });
-        }
-      }
+      updateArMode();
 
       sceneLoaded.value = true;
     });
@@ -122,11 +140,17 @@ function onSceneEntered(userClicked: boolean) {
 function onTutorialFinished() {
   showTutorial.value = false;
 }
+
+function toggleArMode(active: boolean) {
+  arMode.value = active;
+  updateArMode();
+}
 </script>
 
 <template>
   <ClientOnly>
     <template v-if="!showTutorial">
+      <!-- Loading BG -->
       <div
         class="absolute h-full w-full z-20 transition ease-in-out duration-1000 bg-gray-200 dark:bg-gray-900 pointer-events-none"
         :class="{ 'opacity-0': sceneLoaded }"
@@ -139,6 +163,7 @@ function onTutorialFinished() {
           <div class="ml-4 text-4xl font-bold">LOADING...</div>
         </div>
       </div>
+      <!-- AR Webcam Video -->
       <div class="absolute h-full w-full">
         <video
           autoplay="true"
@@ -147,14 +172,7 @@ function onTutorialFinished() {
           class="h-full w-full object-cover"
         ></video>
       </div>
-      <EnterASceneOverlay
-        v-if="sceneLoaded"
-        :start-button-text="startButtonText"
-        :start-title="startTitle"
-        :start-description="startDescription"
-        :always-show-overlay="alwaysShowOverlay"
-        @scene-entered="onSceneEntered"
-      ></EnterASceneOverlay>
+      <!-- Scene -->
       <a-scene
         device-orientation-permission-ui="enabled: false"
         ref="scene"
@@ -168,6 +186,39 @@ function onTutorialFinished() {
       >
         <slot></slot>
       </a-scene>
+      <!-- AR Button -->
+      <div
+        class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8"
+        v-if="!props.disableArMode"
+      >
+        <UButton
+          v-if="!arMode"
+          UButton
+          icon="i-heroicons-play"
+          size="xl"
+          @click="toggleArMode(true)"
+        >
+          Enter AR
+        </UButton>
+        <UButton
+          v-if="arMode"
+          UButton
+          icon="i-heroicons-arrow-left-on-rectangle"
+          size="xl"
+          @click="toggleArMode(false)"
+        >
+          Exit AR
+        </UButton>
+      </div>
+      <!-- Enter Scene Overlay -->
+      <EnterASceneOverlay
+        v-if="sceneLoaded"
+        :start-button-text="startButtonText"
+        :start-title="startTitle"
+        :start-description="startDescription"
+        :always-show-overlay="alwaysShowOverlay"
+        @scene-entered="onSceneEntered"
+      ></EnterASceneOverlay>
     </template>
     <AFrameTutorial
       v-if="showTutorial"

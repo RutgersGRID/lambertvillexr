@@ -33,7 +33,12 @@ function onSceneEntered() {
     </a-assets>
 
     <a-button ref="myButton" src="#my-button" position="0 1.6 -10"></a-button>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0">
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls
+      position="0 1.6 0"
+    >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>

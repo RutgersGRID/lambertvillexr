@@ -38,7 +38,11 @@ async function loadSystems() {
       autoplay="true"
       description-height="3"
     ></a-slide-show>
-    <a-entity camera look-controls wasd-controls position="0 1.6 0"
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls
+      position="0 1.6 0"
       >/
       <a-animated-cursor></a-animated-cursor>
     </a-entity>

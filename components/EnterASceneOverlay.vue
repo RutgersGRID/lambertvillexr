@@ -55,7 +55,7 @@ if (!props.alwaysShowOverlay && !needsPermissions()) {
 <template>
   <div
     v-if="showUI"
-    class="absolute h-full w-full flex justify-center items-center bg-opacity-75 bg-black z-10 transition-opacity duration-200"
+    class="absolute h-full w-full flex justify-center items-center bg-opacity-75 bg-black transition-opacity duration-200"
     :class="{ 'opacity-0': experienceStarted }"
   >
     <div class="flex flex-col items-center gap-4">
