@@ -245,7 +245,7 @@ function getSegmentDescription(segment?: TutorialSegment) {
           width="160"
           height="90"
           loop="true"
-          :src="usePublic('assets/videos/avocado.mp4')"
+          :src="usePublic('assets/videos/lambertville-drone.mp4')"
           crossorigin="anonymous"
         ></video>
         <a-asset-item

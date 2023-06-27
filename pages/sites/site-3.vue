@@ -26,12 +26,13 @@ async function loadSystems() {
         loop="true"
         :src="usePublic('assets/sites/site3/trash-video.mp4')"
         crossorigin="anonymous"
+        description="View the cleanup efforts after Hurricane Ida"
       ></video>
       <audio
         id="interview"
         :src="usePublic('assets/sites/site3/interview3.mp3')"
-        title="Interview"
-        description="Click here to listen to an interview with the mayor"
+        title="Hurricane Ida"
+        description="Listen to this audio clip to hear stories from members of the Lambertville community about the impact of Hurricane Ida."
       ></audio>
       <img class="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <a-asset-item

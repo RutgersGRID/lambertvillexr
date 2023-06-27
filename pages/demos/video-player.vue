@@ -15,7 +15,7 @@ async function loadSystems() {
         width="160"
         height="90"
         loop="true"
-        :src="usePublic('assets/videos/avocado.mp4')"
+        :src="usePublic('assets/videos/lambertville-drone.mp4')"
         crossorigin="anonymous"
         title="This is a Title"
       ></video>
@@ -25,7 +25,7 @@ async function loadSystems() {
         width="160"
         height="90"
         loop="true"
-        :src="usePublic('assets/videos/avocado.mp4')"
+        :src="usePublic('assets/videos/lambertville-drone.mp4')"
         crossorigin="anonymous"
         title="This is a Title"
         description="This is a description. This is a description. This is a description. This is a description. This is a description."

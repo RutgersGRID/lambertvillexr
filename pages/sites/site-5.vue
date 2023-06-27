@@ -43,14 +43,38 @@ async function loadSystems() {
         title="Transformation"
         description="Trees, shrubs and graases were grown to restore the landscape and prevent future landslides."
       />
+      <a-asset-item
+        id="bush"
+        :src="usePublic('assets/models/bush.glb')"
+      ></a-asset-item>
+      <a-asset-item
+        id="tree-1"
+        :src="usePublic('assets/models/tree_1.glb')"
+      ></a-asset-item>
+      <a-asset-item
+        id="tree-2"
+        :src="usePublic('assets/models/tree_2.glb')"
+      ></a-asset-item>
+      <a-asset-item
+        id="tree-3"
+        :src="usePublic('assets/models/tree_3.glb')"
+      ></a-asset-item>
     </a-assets>
     <a-entity rotation="0 -90 0">
-      <!-- Video -->
       <a-entity rotation="0 250 0">
+        <a-entity position="0 0 -10">
+          <a-gltf-model src="#bush"></a-gltf-model>
+          <a-gltf-model src="#tree-1"></a-gltf-model>
+          <a-gltf-model src="#tree-2"></a-gltf-model>
+          <a-gltf-model src="#tree-3"></a-gltf-model>
+        </a-entity>
+      </a-entity>
+      <!-- Video -->
+      <a-entity rotation="0 -40 0">
         <a-playback-video src="#tree" position="0 1.8 -8"></a-playback-video>
       </a-entity>
       <!-- Slideshow -->
-      <a-entity rotation="0 180 0">
+      <a-entity rotation="0 30 0">
         <a-slide-show
           position="0 1.8 -8"
           image-query=".slide-show"
@@ -59,15 +83,15 @@ async function loadSystems() {
         ></a-slide-show>
       </a-entity>
     </a-entity>
-    <a-entity rotation="0 30 0">
-        <a-text-box
-          width="3"
-          height="3"
-          position="0 1.6 -8"
-          title="Site 5"
-          description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
-        ></a-text-box>
-      </a-entity>
+    <a-entity rotation="0 0 0">
+      <a-text-box
+        width="3"
+        height="3"
+        position="0 1.6 -8"
+        title="Site 5"
+        description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
+      ></a-text-box>
+    </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

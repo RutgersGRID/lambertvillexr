@@ -13,16 +13,16 @@ async function loadSystems() {
     <a-assets>
       <img
         class="slide-show other-slide-show"
-        :src="usePublic('assets/images/image1.jpg')"
+        :src="usePublic('assets/sites/site1/slide1.jpg')"
       />
       <img
         class="slide-show"
-        :src="usePublic('assets/images/image2.jpg')"
+        :src="usePublic('assets/sites/site1/slide2.jpg')"
         description="Some description. Some description. Some description. Some description. Some description. "
       />
       <img
         class="slide-show other-slide-show"
-        :src="usePublic('assets/images/image3.jpg')"
+        :src="usePublic('assets/sites/site1/slide3.jpg')"
         title="Hello"
         description="Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. "
       />

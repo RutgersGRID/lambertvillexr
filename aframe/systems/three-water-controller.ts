@@ -66,7 +66,7 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
         this.waterLevelAnimation != undefined &&
         this.waterLevelAnimation.completed
       ) {
-        ANIME.remove(this);
+        AFRAME.ANIME.remove(this);
       }
       this.waterLevelAnimation = AFRAME.ANIME({
         targets: this,
