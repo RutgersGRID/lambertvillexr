@@ -8,6 +8,7 @@ async function loadSystems() {
   await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/slide-show');
+  await import('@/aframe/components/text-box');
 }
 </script>
 
@@ -54,9 +55,19 @@ async function loadSystems() {
           position="0 1.8 -8"
           image-query=".slide-show"
           autoplay="true"
+          description-height="3"
         ></a-slide-show>
       </a-entity>
     </a-entity>
+    <a-entity rotation="0 30 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 1.6 -8"
+          title="Site 5"
+          description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
+        ></a-text-box>
+      </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

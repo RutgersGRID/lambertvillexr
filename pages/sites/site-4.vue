@@ -9,6 +9,7 @@ async function loadSystems() {
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
+  await import('@/aframe/components/text-box');
 }
 </script>
 
@@ -21,6 +22,8 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site4/interview4.mp3')"
         preload="auto"
+        title="Interview"
+        description="Click here to listen to an interview with the mayor"
       ></audio>
       <!-- <a-asset-item id="wall1" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
       <a-asset-item id="wall2" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
@@ -89,6 +92,15 @@ async function loadSystems() {
         ></a-audio-player>
       </a-entity>
     </a-entity>
+    <a-entity rotation="0 -10 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 1.6 -8"
+          title="Site 4"
+          description="Interact with the slides and audio to learn about the history of Hibernia Firehouse."
+        ></a-text-box>
+      </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

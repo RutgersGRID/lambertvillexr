@@ -9,6 +9,7 @@ async function loadSystems() {
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
+  await import('@/aframe/components/text-box');
 }
 </script>
 
@@ -21,6 +22,8 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site6/interview6.mp3')"
         preload="auto"
+        title="Interview"
+        description="Click here to listen to an interview with the mayor"
       ></audio>
       <a-asset-item
         id="Person1"
@@ -92,10 +95,19 @@ async function loadSystems() {
           position="0 1.6 -8"
           image-query=".slide-show"
           autoplay="true"
+          description-height="3"
         ></a-slide-show>
       </a-entity>
     </a-entity>
-
+    <a-entity rotation="0 -60 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 1.6 -8"
+          title="Site 6"
+          description="Interact with the slides and audio to learn about the breaking down of houses at the Curley Lane Blue Acres."
+        ></a-text-box>
+      </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

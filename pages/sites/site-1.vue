@@ -8,11 +8,14 @@ async function loadSystems() {
   await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/slide-show');
+  await import('@/aframe/components/text-box');
 }
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene :load-systems="loadSystems" :attributes="{
+    "music-radio":{}
+  }">
     <a-assets>
       <img
         class="slide-show"
@@ -66,5 +69,14 @@ async function loadSystems() {
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
+    <a-entity rotation="0 100 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 1.6 -8"
+          title="Site 1"
+          description="Interact with the slides and audio to learn about the Delaware Canal Enterence."
+        ></a-text-box>
+      </a-entity>
   </AFrameScene>
 </template>
