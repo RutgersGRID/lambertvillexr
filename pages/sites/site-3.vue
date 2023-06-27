@@ -11,6 +11,7 @@ async function loadSystems() {
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/click-move');
+  await import('@/aframe/components/text-box');
 }
 </script>
 
@@ -29,6 +30,8 @@ async function loadSystems() {
       <audio
         id="interview"
         :src="usePublic('assets/sites/site3/interview3.mp3')"
+        title="Interview"
+        description="Click here to listen to an interview with the mayor"
       ></audio>
       <img class="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <a-asset-item
@@ -133,8 +136,7 @@ async function loadSystems() {
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
 
     <!-- Boat -->
-    <a-entity id="close-boat-pos" position="-3 -2 -5" rotation="0 30 0">
-      <a-box></a-box>
+    <a-entity id="close-boat-pos" position="-3 -2 -6" rotation="0 180 0">
     </a-entity>
     <a-entity
       rotation="0 20 0"
@@ -166,6 +168,16 @@ async function loadSystems() {
     </a-entity>
     <!-- Content -->
     <a-entity rotation="0 -90 0">
+      <!-- Text -->
+      <a-entity rotation="0 0 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 0 -8"
+          title="Site 1"
+          description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
+        ></a-text-box>
+      </a-entity>
       <!-- Video -->
       <a-entity rotation="0 -60 0">
         <a-playback-video
@@ -174,20 +186,27 @@ async function loadSystems() {
         ></a-playback-video>
       </a-entity>
       <!-- Slideshow -->
-      <a-entity rotation="0 -130 0">
+      <a-entity rotation="0 -125 0">
         <a-slide-show
           position="0 0 -8"
           image-query=".slide-show"
           autoplay="true"
         ></a-slide-show>
       </a-entity>
-      <!-- Interview Audio -->
+      <!-- Boat Text -->
       <a-entity rotation="0 -180 0">
-        <a-audio-player
-          src="#interview"
+        <a-text-box
+          width="4"
+          height="3"
           position="0 0 -8"
-          title="Interview"
-        ></a-audio-player>
+          title="Rising Tides"
+          description="During Hurricane Irene in 2011, the upstream balustrade was destroyed when, due to the rising waters in the creek, a boat crashed over the top of the bridge and landed in the street.\n\nA virtual recreation of the boat has been made at the crash site.\nClick on the virtual boat to view it up close."
+        >
+        </a-text-box>
+      </a-entity>
+      <!-- Interview Audio -->
+      <a-entity rotation="0 -320 0">
+        <a-audio-player src="#interview" position="0 0 -8"></a-audio-player>
       </a-entity>
     </a-entity>
     <a-entity

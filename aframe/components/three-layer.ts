@@ -30,7 +30,6 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
   changeDetector?: ChangeDetectorComponent;
 
   init() {
-    console.log('three layer init');
     this.el.setAttribute('change-detector__three-layer', <
       ChangeDetectorComponentData
     >{

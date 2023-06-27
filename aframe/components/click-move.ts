@@ -10,16 +10,22 @@ const ANIME = AFRAME.ANIME;
 
 export type ClickMoveComponentData = {
   toEntity: string;
-  spinOnToEntity: boolean;
   interactRadius: number;
+  duration: number;
+  spinOnToEntity: boolean;
+  spinDuration: number;
 };
+
+const rad2Deg = 180 / Math.PI;
 
 @component('click-move')
 export class ClickMoveComponent extends BaseComponent<ClickMoveComponentData> {
   static schema: Schema<ClickMoveComponentData> = {
     toEntity: { default: '' },
-    spinOnToEntity: { default: false },
     interactRadius: { default: 3 },
+    duration: { default: 1000 },
+    spinOnToEntity: { default: false },
+    spinDuration: { default: 10000 },
   };
 
   toEntity?: Entity;
@@ -33,8 +39,9 @@ export class ClickMoveComponent extends BaseComponent<ClickMoveComponentData> {
   currPosition: THREE.Vector3 = new THREE.Vector3();
   currRotation: THREE.Euler = new THREE.Euler();
 
+  // sizeToDistanceRatio: number = 1;
+
   init() {
-    console.log('click move init');
     this.initialPosition.copy(this.el.object3D.position);
     this.initialRotation.copy(this.el.object3D.rotation);
     this.currPosition.copy(this.initialPosition);
@@ -80,22 +87,13 @@ export class ClickMoveComponent extends BaseComponent<ClickMoveComponentData> {
         ANIME.remove(this.currPosition);
         ANIME.remove(this.currRotation);
       }
+      this.el.removeAttribute('animation__spin-on-toentity');
       const targetPosition = this.isAtToEntity
         ? this.initialPosition
         : this.toEntity.object3D.position;
       const targetRotation = this.isAtToEntity
         ? this.initialRotation
         : this.toEntity.object3D.rotation;
-      console.log(
-        'is at entity ',
-        this.isAtToEntity,
-        ' moving to ',
-        targetPosition,
-        ' init ',
-        this.initialPosition,
-        ' to entity ',
-        this.toEntity.object3D.position
-      );
       this.isAtToEntity = !this.isAtToEntity;
       this.currPositionAnimation = AFRAME.ANIME({
         targets: this.currPosition,
@@ -103,7 +101,7 @@ export class ClickMoveComponent extends BaseComponent<ClickMoveComponentData> {
         y: targetPosition?.y,
         z: targetPosition?.z,
         easing: 'easeInOutQuad',
-        duration: 1000,
+        duration: this.data.duration,
       });
       this.currRotationAnimation = AFRAME.ANIME({
         targets: this.currRotation,
@@ -111,14 +109,30 @@ export class ClickMoveComponent extends BaseComponent<ClickMoveComponentData> {
         y: targetRotation.y,
         z: targetRotation.z,
         easing: 'easeInOutQuad',
-        duration: 1000,
+        duration: this.data.duration,
+        complete: () => {
+          if (!this.toEntity) return;
+          if (this.isAtToEntity) {
+            this.currRotationAnimation = AFRAME.ANIME({
+              targets: this.currRotation,
+              y: this.currRotation.y + 2 * Math.PI,
+              easing: 'linear',
+              duration: this.data.spinDuration,
+              loop: true,
+            });
+          }
+        },
       });
     });
   }
 
   tick() {
     this.el.setAttribute('position', this.currPosition);
-    this.el.setAttribute('rotation', this.currRotation);
+    this.el.setAttribute('rotation', {
+      x: this.currRotation.x * rad2Deg,
+      y: this.currRotation.y * rad2Deg,
+      z: this.currRotation.z * rad2Deg,
+    });
   }
 
   update() {

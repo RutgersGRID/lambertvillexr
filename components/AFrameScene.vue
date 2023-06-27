@@ -179,7 +179,7 @@ function toggleArMode(active: boolean) {
         v-if="aframeLoaded"
         v-bind="attributes"
         embedded
-        renderer="logarithmicBuffer: true; sortObjects: true;"
+        renderer="sortObjects: true;"
         class="absolute w-full h-full"
         loading-screen="enabled: false"
         vr-mode-ui="enabled: false"

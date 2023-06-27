@@ -21,23 +21,23 @@ export function newRadialFill(): RadialFillShaderMaterial {
     },
     vertexShader: `
   varying vec2 vUv;
-  
+
   void main() {
     vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.x, position.y, position.z, 1.0); 
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.x, position.y, position.z, 1.0);
   }
   `,
     fragmentShader: `
   #define PI 3.1415926535897932384626433832795
-  
+
   uniform vec3 color;
   uniform vec3 backgroundColor;
   uniform float fill;
   uniform float offset;
   uniform bool clockwise;
-  
+
   varying vec2 vUv;
-  
+
   void main() {
     vec2 vUvCentered = vUv - vec2(0.5);
     float angle = atan(vUvCentered.y, vUvCentered.x);
@@ -73,23 +73,23 @@ export function newAlphaRadialFill(): AlphaRadialFillShaderMaterial {
     },
     vertexShader: `
   varying vec2 vUv;
-  
+
   void main() {
     vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.x, position.y, position.z, 1.0); 
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.x, position.y, position.z, 1.0);
   }
   `,
     fragmentShader: `
   #define PI 3.1415926535897932384626433832795
-  
+
   uniform vec3 color;
   uniform vec3 backgroundColor;
   uniform float fill;
   uniform float offset;
   uniform bool clockwise;
-  
+
   varying vec2 vUv;
-  
+
   void main() {
     vec2 vUvCentered = vUv - vec2(0.5);
     float angle = atan(vUvCentered.y, vUvCentered.x);

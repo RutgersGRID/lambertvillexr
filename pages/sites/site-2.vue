@@ -201,7 +201,7 @@ const currentSlide = ref(0);
           <a-slide-show
             position="0 5 -7"
             image-query=".timeline-photo"
-            show-controls="true"
+            show-controls="false"
             description-height="2"
             :current-slide="currentSlide"
           ></a-slide-show>

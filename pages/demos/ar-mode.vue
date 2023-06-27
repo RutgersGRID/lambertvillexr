@@ -6,13 +6,11 @@ async function loadSystems() {
   await import('@/aframe/components/three-water');
   await import('@/aframe/systems/three-water-controller');
   await import('@/aframe/components/three-layer');
-  await import('@/aframe/components/camera-sky');
 }
 </script>
 
 <template>
   <AFrameScene :load-systems="loadSystems">
-    <!-- <a-camera-sky></a-camera-sky> -->
     <a-box
       position="0 1.6 -5"
       material="shader: flat; color: white; opacity: 0.5"
