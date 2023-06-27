@@ -13,6 +13,8 @@ async function loadSystems() {
   await import('@/aframe/components/three-water-level-clear-button');
   await import('@/aframe/components/three-layer');
   await import('@/aframe/components/render-order');
+  await import('@/aframe/components/text-box');
+  await import('@/aframe/components/material-override');
 }
 
 function getWaterLevelFromCrest(crest: number) {
@@ -121,12 +123,22 @@ const currentSlide = ref(0);
         title="June 2006"
         description="FLood conditions resulted from a month of above-avaerage rainfall combined with a slow moving storm."
       />
+      <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
+      <a-asset-item
+        id="stop-sign"
+        :src="usePublic('assets/models/stop_sign.glb')"
+      ></a-asset-item>
     </a-assets>
 
-    <a-sun-sky
-      material="sunPosition: 0 1 0"
-      three-layer="layers: 31; desktopLayers: 1;"
-    ></a-sun-sky>
+    <a-entity rotation="0 0 0">
+      <a-sky
+        src="#pano"
+        three-layer="layers: 31; desktopLayers: 1;"
+        rotation="11.7 0 0"
+        position="0 50 0"
+      ></a-sky>
+    </a-entity>
+
     <a-three-water
       sun-direction="0 -1 0"
       reflection-layer="31"
@@ -134,42 +146,58 @@ const currentSlide = ref(0);
       transparent="true"
       position="0 -1 0"
     ></a-three-water>
-    <a-plane
-      height="1000"
-      width="1000"
-      position="0 -0.2 0"
-      rotation="-90 0 0"
-      color="#333"
-      opacity="0.5"
-      transparent="true"
-      three-layer="layers: 1"
-    ></a-plane>
 
     <a-entity position="0 0 0" three-layer="layers: 1, 31">
+      <!-- Models -->
       <a-entity position="0 0 0" rotation="0 70 0">
-        <a-entity position="0 0 -6" rotation="0 -50 0">
-          <!-- animation__rotation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 60000; easing: linear"
-        > -->
+        <a-entity
+          position="0 0 -6"
+          rotation="0 -50 0"
+          animation__rotation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 30000; easing: linear"
+        >
           <a-cylinder
             height="0.25"
-            color="#888"
+            color="#27292b"
             transparent="true"
             position="0 -0.125 0"
             radius="3"
           >
+            <a-entity rotation="0 40 0">
+              <a-box
+                width="5.9"
+                depth="0.2"
+                height="0.3"
+                color="#f0ad1b"
+                position="0 0 0.2"
+              ></a-box>
+              <a-box
+                width="5.9"
+                depth="0.2"
+                height="0.3"
+                color="#f0ad1b"
+                position="0 0 -0.2"
+              ></a-box>
+            </a-entity>
             <a-cylinder
               height="0.25"
-              color="#555"
+              color="#7e8185"
               transparent="true"
               position="0 -0.125 0"
               radius="3.2"
             ></a-cylinder>
           </a-cylinder>
-          <a-entity position="1 0 0.2">
+          <a-entity position="0.75 0 0.1">
+            <a-gltf-model
+              src="#stop-sign"
+              scale="0.01 0.01 0.01"
+              rotation="0 90 0"
+              position="-2.4 0 0"
+            ></a-gltf-model>
             <a-gltf-model
               src="#person1"
               position="1 0 0"
               scale="0.2 0.2 0.2"
+              material-override="color: black"
             ></a-gltf-model>
             <a-obj-model
               src="#car-obj"
@@ -184,6 +212,7 @@ const currentSlide = ref(0);
                   src="#bike"
                   position="-9.25 0.6 2.8"
                   scale="0.015 0.015 0.015"
+                  material-override="color: black"
                 ></a-gltf-model>
               </a-entity>
             </a-entity>
@@ -191,15 +220,27 @@ const currentSlide = ref(0);
         </a-entity>
       </a-entity>
 
+      <!-- UI -->
       <a-entity
-        id="water_controls"
         render-order="order: 100; depthTest: false"
         position="0 0.1 0"
         rotation="0 -20 0"
       >
-        <a-entity rotation="0 -80 0">
+        <!-- Site Marker -->
+        <a-entity rotation="0 -10 0">
+          <a-text-box
+            width="3"
+            height="3"
+            position="0 2.5 -6"
+            title="Site 2"
+            description="Click on the buttons below to view water levels at the Pittore Justice center during various flooding events. A virtual model of a street is displayed on the left for reference."
+          ></a-text-box>
+        </a-entity>
+
+        <!-- Slide Show -->
+        <a-entity rotation="0 -70 0">
           <a-slide-show
-            position="0 5 -7"
+            position="0 5 -6"
             image-query=".timeline-photo"
             show-controls="false"
             description-height="2"
@@ -207,6 +248,7 @@ const currentSlide = ref(0);
           ></a-slide-show>
         </a-entity>
 
+        <!-- Water Buttons -->
         <a-entity rotation="0 20 0">
           <a-three-water-level-clear-button
             position="0 0 -5"

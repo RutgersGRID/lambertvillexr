@@ -10,6 +10,7 @@ async function loadSystems() {
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
+  await import('@/aframe/components/material-override');
 }
 </script>
 
@@ -74,15 +75,18 @@ async function loadSystems() {
         description="Damage past flood"
       />
     </a-assets>
-    <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>
-    <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
-    <a-gltf-model src="#Person3" position="3 -3 -25"></a-gltf-model>
-    <a-gltf-model src="#Person4" position="4 -4 -35"></a-gltf-model>
-    <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
-    <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
+    <!-- People -->
+    <a-entity material-override="color: black">
+      <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>
+      <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
+      <a-gltf-model src="#Person3" position="3 -3 -25"></a-gltf-model>
+      <a-gltf-model src="#Person4" position="4 -4 -35"></a-gltf-model>
+      <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
+      <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
+    </a-entity>
     <a-entity rotation="0 -90 0">
       <!-- Interview Audio -->
-        <a-entity rotation="0 200 0">
+      <a-entity rotation="0 200 0">
         <a-audio-player
           src="#interview"
           position="0 1.6 -8"
@@ -100,14 +104,14 @@ async function loadSystems() {
       </a-entity>
     </a-entity>
     <a-entity rotation="0 -60 0">
-        <a-text-box
-          width="3"
-          height="3"
-          position="0 1.6 -8"
-          title="Site 6"
-          description="Interact with the slides and audio to learn about the breaking down of houses at the Curley Lane Blue Acres."
-        ></a-text-box>
-      </a-entity>
+      <a-text-box
+        width="3"
+        height="3"
+        position="0 1.6 -8"
+        title="Site 6"
+        description="Interact with the slides and audio to learn about the breaking down of houses at the Curley Lane Blue Acres."
+      ></a-text-box>
+    </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

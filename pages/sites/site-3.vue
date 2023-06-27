@@ -138,7 +138,7 @@ async function loadSystems() {
           width="3"
           height="3"
           position="0 0 -8"
-          title="Site 1"
+          title="Site 3"
           description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
         ></a-text-box>
       </a-entity>

@@ -60,3 +60,8 @@ npm run build
 - "Low Poly Bicycle" (https://skfb.ly/6VSyo) by tolotedesign is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - "Chevrolet Camaro SS Coupe" (https://free3d.com/3d-model/chevrolet-camaro-ss-coupe-373476.html) by thmacr
 - "Debris Concrete Junk" (https://sketchfab.com/3d-models/debris-concrete-junk-3f161258ebde4bd8afc98e57c9e06890) by matousekfoto
+- "Stop Sign Free" (https://skfb.ly/6prBt) by MathewMantas is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Low poly tree" (https://skfb.ly/6sSUr) by Anthony Van Dosselaer is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+- "Lowpoly Tree" (https://skfb.ly/KLAv) by dionne is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Low poly tree" (https://skfb.ly/6YTBS) by Chenuka Wijesundara is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Game ready bush" (https://skfb.ly/oE99R) by H U N T E R 7 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).

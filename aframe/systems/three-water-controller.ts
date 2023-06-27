@@ -44,8 +44,10 @@ export class ThreeWaterControllerSystem extends BaseSystem<ThreeWaterControllerS
   }
 
   tick(time: number, deltaTime: number) {
-    if (!this.camera) return;
-    this.water?.setAttribute('position', {
+    if (!this.camera || !this.water) return;
+
+    this.water.setAttribute('visible', this.currentWaterLevel > 0);
+    this.water.setAttribute('position', {
       x: 0,
       y: this.currentWaterLevel,
       z: 0,
