@@ -32,73 +32,37 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide1.jpg')"
         title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide2.jpg')"
-        title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide3.jpg')"
-        title="Transformation"
-        description="Before and After"
+        description="Volunteers getting together to discuss recovery plan."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide4.jpg')"
         title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide5.jpg')"
-        title="Transformation"
-        description="Before and After"
+        description="Volunteers trying their best efforts to moblilize."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide6.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="Lambertville Free Public library distributing food twice a week on wagons "
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide7.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="Lambertville has a very tight knit community."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide8.jpg')"
         title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide9.jpg')"
-        title="Transformation"
-        description="Before and After"
+        description="Flooding"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide10.jpg')"
         title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide11.jpg')"
-        title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide12.jpg')"
-        title="Transformation"
-        description="Before and After"
+        description="After-effect"
       />
     </a-assets>
     <!-- <a-gltf-model src=#wall1 position="-16 -1 1"></a-gltf-model>

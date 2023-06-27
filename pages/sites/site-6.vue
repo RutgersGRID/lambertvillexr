@@ -48,45 +48,27 @@ async function loadSystems() {
       ></a-asset-item>
       <img
         class="slide-show"
-        :src="usePublic('assets/sites/site6/slide1.jpg')"
-        title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide2.jpg')"
-        title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide3.jpg')"
-        title="Transformation"
-        description="Before and After"
-      />
-      <img
-        class="slide-show"
         :src="usePublic('assets/sites/site6/slide4.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="High flood Hurricane Ida tide."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide5.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="Peeking at the flood levels outside."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide7.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="A family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide8.jpg')"
         title="Transformation"
-        description="Before and After"
+        description="Damage past flood"
       />
     </a-assets>
     <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>
