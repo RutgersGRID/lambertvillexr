@@ -28,19 +28,16 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site5/slide1.jpg')"
-        title="Transformation"
         description="Landslide causes major damage to the area."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site5/slide3.jpg')"
-        title="Transformation"
         description="Landslide causes major damage to the area."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site5/slide4.jpg')"
-        title="Transformation"
         description="Trees, shrubs and graases were grown to restore the landscape and prevent future landslides."
       />
     </a-assets>

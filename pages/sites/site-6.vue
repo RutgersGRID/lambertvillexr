@@ -23,8 +23,8 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site6/interview6.mp3')"
         preload="auto"
-        title="Interview"
-        description="Click here to listen to an interview with the mayor"
+        title="Rosso Family Interview"
+        description="Listen to the audio clip to hear an interview with the Rosso Family."
       ></audio>
       <a-asset-item
         id="Person1"
@@ -53,25 +53,21 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide4.jpg')"
-        title="Transformation"
         description="High flood Hurricane Ida tide."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide5.jpg')"
-        title="Transformation"
         description="Peeking at the flood levels outside."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide7.jpg')"
-        title="Transformation"
         description="A family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide8.jpg')"
-        title="Transformation"
         description="Damage past flood"
       />
     </a-assets>

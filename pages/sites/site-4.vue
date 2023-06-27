@@ -22,8 +22,8 @@ async function loadSystems() {
         id="interview"
         :src="usePublic('assets/sites/site4/interview4.mp3')"
         preload="auto"
-        title="Interview"
-        description="Click here to listen to an interview with the mayor"
+        title="Recovery Stories"
+        description="Listen to this audio clip to hear stories about the recover and resilience of the Lambertville following Hurricane Ida. "
       ></audio>
       <!-- <a-asset-item id="wall1" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
       <a-asset-item id="wall2" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
@@ -34,37 +34,31 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide1.jpg')"
-        title="Transformation"
         description="Volunteers getting together to discuss recovery plan."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide4.jpg')"
-        title="Transformation"
         description="Volunteers trying their best efforts to moblilize."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide6.jpg')"
-        title="Transformation"
         description="Lambertville Free Public library distributing food twice a week on wagons "
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide7.jpg')"
-        title="Transformation"
         description="Lambertville has a very tight knit community."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide8.jpg')"
-        title="Transformation"
         description="Flooding"
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site4/slide10.jpg')"
-        title="Transformation"
         description="After-effect"
       />
     </a-assets>
