@@ -11,14 +11,17 @@ async function loadSystems() {
   <AFrameScene :load-systems="loadSystems">
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
-      <img class="slide-show" :src="usePublic('assets/images/image1.jpg')" />
+      <img
+        class="slide-show other-slide-show"
+        :src="usePublic('assets/images/image1.jpg')"
+      />
       <img
         class="slide-show"
         :src="usePublic('assets/images/image2.jpg')"
         description="Some description. Some description. Some description. Some description. Some description. "
       />
       <img
-        class="slide-show"
+        class="slide-show other-slide-show"
         :src="usePublic('assets/images/image3.jpg')"
         title="Hello"
         description="Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. Some description. "
@@ -28,7 +31,7 @@ async function loadSystems() {
     <a-slide-show
       position="5 1.6 -5"
       rotation="0 -30 0"
-      image-query=".slide-show"
+      image-query=".other-slide-show"
       description-height="3"
     ></a-slide-show>
     <a-slide-show

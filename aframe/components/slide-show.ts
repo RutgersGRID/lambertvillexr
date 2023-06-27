@@ -355,7 +355,7 @@ export class SlideShowComponent extends BaseComponent<SlideShowComponentData> {
       const slideDot = document.createEntity<any>('a-circle');
       slideDot.setAttribute('radius', slideDotRadius);
       slideDot.setAttribute('position', {
-        x: (i - this.slides.length / 2) * slideDotSpacing,
+        x: (i - (this.slides.length - 1) / 2) * slideDotSpacing,
         y: -this.data.height / 2 + slideDotRadius + slideDotBottomMargin,
         z: 0.1,
       });
