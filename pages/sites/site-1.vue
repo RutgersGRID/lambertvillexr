@@ -13,9 +13,7 @@ async function loadSystems() {
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems" :attributes="{
-    "music-radio":{}
-  }">
+  <AFrameScene :load-systems="loadSystems">
     <a-assets>
       <img
         class="slide-show"
