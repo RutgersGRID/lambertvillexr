@@ -35,13 +35,11 @@ export class ForestGrowerComponent extends BaseComponent<ForestGrowerComponentDa
   tick() {
     for (const child of this.el.children) {
       const entity = child as Entity;
-      if (entity.object3D) {
-        entity.object3D.scale.set(
-          this.forestScale,
-          this.forestScale,
-          this.forestScale
-        );
-      }
+      entity.setAttribute('scale', {
+        x: this.forestScale,
+        y: this.forestScale,
+        z: this.forestScale,
+      });
     }
   }
 }

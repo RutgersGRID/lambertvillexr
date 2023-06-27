@@ -9,6 +9,7 @@ async function loadSystems() {
   await import('@/aframe/components/button');
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
+  await import('@/aframe/components/forest-grower');
 }
 </script>
 
@@ -58,12 +59,46 @@ async function loadSystems() {
       ></a-asset-item>
     </a-assets>
     <a-entity rotation="0 -90 0">
+      <!-- Trees -->
       <a-entity rotation="0 250 0">
-        <a-entity position="0 0 -10">
-          <a-gltf-model src="#bush"></a-gltf-model>
-          <a-gltf-model src="#tree-1"></a-gltf-model>
-          <a-gltf-model src="#tree-2"></a-gltf-model>
-          <a-gltf-model src="#tree-3"></a-gltf-model>
+        <a-entity position="0 0 -10" forest-grower="forestScale: 1">
+          <!-- Bush -->
+          <a-entity position="-5 0 0">
+            <a-sphere opacity="0.8" transparent="true"></a-sphere>
+            <a-gltf-model src="#bush"></a-gltf-model>
+          </a-entity>
+          <!-- Tree 3 -->
+          <a-entity position="-2.5 0 0">
+            <a-sphere
+              opacity="0.8"
+              transparent="true"
+              color="yellow"
+            ></a-sphere>
+            <a-gltf-model
+              src="#tree-3"
+              scale="15 15 15"
+              position="-1 4 -1.9"
+              visible="true"
+            ></a-gltf-model>
+          </a-entity>
+          <!-- Tree 2 -->
+          <a-entity position="0 0">
+            <a-sphere opacity="0.8" transparent="true" color="red"></a-sphere>
+            <a-gltf-model
+              src="#tree-2"
+              scale="0.01 0.01 0.01"
+              visible="true"
+            ></a-gltf-model>
+          </a-entity>
+          <!-- Tree 1 -->
+          <a-entity position="2.5 0 0">
+            <a-sphere opacity="0.8" transparent="true" color="blue"></a-sphere>
+            <a-gltf-model
+              src="#tree-1"
+              scale="40 40 40"
+              position="7 3 -10.2"
+            ></a-gltf-model>
+          </a-entity>
         </a-entity>
       </a-entity>
       <!-- Video -->
