@@ -118,7 +118,7 @@ onMounted(async () => {
 });
 
 function onSceneEntered(userClicked: boolean) {
-  if (!scene.value) return;
+  if (!scene.value || !webcamVideo.value) return;
   const camera = scene.value.querySelector<Entity>('[camera]');
   if (!camera) return;
   if (cameraHasLookControls)
@@ -132,7 +132,7 @@ function onSceneEntered(userClicked: boolean) {
       video.pause();
     }
 
-    webcamVideo.value?.play();
+    webcamVideo.value.play();
   }
   emit('sceneEntered');
 }
