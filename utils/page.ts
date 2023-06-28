@@ -63,6 +63,12 @@ export function useRouterCategories() {
     }
   });
   routeCategories.forEach((category) => {
+    category.routes.sort((a, b) => {
+      return (
+        ((a.meta?.pageOrder as number) ?? 0) -
+        ((b.meta?.pageOrder as number) ?? 0)
+      );
+    });
     category.routes.forEach((route) => {
       filePathToRouteCategoryDict[route.path] = category;
     });

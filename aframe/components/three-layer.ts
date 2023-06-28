@@ -45,7 +45,6 @@ export class ThreeLayerComopnent extends BaseComponent<ThreeLayerData> {
     });
 
     this.el.sceneEl?.addEventListener('enter-manual-vr', () => {
-      console.log('enter manual ar mode');
       if (this.el.sceneEl?.hasAttribute('manual-ar-mode')) {
         this.isArMode = true;
         this.updateAllElemLayers();

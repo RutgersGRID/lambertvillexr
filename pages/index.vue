@@ -4,23 +4,27 @@ definePageMeta({
 });
 
 const heroVideo = ref<HTMLVideoElement>();
-const lowPowerMode = ref(false);
+const lowPowerMode = ref(true);
 onMounted(() => {
   if (!heroVideo.value) return;
-  heroVideo.value.addEventListener('suspend', () => {
-    lowPowerMode.value = true;
+  heroVideo.value.play().then(() => {
+    lowPowerMode.value = false;
   });
 });
 </script>
 
 <template>
   <img
-    v-if="lowPowerMode"
+    :class="{
+      hidden: !lowPowerMode,
+    }"
     :src="usePublic('assets/images/lambertville-drone.png')"
     class="absolute w-full h-full object-cover"
   />
   <video
-    v-else
+    :class="{
+      hidden: lowPowerMode,
+    }"
     ref="heroVideo"
     autoplay
     muted

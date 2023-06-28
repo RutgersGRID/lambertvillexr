@@ -35,5 +35,21 @@ function getCategoryNavLinks(category: RouteCategory) {
       ></UVerticalNavigation>
     </div>
     <DarkModeToggle></DarkModeToggle>
+    <div class="text-xs text-gray-400 dark:text-gray-400">
+      Made by
+      <a
+        href="https://www.linkedin.com/in/alantong88/"
+        class="text-gray-600 dark:text-gray-200 underline"
+      >
+        Alan Tong
+      </a>
+      and
+      <a
+        href="https://www.linkedin.com/in/dhawal15/"
+        class="text-gray-600 dark:text-gray-200 underline"
+      >
+        Dhawal Arora
+      </a>
+    </div>
   </div>
 </template>

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  pageOrder: 1,
+});
+
 function onFinished() {
   navigateTo('/');
 }
