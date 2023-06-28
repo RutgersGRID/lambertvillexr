@@ -124,7 +124,7 @@ async function loadSystems() {
       ></a-gltf-model>
     </a-entity>
     <!-- Content -->
-    <a-entity rotation="0 -90 0">
+    <a-entity rotation="0 -90 0" position="0 0 0">
       <!-- Text -->
       <a-entity rotation="0 0 0">
         <a-text-box

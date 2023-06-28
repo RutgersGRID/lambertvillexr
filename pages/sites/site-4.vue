@@ -16,8 +16,8 @@ async function loadSystems() {
 <template>
   <AFrameScene :load-systems="loadSystems">
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
-    <a-assets>
-      <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
+    <a-assets
+      >-->
       <audio
         id="interview"
         :src="usePublic('assets/sites/site4/interview4.mp3')"
@@ -25,76 +25,100 @@ async function loadSystems() {
         title="Recovery Stories"
         description="Listen to this audio clip to hear stories about the recover and resilience of the Lambertville following Hurricane Ida. "
       ></audio>
-      <!-- <a-asset-item id="wall1" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
-      <a-asset-item id="wall2" :src="usePublic('assets/sites/site4/wall.glb')"></a-asset-item>
-      <a-asset-item id="rail1" :src="usePublic('assets/sites/site4/rail.glb')"></a-asset-item>
-      <a-asset-item id="rail2" :src="usePublic('assets/sites/site4/rail.glb')"></a-asset-item>
-      <a-asset-item id="post1" :src="usePublic('assets/sites/site4/post.glb')"></a-asset-item>
-      <a-asset-item id="post2" :src="usePublic('assets/sites/site4/post.glb')"></a-asset-item> -->
+      <!-- Community Slide Show -->
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide1.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide1.jpg')"
         description="Volunteers getting together to discuss recovery plan."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide4.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide4.jpg')"
         description="Volunteers trying their best efforts to moblilize."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide6.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide6.jpg')"
         description="Lambertville Free Public library distributing food twice a week on wagons "
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide7.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide7.jpg')"
         description="Lambertville has a very tight knit community."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide8.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide8.jpg')"
         description="Flooding"
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site4/slide10.jpg')"
+        class="community-slide-show"
+        :src="usePublic('assets/sites/site4/community/slide10.jpg')"
         description="After-effect"
       />
+      <!-- Storymap Slide Show -->
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site4/storymap/slide1.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site4/storymap/slide2.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site4/storymap/slide3.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site4/storymap/slide4.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site4/storymap/slide5.jpg')"
+      />
     </a-assets>
-    <!-- <a-gltf-model src=#wall1 position="-16 -1 1"></a-gltf-model>
-    <a-gltf-model src=#wall2 position="-16 -6 6"></a-gltf-model>
-    <a-gltf-model src=#rail1 position="-16 -3 3"></a-gltf-model>
-    <a-gltf-model src=#rail2 position="-16 -4 4"></a-gltf-model>
-    <a-gltf-model src=#post1 position="-16 -5 5"></a-gltf-model>
-    <a-gltf-model src=#post2 position="-16 -7 7"></a-gltf-model> -->
-    <a-entity rotation="0 -10 0" position="0 1.6 0">
-      <!-- Slideshow -->
+    <a-entity rotation="0 0 0" position="0 1 0">
+      <!-- Storymap Slideshow -->
       <a-entity rotation="0 60 0">
         <a-slide-show
           position="0 0 -8"
-          image-query=".slide-show"
+          height="6"
+          width="8.95960311837"
+          image-query=".storymap-slide-show"
           autoplay="true"
+          autoplay-duration="5000"
+          show-controls="false"
         ></a-slide-show>
       </a-entity>
       <!-- Interview Audio -->
-      <a-entity rotation="0 130 0">
+      <a-entity rotation="0 120 0">
         <a-audio-player
           src="#interview"
           position="0 0 -8"
           title="Interview"
         ></a-audio-player>
       </a-entity>
-    </a-entity>
-    <a-entity rotation="0 -10 0">
+      <!-- Community Slideshow -->
+      <a-entity rotation="0 180 0">
+        <a-slide-show
+          position="0 0 -8"
+          image-query=".community-slide-show"
+          autoplay-duration="3000"
+          autoplay="true"
+        ></a-slide-show>
+      </a-entity>
+      <!-- Text box -->
+      <a-entity rotation="0 0 0">
         <a-text-box
           width="3"
           height="3"
-          position="0 1.6 -8"
+          position="0 0 -8"
           title="Site 4"
           description="Interact with the slides and audio to learn about the history of Hibernia Firehouse."
         ></a-text-box>
       </a-entity>
+    </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"

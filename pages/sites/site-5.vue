@@ -25,21 +25,40 @@ async function loadSystems() {
         loop="true"
         :src="usePublic('assets/sites/site5/tree.mp4')"
         crossorigin="anonymous"
+        description="Rendering of future vegetation growth on the side of the landslide."
       ></video>
+      <!-- Landslide Slide Show -->
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site5/slide1.jpg')"
+        class="landslide-slide-show"
+        :src="usePublic('assets/sites/site5/landslide/slide1.jpg')"
         description="Landslide causes major damage to the area."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site5/slide3.jpg')"
+        class="landslide-slide-show"
+        :src="usePublic('assets/sites/site5/landslide/slide3.jpg')"
         description="Landslide causes major damage to the area."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site5/slide4.jpg')"
+        class="landslide-slide-show"
+        :src="usePublic('assets/sites/site5/landslide/slide4.jpg')"
         description="Trees, shrubs and graases were grown to restore the landscape and prevent future landslides."
+      />
+      <!-- Storymap Slide Show -->
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site5/storymap/slide1.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site5/storymap/slide2.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site5/storymap/slide3.jpg')"
+      />
+      <img
+        class="storymap-slide-show"
+        :src="usePublic('assets/sites/site5/storymap/slide4.jpg')"
       />
       <a-asset-item
         id="bush"
@@ -58,71 +77,73 @@ async function loadSystems() {
         :src="usePublic('assets/models/tree_3.glb')"
       ></a-asset-item>
     </a-assets>
-    <a-entity rotation="0 -90 0">
+    <a-entity rotation="0 0 0" position="0 1 0">
+      <!-- Tree TextBox -->
+      <a-entity rotation="0 45 0">
+        <a-text-box
+          width="5.5"
+          height="3"
+          position="0 0 -8"
+          title="Green Infrastruce"
+          description="During Hurricane Ida in 2021, a significant landslide occurred at this steep slope, bringing down large trees, crushing vehicles and narrowly missing homes. \n\nAfter clearing the debris, the City and community replanted numerous native trees, and shrubs to restore the landscape and prevent future landslides. \n\nThe virtual recreation on the left visualizes the future of the landslide zone as the newly planted vegetation takes root."
+        ></a-text-box>
+      </a-entity>
       <!-- Trees -->
-      <a-entity rotation="0 250 0">
-        <a-entity position="0 0 -10" forest-grower="forestScale: 1">
-          <!-- Bush -->
-          <a-entity position="-5 0 0">
-            <a-sphere opacity="0.8" transparent="true"></a-sphere>
-            <a-gltf-model src="#bush"></a-gltf-model>
-          </a-entity>
-          <!-- Tree 3 -->
-          <a-entity position="-2.5 0 0">
-            <a-sphere
-              opacity="0.8"
-              transparent="true"
-              color="yellow"
-            ></a-sphere>
-            <a-gltf-model
-              src="#tree-3"
-              scale="15 15 15"
-              position="-1 4 -1.9"
-              visible="true"
-            ></a-gltf-model>
-          </a-entity>
-          <!-- Tree 2 -->
-          <a-entity position="0 0">
-            <a-sphere opacity="0.8" transparent="true" color="red"></a-sphere>
-            <a-gltf-model
-              src="#tree-2"
-              scale="0.01 0.01 0.01"
-              visible="true"
-            ></a-gltf-model>
-          </a-entity>
-          <!-- Tree 1 -->
-          <a-entity position="2.5 0 0">
-            <a-sphere opacity="0.8" transparent="true" color="blue"></a-sphere>
-            <a-gltf-model
-              src="#tree-1"
-              scale="40 40 40"
-              position="7 3 -10.2"
-            ></a-gltf-model>
-          </a-entity>
+      <a-entity rotation="0 90 0">
+        <a-entity
+          position="0 0 -15"
+          rotation="0 0 0"
+          forest-grower="forestScale: 1"
+        >
+          <AFrameTreeGroup
+            position="14 0 -5"
+            rotation="0 -30 0"
+          ></AFrameTreeGroup>
+          <AFrameTreeGroup position="7 0 0" rotation="0 70 0"></AFrameTreeGroup>
+          <AFrameTreeGroup
+            position="-7 0 0"
+            rotation="0 -30 0"
+          ></AFrameTreeGroup>
+          <AFrameTreeGroup position="0 0 0"></AFrameTreeGroup>
+          <AFrameTreeGroup
+            position="-14 0 -5"
+            rotation="0 -30 0"
+          ></AFrameTreeGroup>
         </a-entity>
       </a-entity>
-      <!-- Video -->
-      <a-entity rotation="0 -40 0">
-        <a-playback-video src="#tree" position="0 1.8 -8"></a-playback-video>
+      <!-- TextBox -->
+      <a-entity rotation="0 0 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 0 -8"
+          title="Site 5"
+          description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
+        ></a-text-box>
       </a-entity>
-      <!-- Slideshow -->
-      <a-entity rotation="0 30 0">
+      <!-- Landslide Slideshow -->
+      <a-entity rotation="0 -50 0">
         <a-slide-show
-          position="0 1.8 -8"
-          image-query=".slide-show"
+          position="0 0 -8"
+          image-query=".landslide-slide-show"
           autoplay="true"
           description-height="3"
         ></a-slide-show>
       </a-entity>
-    </a-entity>
-    <a-entity rotation="0 0 0">
-      <a-text-box
-        width="3"
-        height="3"
-        position="0 1.6 -8"
-        title="Site 5"
-        description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
-      ></a-text-box>
+      <!-- Video -->
+      <a-entity rotation="0 -120 0">
+        <a-playback-video src="#tree" position="0 0 -8"></a-playback-video>
+      </a-entity>
+      <!-- Storymap Slideshow -->
+      <a-entity rotation="0 -185 0">
+        <a-slide-show
+          position="0 0 -8"
+          image-query=".storymap-slide-show"
+          show-controls="false"
+          autoplay="true"
+          description-height="3"
+        ></a-slide-show>
+      </a-entity>
     </a-entity>
     <a-entity
       camera

@@ -50,15 +50,30 @@ async function loadSystems() {
 
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
 
-    <a-entity rotation="0 10 0">
-      <a-slide-show
-        position="0 1.6 -8"
-        height="6"
-        width="8.95960311837"
-        image-query=".slide-show"
-        autoplay="true"
-      ></a-slide-show>
+    <!-- Content -->
+    <a-entity position="0 1 0">
+      <!-- Slide show -->
+      <a-entity rotation="0 10 0">
+        <a-slide-show
+          position="0 0 -8"
+          height="6"
+          width="8.95960311837"
+          image-query=".slide-show"
+          autoplay="true"
+        ></a-slide-show>
+      </a-entity>
+      <!-- Text box -->
+      <a-entity rotation="0 100 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 0 -8"
+          title="Site 1"
+          description="Interact with the slides and audio to learn about the Delaware Canal Enterence."
+        ></a-text-box>
+      </a-entity>
     </a-entity>
+
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"
@@ -67,14 +82,5 @@ async function loadSystems() {
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
-    <a-entity rotation="0 100 0">
-        <a-text-box
-          width="3"
-          height="3"
-          position="0 1.6 -8"
-          title="Site 1"
-          description="Interact with the slides and audio to learn about the Delaware Canal Enterence."
-        ></a-text-box>
-      </a-entity>
   </AFrameScene>
 </template>

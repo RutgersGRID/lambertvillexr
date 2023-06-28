@@ -223,7 +223,7 @@ const currentSlide = ref(0);
       <!-- UI -->
       <a-entity
         render-order="order: 100; depthTest: false"
-        position="0 0.1 0"
+        position="0 -0.5 0"
         rotation="0 -20 0"
       >
         <!-- Site Marker -->

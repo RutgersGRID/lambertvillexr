@@ -6,9 +6,10 @@ definePageMeta({
 
 <template>
   <video
-    autoplay="true"
-    muted="true"
+    autoplay
+    muted
     playsinline
+    webkit-playsinline
     loop
     :src="usePublic('assets/videos/lambertville-drone.mp4')"
     class="absolute w-full h-full object-cover"

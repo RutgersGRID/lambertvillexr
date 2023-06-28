@@ -61,6 +61,5 @@ export class MaterialOverrideComponent extends BaseComponent<MaterialOverrideCom
         tryUpdateObject3D(obj);
       }
     }
-    console.log('material overrdie init');
   }
 }
