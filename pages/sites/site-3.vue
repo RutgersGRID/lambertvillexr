@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ColorManagement } from 'three';
-
+const title = 'Union Street Bridge';
 definePageMeta({
-  pageName: 'Union Street Bridge',
+  pageName: title,
 });
 
 async function loadSystems() {
@@ -19,7 +18,7 @@ async function loadSystems() {
 <template>
   <AFrameScene
     :load-systems="loadSystems"
-    start-title="Union Street Bridge"
+    :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
     <a-assets>
@@ -148,7 +147,7 @@ async function loadSystems() {
           width="3"
           height="3"
           position="0 0 -8"
-          title="Site 3"
+          :title="title"
           description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
         ></a-text-box>
       </a-entity>

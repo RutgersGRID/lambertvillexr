@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const title = 'Delaware Canal Entrance';
 definePageMeta({
-  pageName: 'Delaware Canal Entrance',
+  pageName: title,
 });
 
 async function loadSystems() {
@@ -16,7 +17,7 @@ async function loadSystems() {
 <template>
   <AFrameScene
     :load-systems="loadSystems"
-    start-title="Delware Canal Entrance"
+    :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
     <a-assets>
@@ -83,7 +84,7 @@ async function loadSystems() {
           width="3"
           height="3"
           position="0 0 -8"
-          title="Site 1"
+          :title="title"
           description="Interact with the slides and audio to learn about the Delaware Canal Enterence."
         ></a-text-box>
       </a-entity>

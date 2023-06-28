@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const title = 'Curley Lane Blue Acres';
 definePageMeta({
-  pageName: 'Curley Lane Blue Acres',
+  pageName: title,
 });
 
 async function loadSystems() {
@@ -18,7 +19,7 @@ async function loadSystems() {
 <template>
   <AFrameScene
     :load-systems="loadSystems"
-    start-title="Curley Lane Blue Acres"
+    :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
@@ -123,7 +124,7 @@ async function loadSystems() {
         width="3"
         height="3"
         position="0 1.6 -8"
-        title="Site 6"
+        :title="title"
         description="Interact with the slides and audio to learn about the breaking down of houses at the Curley Lane Blue Acres."
       ></a-text-box>
     </a-entity>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const title = 'Hibernia Firehouse';
 definePageMeta({
-  pageName: 'Hibernia Firehouse',
+  pageName: title,
 });
 
 async function loadSystems() {
@@ -17,7 +18,7 @@ async function loadSystems() {
 <template>
   <AFrameScene
     :load-systems="loadSystems"
-    start-title="Hibernia Firehouse"
+    :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
@@ -132,7 +133,7 @@ async function loadSystems() {
           width="3"
           height="3"
           position="0 0 -8"
-          title="Site 4"
+          :title="title"
           description="Interact with the slides and audio to learn about the history of Hibernia Firehouse."
         ></a-text-box>
       </a-entity>

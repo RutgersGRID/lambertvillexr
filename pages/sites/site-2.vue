@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const title = 'Pittore Justice Center';
 definePageMeta({
-  pageName: 'Pittore Justice Center',
+  pageName: title,
 });
 
 async function loadSystems() {
@@ -59,7 +60,7 @@ const currentSlide = ref(0);
 <template>
   <AFrameScene
     :load-systems="loadSystems"
-    start-title="Pittore Justice Center"
+    :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
     <a-assets>
@@ -246,7 +247,7 @@ const currentSlide = ref(0);
             width="3"
             height="3"
             position="0 2.5 -6"
-            title="Site 2"
+            :title="title"
             description="Click on the buttons below to view water levels at the Pittore Justice center during various flooding events. A virtual model of a street is displayed on the left for reference."
           ></a-text-box>
         </a-entity>
