@@ -1,11 +1,24 @@
 import { defineNuxtConfig } from 'nuxt/config';
 
+const ignoredFolders: string[] = [];
+
+console.log('HIDE_DEMOS: ', process.env.HIDE_DEMOS);
+if (process.env.HIDE_DEMOS) {
+  console.log('\tHiding demos...');
+  ignoredFolders.push('pages/demos/**/*');
+} else {
+  console.log('\tShowing demos...');
+}
+
 // Social card settings
 const title = 'Lambertville XR';
 const description = 'Website for Lambertville XR walking tour.';
-const image =
-  'https://www.goodfreephotos.com/albums/other-landscapes/beautiful-scenic-seaside-landscape.jpg';
-const url = '';
+
+const image = '/assets/images/header.jpg';
+console.log('META_URL: ', process.env.META_URL);
+const url =
+  process.env.META_URL ?? 'https://rutgersgrid.github.io/lambertvillexr/';
+console.log('\tUsing meta url: ', url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -84,6 +97,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  ignore: ignoredFolders,
   modules: ['@nuxtjs/google-fonts', 'nuxt-svgo', '@nuxthq/ui'],
   googleFonts: {
     families: {

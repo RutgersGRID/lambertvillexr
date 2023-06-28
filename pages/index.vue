@@ -5,8 +5,19 @@ definePageMeta({
 </script>
 
 <template>
+  <video
+    autoplay="true"
+    muted="true"
+    playsinline
+    loop
+    :src="usePublic('assets/videos/lambertville-drone.mp4')"
+    class="absolute w-full h-full object-cover"
+  ></video>
   <div
-    class="w-full h-full p-4 flex flex-col justify-center items-center bg-gray-200 dark:bg-gray-800"
+    class="absolute w-full h-full bg-gray-200 dark:bg-gray-800 opacity-90"
+  ></div>
+  <div
+    class="absolute w-full h-full p-4 flex flex-col justify-center items-center"
   >
     <div class="prose dark:prose-invert text-center">
       <h1>Lambertville XR</h1>
