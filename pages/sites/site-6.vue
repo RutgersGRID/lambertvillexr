@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Curley Lane Blue Acres';
 definePageMeta({
-  pageName: title,
+  pageName: 'Curley Lane Blue Acres',
 });
 
 async function loadSystems() {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Union Street Bridge';
 definePageMeta({
-  pageName: title,
+  pageName: 'Union Street Bridge',
 });
 
 async function loadSystems() {

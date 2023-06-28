@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Hibernia Firehouse';
 definePageMeta({
-  pageName: title,
+  pageName: 'Hibernia Firehouse',
 });
 
 async function loadSystems() {

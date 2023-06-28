@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Delaware Canal Entrance';
 definePageMeta({
-  pageName: title,
+  pageName: 'Delaware Canal Entrance',
 });
 
 async function loadSystems() {

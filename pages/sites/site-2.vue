@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Pittore Justice Center';
 definePageMeta({
-  pageName: title,
+  pageName: 'Pittore Justice Center',
 });
 
 async function loadSystems() {

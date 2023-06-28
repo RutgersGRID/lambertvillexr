@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const title = 'Quarry Street Landslide';
 definePageMeta({
-  pageName: title,
+  pageName: 'Quarry Street Landslide',
 });
 
 async function loadSystems() {
