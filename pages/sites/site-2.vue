@@ -64,15 +64,15 @@ const currentSlide = ref(0);
       ></a-asset-item>
       <a-asset-item
         id="car-obj"
-        :src="usePublic('assets/models/car/car.obj')"
+        :src="usePublic('assets/sites/site2/car/car.obj')"
       ></a-asset-item>
       <a-asset-item
         id="car-mtl"
-        :src="usePublic('assets/models/car/car.mtl')"
+        :src="usePublic('assets/sites/site2/car/car.mtl')"
       ></a-asset-item>
       <a-asset-item
         id="bike"
-        :src="usePublic('assets/models/bike.glb')"
+        :src="usePublic('assets/sites/site2/bike.glb')"
       ></a-asset-item>
       <img
         id="Jan1841"
@@ -126,7 +126,7 @@ const currentSlide = ref(0);
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <a-asset-item
         id="stop-sign"
-        :src="usePublic('assets/models/stop_sign.glb')"
+        :src="usePublic('assets/sites/site2/stop_sign.glb')"
       ></a-asset-item>
     </a-assets>
 

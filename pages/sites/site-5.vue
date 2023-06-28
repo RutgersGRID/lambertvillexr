@@ -62,19 +62,19 @@ async function loadSystems() {
       />
       <a-asset-item
         id="bush"
-        :src="usePublic('assets/models/bush.glb')"
+        :src="usePublic('assets/sites/site5/bush.glb')"
       ></a-asset-item>
       <a-asset-item
         id="tree-1"
-        :src="usePublic('assets/models/tree_1.glb')"
+        :src="usePublic('assets/sites/site5/tree_1.glb')"
       ></a-asset-item>
       <a-asset-item
         id="tree-2"
-        :src="usePublic('assets/models/tree_2.glb')"
+        :src="usePublic('assets/sites/site5/tree_2.glb')"
       ></a-asset-item>
       <a-asset-item
         id="tree-3"
-        :src="usePublic('assets/models/tree_3.glb')"
+        :src="usePublic('assets/sites/site5/tree_3.glb')"
       ></a-asset-item>
     </a-assets>
     <a-entity rotation="0 0 0" position="0 1 0">
