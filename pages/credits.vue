@@ -29,8 +29,9 @@ definePageMeta({
             </a>
           </li>
         </ul>
+        <p class="font-bold">Music</p>
+        <li>StreamBeats by Harris Heller</li>
         <p class="font-bold">Project Management</p>
-        <li>The City of Lambertville</li>
         <li>
           Rutger's Edward J. Bloustein School of Planning and Public Policy
         </li>

@@ -10,11 +10,16 @@ async function loadSystems() {
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/forest-grower');
+  await import('@/aframe/components/music-radio');
 }
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene
+    :load-systems="loadSystems"
+    start-title="Quarry Street Landslide"
+    start-description="Please press the start button below while facing this site's QR code."
+  >
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
       <video
@@ -76,7 +81,20 @@ async function loadSystems() {
         id="tree-3"
         :src="usePublic('assets/sites/site5/tree_3.glb')"
       ></a-asset-item>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/end-poem-smooth.wav')"
+      ></audio>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/iron-golem-vibe.wav')"
+      ></audio>
+      <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
+
+    <a-music-radio></a-music-radio>
+
+    <!-- Content -->
     <a-entity rotation="0 0 0" position="0 1 0">
       <!-- Tree TextBox -->
       <a-entity rotation="0 45 0">

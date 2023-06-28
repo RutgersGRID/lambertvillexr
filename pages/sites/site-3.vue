@@ -12,11 +12,16 @@ async function loadSystems() {
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/click-move');
   await import('@/aframe/components/text-box');
+  await import('@/aframe/components/music-radio');
 }
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene
+    :load-systems="loadSystems"
+    start-title="Union Street Bridge"
+    start-description="Please press the start button below while facing this site's QR code."
+  >
     <a-assets>
       <video
         id="trash-video"
@@ -41,7 +46,7 @@ async function loadSystems() {
       ></a-asset-item>
       <a-asset-item
         id="debris"
-        :src="usePublic('assets/sites/site3/debris_concrete_junk.glb')"
+        :src="usePublic('assets/sites/site3/debris-concrete-junk.glb')"
       >
       </a-asset-item>
       <a-asset-item
@@ -89,8 +94,19 @@ async function loadSystems() {
         description="Post-Ida Damage"
       />
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
+      <audio
+        class="music"
+        :src="usePublic('assets/music/end-poem-smooth.wav')"
+      ></audio>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/iron-golem-vibe.wav')"
+      ></audio>
+      <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
+
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
+    <a-music-radio></a-music-radio>
 
     <!-- Boat -->
     <a-entity id="close-boat-pos" position="-3 -2 -6" rotation="0 180 0">
@@ -123,6 +139,7 @@ async function loadSystems() {
         rotation="0 50 0"
       ></a-gltf-model>
     </a-entity>
+
     <!-- Content -->
     <a-entity rotation="0 -90 0" position="0 0 0">
       <!-- Text -->

@@ -10,11 +10,16 @@ async function loadSystems() {
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
+  await import('@/aframe/components/music-radio');
 }
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene
+    :load-systems="loadSystems"
+    start-title="Hibernia Firehouse"
+    start-description="Please press the start button below while facing this site's QR code."
+  >
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets
       >-->
@@ -77,7 +82,20 @@ async function loadSystems() {
         class="storymap-slide-show"
         :src="usePublic('assets/sites/site4/storymap/slide5.jpg')"
       />
+      <audio
+        class="music"
+        :src="usePublic('assets/music/end-poem-smooth.wav')"
+      ></audio>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/iron-golem-vibe.wav')"
+      ></audio>
+      <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
+
+    <a-music-radio></a-music-radio>
+
+    <!-- Content -->
     <a-entity rotation="0 0 0" position="0 1 0">
       <!-- Storymap Slideshow -->
       <a-entity rotation="0 60 0">

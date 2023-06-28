@@ -15,6 +15,7 @@ async function loadSystems() {
   await import('@/aframe/components/render-order');
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/material-override');
+  await import('@/aframe/components/music-radio');
 }
 
 function getWaterLevelFromCrest(crest: number) {
@@ -56,7 +57,11 @@ const currentSlide = ref(0);
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene
+    :load-systems="loadSystems"
+    start-title="Pittore Justice Center"
+    start-description="Please press the start button below while facing this site's QR code."
+  >
     <a-assets>
       <a-asset-item
         id="person1"
@@ -128,6 +133,15 @@ const currentSlide = ref(0);
         id="stop-sign"
         :src="usePublic('assets/sites/site2/stop_sign.glb')"
       ></a-asset-item>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/end-poem-smooth.wav')"
+      ></audio>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/iron-golem-vibe.wav')"
+      ></audio>
+      <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
 
     <a-entity rotation="0 0 0">
@@ -138,7 +152,6 @@ const currentSlide = ref(0);
         position="0 50 0"
       ></a-sky>
     </a-entity>
-
     <a-three-water
       sun-direction="0 -1 0"
       reflection-layer="31"
@@ -146,6 +159,7 @@ const currentSlide = ref(0);
       transparent="true"
       position="0 -1 0"
     ></a-three-water>
+    <a-music-radio></a-music-radio>
 
     <a-entity position="0 0 0" three-layer="layers: 1, 31">
       <!-- Models -->

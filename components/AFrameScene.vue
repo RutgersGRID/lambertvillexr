@@ -22,6 +22,7 @@ const props = withDefaults(
     arMode?: boolean;
   }>(),
   {
+    alwaysShowOverlay: true,
     arMode: undefined,
     disableArMode: false,
   }
@@ -62,7 +63,7 @@ function updateArMode() {
           scene.value.emit('enter-manual-vr');
         })
         .catch((error) => {
-          console.log('Something went wrong! ', error);
+          console.log('Could not enter AR mode: ', error);
         });
     }
   } else {
@@ -125,16 +126,26 @@ function onSceneEntered(userClicked: boolean) {
     camera.setAttribute('look-controls', 'enabled', true);
   if (cameraHasWASDControls)
     camera.setAttribute('wasd-controls', 'enabled', true);
-  const videos = scene.value.querySelectorAll<HTMLMediaElement>('video');
+  const videos = scene.value.querySelectorAll<HTMLVideoElement>('video');
+  const audios = scene.value.querySelectorAll<HTMLAudioElement>('audio');
   if (userClicked) {
-    for (let video of videos) {
+    for (const video of videos) {
       video.play();
       video.pause();
     }
 
+    for (const audio of audios) {
+      audio.play();
+      audio.pause();
+    }
+
     webcamVideo.value.play();
+
+    console.log('force playing video and audio');
   }
   emit('sceneEntered');
+  scene.value.setAttribute('scene-entered', true);
+  scene.value.emit('scene-entered');
 }
 
 function onTutorialFinished() {
@@ -170,6 +181,7 @@ function toggleArMode(active: boolean) {
           playsinline
           ref="webcamVideo"
           class="h-full w-full object-cover"
+          muted
         ></video>
       </div>
       <!-- Scene -->

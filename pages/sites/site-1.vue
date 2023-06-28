@@ -9,11 +9,16 @@ async function loadSystems() {
   await import('@/aframe/components/button');
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
+  await import('@/aframe/components/music-radio');
 }
 </script>
 
 <template>
-  <AFrameScene :load-systems="loadSystems">
+  <AFrameScene
+    :load-systems="loadSystems"
+    start-title="Delware Canal Entrance"
+    start-description="Please press the start button below while facing this site's QR code."
+  >
     <a-assets>
       <img
         class="slide-show"
@@ -46,9 +51,19 @@ async function loadSystems() {
         description="Before and after of 41 Quarry St."
       />
       <img id="pano" :src="usePublic('assets/sites/site1/pano.jpg')" />
+      <audio
+        class="music"
+        :src="usePublic('assets/music/end-poem-smooth.wav')"
+      ></audio>
+      <audio
+        class="music"
+        :src="usePublic('assets/music/iron-golem-vibe.wav')"
+      ></audio>
+      <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
 
     <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
+    <a-music-radio></a-music-radio>
 
     <!-- Content -->
     <a-entity position="0 1 0">
