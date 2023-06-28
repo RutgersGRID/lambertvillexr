@@ -15,7 +15,7 @@ function getCategoryNavLinks(category: RouteCategory) {
 
 <template>
   <div class="flex flex-col gap-8 overflow-auto">
-    <h1 class="text-2xl font-bold">Lambertville XR</h1>
+    <h1 class="text-2xl font-bold">Flowing Together</h1>
     <div v-for="category in routeCategories">
       <h2 class="font-bold pb-2">{{ category.name }}</h2>
       <UVerticalNavigation

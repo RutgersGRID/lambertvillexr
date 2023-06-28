@@ -41,9 +41,9 @@ onMounted(() => {
     class="absolute w-full h-full p-4 flex flex-col justify-center items-center"
   >
     <div class="prose dark:prose-invert text-center">
-      <h1>Lambertville XR</h1>
+      <h1>Flowing Together</h1>
       <p>
-        Welcome to the Lambertville XR site! <br />
+        Welcome to the Lambertville Flowing Together virtual tour site! <br />
         Please use the navigation below to view each site.
       </p>
     </div>

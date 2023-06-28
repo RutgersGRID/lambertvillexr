@@ -11,8 +11,9 @@ if (process.env.HIDE_DEMOS) {
 }
 
 // Social card settings
-const title = 'Lambertville XR';
-const description = 'Website for Lambertville XR walking tour.';
+const title = 'Flowing Together Virtual Tour';
+const description =
+  'Website for the Lambertville Flowing Together walking tour.';
 
 const image = '/assets/images/header.jpg';
 console.log('META_URL: ', process.env.META_URL);
@@ -25,8 +26,8 @@ export default defineNuxtConfig({
   ssr: true,
   app: {
     head: {
-      title: 'Lambertville XR',
-      titleTemplate: '%s | Lambertville XR',
+      title: 'Flowing Together',
+      titleTemplate: '%s | Flowing Together',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
