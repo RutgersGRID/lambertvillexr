@@ -2,7 +2,6 @@
 import { Entity, Scene } from 'aframe';
 import AFrameTutorial from './AFrameTutorial.vue';
 import document from '@/utils/document';
-import { watchPostEffect } from 'nuxt/dist/app/compat/capi';
 
 const route = useRoute();
 
@@ -36,11 +35,14 @@ const scene = ref<Scene>();
 let cameraHasLookControls = false;
 let cameraHasWASDControls = false;
 
-let arMode = ref(props.arMode);
+const arMode = ref(props.arMode);
 if (arMode.value === undefined) {
   if (props.disableArMode) arMode.value = false;
   else arMode.value = route.query['ar'] == 'true';
 }
+
+const musicRadio = ref<Entity>();
+const musicEnabled = ref(true);
 
 function updateArMode() {
   if (!webcamVideo.value || !scene.value) return;
@@ -116,6 +118,8 @@ onMounted(async () => {
 
   if (props.loadSystems) await props.loadSystems();
   aframeLoaded.value = true;
+
+  musicRadio.value = document.querySelector('[music-radio]');
 });
 
 function onSceneEntered(userClicked: boolean) {
@@ -140,8 +144,6 @@ function onSceneEntered(userClicked: boolean) {
     }
 
     webcamVideo.value.play();
-
-    console.log('force playing video and audio');
   }
   emit('sceneEntered');
   scene.value.setAttribute('scene-entered', true);
@@ -152,9 +154,17 @@ function onTutorialFinished() {
   showTutorial.value = false;
 }
 
-function toggleArMode(active: boolean) {
-  arMode.value = active;
+function toggleArMode() {
+  arMode.value = !arMode.value;
   updateArMode();
+}
+
+function toggleMusic() {
+  musicRadio.value = document.querySelector('[music-radio]');
+  if (!musicRadio.value) return;
+
+  musicEnabled.value = !musicEnabled.value;
+  musicRadio.value.setAttribute('music-radio', 'enabled', musicEnabled.value);
 }
 </script>
 
@@ -200,26 +210,29 @@ function toggleArMode(active: boolean) {
       </a-scene>
       <!-- AR Button -->
       <div
-        class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8"
-        v-if="!props.disableArMode"
+        class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 flex flex-row gap-4"
+        v-if="!disableArMode"
       >
         <UButton
-          v-if="!arMode"
-          UButton
-          icon="i-heroicons-play"
+          v-if="true"
+          :icon="
+            musicEnabled
+              ? 'i-heroicons-musical-note'
+              : 'i-heroicons-speaker-x-mark'
+          "
           size="xl"
-          @click="toggleArMode(true)"
+          @click="toggleMusic()"
         >
-          Enter AR
         </UButton>
+
         <UButton
-          v-if="arMode"
-          UButton
-          icon="i-heroicons-arrow-left-on-rectangle"
+          :icon="
+            arMode ? 'i-heroicons-arrow-left-on-rectangle' : 'i-heroicons-play'
+          "
           size="xl"
-          @click="toggleArMode(false)"
+          @click="toggleArMode()"
         >
-          Exit AR
+          {{ arMode ? 'Exit AR' : 'Enter AR' }}
         </UButton>
       </div>
       <!-- Enter Scene Overlay -->

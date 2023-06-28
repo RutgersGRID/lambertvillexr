@@ -8,6 +8,7 @@ export type MusicRadioComponentData = {
   musicQuery: string;
   shuffle: boolean;
   volume: number;
+  enabled: boolean;
 };
 
 @component('music-radio')
@@ -16,17 +17,22 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
     musicQuery: { default: '.music' },
     shuffle: { default: true },
     volume: { default: 0.5 },
+    enabled: { default: true },
   };
 
   audioElems: HTMLAudioElement[] = [];
   currAudioElemIndex: number = 0;
   currPlayingMediaElemCount: number = 0;
 
+  canPlay() {
+    return this.currPlayingMediaElemCount == 0;
+  }
+
   getCurrAudioElem() {
     return this.audioElems[this.currAudioElemIndex];
   }
 
-  update() {
+  init() {
     if (!this.el.sceneEl) return;
 
     this.audioElems = Array.from(
@@ -58,6 +64,16 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
     }
   }
 
+  update() {
+    if (this.canPlay()) {
+      if (!this.data.enabled) {
+        this.getCurrAudioElem().pause();
+      } else {
+        this.getCurrAudioElem().play();
+      }
+    }
+  }
+
   onSceneEntered() {
     this.setupMediaElemListeners();
     this.startSong();
@@ -65,14 +81,14 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
 
   setupMediaElemListeners() {
     const onMediaPlayed = () => {
-      if (this.currPlayingMediaElemCount == 0) {
+      if (this.data.enabled && this.canPlay()) {
         this.getCurrAudioElem().pause();
       }
       this.currPlayingMediaElemCount++;
     };
     const onMediaStopped = () => {
       this.currPlayingMediaElemCount--;
-      if (this.currPlayingMediaElemCount == 0) {
+      if (this.data.enabled && this.canPlay()) {
         this.getCurrAudioElem().play();
       }
     };
