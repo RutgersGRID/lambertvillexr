@@ -12,6 +12,7 @@ async function loadSystems() {
   await import('@/aframe/components/click-move');
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/music-radio');
+  await import('@/aframe/components/three-layer');
 }
 </script>
 
@@ -103,92 +104,97 @@ async function loadSystems() {
       ></audio>
       <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
-
-    <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
+    <a-sky
+      src="#pano"
+      rotation="11.7 0 0"
+      three-layer="desktopLayers: 1"
+    ></a-sky>
     <a-music-radio></a-music-radio>
 
-    <!-- Boat -->
-    <a-entity id="close-boat-pos" position="-3 -2 -6" rotation="0 180 0">
-    </a-entity>
-    <a-entity
-      rotation="0 20 0"
-      position="-23 -2 -15"
-      click-move="toEntity: #close-boat-pos; spinOnToEntity: true"
-    >
-      <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
+    <a-entity three-layer="layers: 1">
+      <a-entity id="close-boat-pos" position="-3 -2 -6" rotation="0 180 0">
+      </a-entity>
+      <a-entity
+        rotation="0 20 0"
+        position="-23 -2 -15"
+        click-move="toEntity: #close-boat-pos; spinOnToEntity: true"
+      >
+        <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
+          <a-gltf-model
+            src="#boat"
+            position="5.422 -1.64306 8.59925"
+          ></a-gltf-model>
+        </a-entity>
         <a-gltf-model
-          src="#boat"
-          position="5.422 -1.64306 8.59925"
+          src="#debris"
+          position="0 -3 3"
+          scale="1.3 1.3 1.3"
+        ></a-gltf-model>
+        <a-gltf-model
+          src="#debris"
+          position="0 -3 -3"
+          scale="1.3 1.3 1.3"
+        ></a-gltf-model>
+        <a-gltf-model
+          src="#slab"
+          scale="0.5 0.5 0.5"
+          position="2.5 -1 1.5"
+          rotation="0 50 0"
         ></a-gltf-model>
       </a-entity>
-      <a-gltf-model
-        src="#debris"
-        position="0 -3 3"
-        scale="1.3 1.3 1.3"
-      ></a-gltf-model>
-      <a-gltf-model
-        src="#debris"
-        position="0 -3 -3"
-        scale="1.3 1.3 1.3"
-      ></a-gltf-model>
-      <a-gltf-model
-        src="#slab"
-        scale="0.5 0.5 0.5"
-        position="2.5 -1 1.5"
-        rotation="0 50 0"
-      ></a-gltf-model>
-    </a-entity>
 
-    <!-- Content -->
-    <a-entity rotation="0 -90 0" position="0 0 0">
-      <!-- Text -->
-      <a-entity rotation="0 0 0">
-        <a-text-box
-          width="3"
-          height="3"
-          position="0 0 -8"
-          :title="title"
-          description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
-        ></a-text-box>
+      <!-- Content -->
+      <a-entity rotation="0 -90 0" position="0 0 0">
+        <!-- Text -->
+        <a-entity rotation="0 0 0">
+          <a-text-box
+            width="3"
+            height="3"
+            position="0 0 -8"
+            title="Site 3"
+            description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
+          ></a-text-box>
+        </a-entity>
+        <!-- Video -->
+        <a-entity rotation="0 -60 0">
+          <a-playback-video
+            src="#trash-video"
+            position="0 0 -8"
+          ></a-playback-video>
+        </a-entity>
+        <!-- Slideshow -->
+        <a-entity rotation="0 -125 0">
+          <a-slide-show
+            position="0 0 -8"
+            image-query=".slide-show"
+            autoplay="true"
+          ></a-slide-show>
+        </a-entity>
+        <!-- Boat Text -->
+        <a-entity rotation="0 -180 0">
+          <a-text-box
+            width="4"
+            height="3"
+            position="0 0 -8"
+            title="Rising Tides"
+            description="During Hurricane Irene in 2011, the upstream balustrade was destroyed when, due to the rising waters in the creek, a boat crashed over the top of the bridge and landed in the street.\n\nA virtual recreation of the boat has been made at the crash site.\nClick on the virtual boat to view it up close."
+          >
+          </a-text-box>
+        </a-entity>
+        <!-- Interview Audio -->
+        <a-entity rotation="0 -320 0">
+          <a-audio-player src="#interview" position="0 0 -8"></a-audio-player>
+        </a-entity>
       </a-entity>
-      <!-- Video -->
-      <a-entity rotation="0 -60 0">
-        <a-playback-video
-          src="#trash-video"
-          position="0 0 -8"
-        ></a-playback-video>
+      <a-entity
+        camera
+        look-controls="pointerLockEnabled: true"
+        wasd-controls="enabled:false"
+        position="0 1.6 0"
+        three-layer="layers: 1"
+      >
+        <a-animated-cursor></a-animated-cursor>
       </a-entity>
-      <!-- Slideshow -->
-      <a-entity rotation="0 -125 0">
-        <a-slide-show
-          position="0 0 -8"
-          image-query=".slide-show"
-          autoplay="true"
-        ></a-slide-show>
-      </a-entity>
-      <!-- Boat Text -->
-      <a-entity rotation="0 -180 0">
-        <a-text-box
-          width="4"
-          height="3"
-          position="0 0 -8"
-          title="Rising Tides"
-          description="During Hurricane Irene in 2011, the upstream balustrade was destroyed when, due to the rising waters in the creek, a boat crashed over the top of the bridge and landed in the street.\n\nA virtual recreation of the boat has been made at the crash site.\nClick on the virtual boat to view it up close."
-        >
-        </a-text-box>
-      </a-entity>
-      <!-- Interview Audio -->
-      <a-entity rotation="0 -320 0">
-        <a-audio-player src="#interview" position="0 0 -8"></a-audio-player>
-      </a-entity>
-    </a-entity>
-    <a-entity
-      camera
-      look-controls="pointerLockEnabled: true"
-      wasd-controls="enabled:false"
-      position="0 1.6 0"
-    >
-      <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
 </template>
