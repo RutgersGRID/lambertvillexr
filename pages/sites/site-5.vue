@@ -11,6 +11,7 @@ async function loadSystems() {
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/forest-grower');
   await import('@/aframe/components/music-radio');
+  await import('@/aframe/components/three-layer');
 }
 </script>
 
@@ -20,7 +21,7 @@ async function loadSystems() {
     start-title="Quarry Street Landslide"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
+    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
     <a-assets>
       <video
         id="tree"
@@ -95,7 +96,7 @@ async function loadSystems() {
     <a-music-radio></a-music-radio>
 
     <!-- Content -->
-    <a-entity rotation="0 0 0" position="0 1 0">
+    <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
       <!-- Tree TextBox -->
       <a-entity rotation="0 45 0">
         <a-text-box
@@ -168,6 +169,7 @@ async function loadSystems() {
       look-controls="pointerLockEnabled: true"
       wasd-controls="enabled:false"
       position="0 1.6 0"
+      three-layer="layers: 1"
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>

@@ -10,6 +10,7 @@ async function loadSystems() {
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/music-radio');
+  await import('@/aframe/components/three-layer');
 }
 </script>
 
@@ -62,11 +63,15 @@ async function loadSystems() {
       <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
 
-    <a-sky src="#pano" rotation="11.7 0 0"></a-sky>
+    <a-sky
+      src="#pano"
+      rotation="11.7 0 0"
+      three-layer="desktopLayers: 1"
+    ></a-sky>
     <a-music-radio></a-music-radio>
 
     <!-- Content -->
-    <a-entity position="0 1 0">
+    <a-entity position="0 1 0" three-layer="layers: 1">
       <!-- Slide show -->
       <a-entity rotation="0 10 0">
         <a-slide-show
@@ -94,6 +99,7 @@ async function loadSystems() {
       look-controls="pointerLockEnabled: true"
       wasd-controls
       position="0 1.6 0"
+      three-layer="layers: 1"
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>

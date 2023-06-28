@@ -12,6 +12,7 @@ async function loadSystems() {
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/material-override');
   await import('@/aframe/components/music-radio');
+  await import('@/aframe/components/three-layer');
 }
 </script>
 
@@ -21,7 +22,7 @@ async function loadSystems() {
     start-title="Curley Lane Blue Acres"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
+    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
     <a-assets>
       <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
       <audio
@@ -89,7 +90,7 @@ async function loadSystems() {
     <a-music-radio></a-music-radio>
 
     <!-- People -->
-    <a-entity material-override="color: black">
+    <a-entity material-override="color: black" three-layer="layers: 1">
       <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>
       <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
       <a-gltf-model src="#Person3" position="3 -3 -25"></a-gltf-model>
@@ -97,9 +98,9 @@ async function loadSystems() {
       <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
       <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
     </a-entity>
-
+    
     <!-- Content -->
-    <a-entity rotation="0 -90 0">
+    <a-entity rotation="0 -90 0" three-layer="layers: 1">
       <!-- Interview Audio -->
       <a-entity rotation="0 200 0">
         <a-audio-player
@@ -132,6 +133,7 @@ async function loadSystems() {
       look-controls="pointerLockEnabled: true"
       wasd-controls="enabled:true"
       position="0 1.6 0"
+      three-layer="layers: 1"
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>

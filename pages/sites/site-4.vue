@@ -11,6 +11,7 @@ async function loadSystems() {
   await import('@/aframe/components/slide-show');
   await import('@/aframe/components/text-box');
   await import('@/aframe/components/music-radio');
+  await import('@/aframe/components/three-layer');
 }
 </script>
 
@@ -20,9 +21,8 @@ async function loadSystems() {
     start-title="Hibernia Firehouse"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
-    <a-assets
-      >-->
+    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
+    <a-assets>
       <audio
         id="interview"
         :src="usePublic('assets/sites/site4/interview4.mp3')"
@@ -94,9 +94,9 @@ async function loadSystems() {
     </a-assets>
 
     <a-music-radio></a-music-radio>
-
+    
     <!-- Content -->
-    <a-entity rotation="0 0 0" position="0 1 0">
+    <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
       <!-- Storymap Slideshow -->
       <a-entity rotation="0 60 0">
         <a-slide-show
@@ -142,6 +142,7 @@ async function loadSystems() {
       look-controls="pointerLockEnabled: true"
       wasd-controls
       position="0 1.6 0"
+      three-layer="layers: 1"
     >
       <a-animated-cursor></a-animated-cursor>
     </a-entity>
