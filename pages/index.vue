@@ -1,11 +1,27 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   pageName: 'Home',
+});
+
+const heroVideo = ref<HTMLVideoElement>();
+const lowPowerMode = ref(false);
+onMounted(() => {
+  if (!heroVideo.value) return;
+  heroVideo.value.addEventListener('suspend', () => {
+    lowPowerMode.value = true;
+  });
 });
 </script>
 
 <template>
+  <img
+    v-if="lowPowerMode"
+    :src="usePublic('assets/images/lambertville-drone.png')"
+    class="absolute w-full h-full object-cover"
+  />
   <video
+    v-else
+    ref="heroVideo"
     autoplay
     muted
     playsinline
