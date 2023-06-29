@@ -10,21 +10,21 @@ async function loadSystems() {
     <a-sun-sky material="sunPosition: -0.2 4 -5"></a-sun-sky>
     <a-assets>
       <video
-        id="avocado-video"
+        id="drone-video"
         preload="auto"
+        loop="true"
         width="160"
         height="90"
-        loop="true"
         :src="usePublic('assets/videos/lambertville-drone.mp4')"
         crossorigin="anonymous"
         title="This is a Title"
       ></video>
       <video
-        id="avocado-video2"
+        id="drone-video2"
         preload="auto"
+        loop="true"
         width="160"
         height="90"
-        loop="true"
         :src="usePublic('assets/videos/lambertville-drone.mp4')"
         crossorigin="anonymous"
         title="This is a Title"
@@ -33,21 +33,21 @@ async function loadSystems() {
       <video
         id="trash-video"
         preload="auto"
+        loop="true"
         width="160"
         height="90"
-        loop="true"
         :src="usePublic('assets/videos/trash-video.mp4')"
         crossorigin="anonymous"
       ></video>
     </a-assets>
 
     <a-playback-video
-      src="#avocado-video"
+      src="#drone-video"
       position="0 0 -20"
       rotation="0 0 0"
     ></a-playback-video>
     <a-playback-video
-      src="#avocado-video2"
+      src="#drone-video2"
       position="20 3 -20"
       rotation="0 -35 0"
       width="32"

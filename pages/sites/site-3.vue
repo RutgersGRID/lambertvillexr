@@ -26,8 +26,6 @@ async function loadSystems() {
       <video
         id="trash-video"
         preload="auto"
-        width="160"
-        height="90"
         loop="true"
         :src="usePublic('assets/sites/site3/trash-video.mp4')"
         crossorigin="anonymous"

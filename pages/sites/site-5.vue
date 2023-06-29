@@ -22,16 +22,20 @@ async function loadSystems() {
     :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
+    <a-sun-sky
+      material="sunPosition: -0.2 4 -5"
+      three-layer="desktopLayers: 1"
+    ></a-sun-sky>
     <a-assets>
       <video
         id="tree"
         preload="auto"
+        loop
         width="160"
         height="90"
-        loop="true"
         :src="usePublic('assets/sites/site5/tree.mp4')"
-        crossorigin="anonymous"
+        playsinline
+        muted
         description="Rendering of future vegetation growth on the side of the landslide."
       ></video>
       <!-- Landslide Slide Show -->
