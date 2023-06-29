@@ -111,17 +111,21 @@ async function loadSystems() {
     <a-music-radio></a-music-radio>
 
     <!-- People -->
-    <a-entity material-override="color: black" three-layer="layers: 1">
-      <a-gltf-model src="#Person1" position="10 -1 -15"></a-gltf-model>
+    <a-entity
+      material-override="color: black"
+      three-layer="layers: 1"
+      position="-50 0 -20"
+    >
+      <a-gltf-model src="#Person1" position="20 -12 0"></a-gltf-model>
       <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
-      <a-gltf-model src="#Person3" position="3 -3 -25"></a-gltf-model>
-      <a-gltf-model src="#Person4" position="4 -4 -35"></a-gltf-model>
-      <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
-      <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
+      <a-gltf-model src="#Person3" position="34 -9 -25"></a-gltf-model>
+      <a-gltf-model src="#Person4" position="-4 -8 -35"></a-gltf-model>
+      <a-gltf-model src="#Person5" position="12 -5 -45"></a-gltf-model>
+      <a-gltf-model src="#Person6" position="3 -7 -65"></a-gltf-model>
     </a-entity>
 
     <!-- Content -->
-    <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
+    <a-entity rotation="0 50 0" position="0 1 0" three-layer="layers: 1">
       <!-- Interview Audio -->
       <a-entity rotation="0 -100 0">
         <a-audio-player
