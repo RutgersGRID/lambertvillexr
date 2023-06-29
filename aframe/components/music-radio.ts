@@ -23,8 +23,9 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
   audioElems: HTMLAudioElement[] = [];
   currAudioElemIndex: number = 0;
   currPlayingMediaElemCount: number = 0;
+  initialAudioSetup: boolean = false;
 
-  canPlay() {
+  noMediaAlreadyPlaying() {
     return this.currPlayingMediaElemCount == 0;
   }
 
@@ -54,8 +55,9 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
       ? Math.floor(Math.random() * this.audioElems.length)
       : 0;
 
-    if (this.el.sceneEl.getAttribute('scene-entered')) this.onSceneEntered();
-    else {
+    if (this.el.sceneEl.getAttribute('scene-entered')) {
+      this.onSceneEntered();
+    } else {
       this.el.sceneEl.addEventListener('scene-entered', () => {
         setTimeout(() => {
           this.onSceneEntered();
@@ -65,7 +67,7 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
   }
 
   update() {
-    if (this.canPlay()) {
+    if (this.initialAudioSetup && this.noMediaAlreadyPlaying()) {
       if (!this.data.enabled) {
         this.getCurrAudioElem().pause();
       } else {
@@ -77,18 +79,19 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
   onSceneEntered() {
     this.setupMediaElemListeners();
     this.startSong();
+    this.initialAudioSetup = true;
   }
 
   setupMediaElemListeners() {
     const onMediaPlayed = () => {
-      if (this.data.enabled && this.canPlay()) {
+      if (this.data.enabled && this.noMediaAlreadyPlaying()) {
         this.getCurrAudioElem().pause();
       }
       this.currPlayingMediaElemCount++;
     };
     const onMediaStopped = () => {
       this.currPlayingMediaElemCount--;
-      if (this.data.enabled && this.canPlay()) {
+      if (this.data.enabled && this.noMediaAlreadyPlaying()) {
         this.getCurrAudioElem().play();
       }
     };
