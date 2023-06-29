@@ -55,24 +55,41 @@ async function loadSystems() {
         id="Person6"
         :src="usePublic('assets/sites/site6/Person6.glb')"
       ></a-asset-item>
+      <!-- Rendering Slide Show -->
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide4.jpg')"
+        class="render-slide-show"
+        :src="usePublic('assets/sites/site6/renders/slide1.png')"
+        description="Curley Lane Blue Acres site after the two houses were destoryed by flooding."
+      />
+      <img
+        class="render-slide-show"
+        :src="usePublic('assets/sites/site6/renders/slide2.png')"
+        description="Curley Lane Blue Acres site reimagined with native plantings."
+      />
+      <img
+        class="render-slide-show"
+        :src="usePublic('assets/sites/site6/renders/slide3.png')"
+        description="Curley Lane Blue Acres site reimagined as a naturalized park."
+      />
+      <!-- Photo Slide Show -->
+      <img
+        class="photo-slide-show"
+        :src="usePublic('assets/sites/site6/photos/slide4.jpg')"
         description="A high tide flood caused by Hurricane Ida."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide5.jpg')"
+        class="photo-slide-show"
+        :src="usePublic('assets/sites/site6/photos/slide5.jpg')"
         description="Viewing an ongoing flood from inside."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide7.jpg')"
+        class="photo-slide-show"
+        :src="usePublic('assets/sites/site6/photos/slide7.jpg')"
         description="The Rosso family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
       />
       <img
-        class="slide-show"
-        :src="usePublic('assets/sites/site6/slide8.jpg')"
+        class="photo-slide-show"
+        :src="usePublic('assets/sites/site6/photos/slide8.jpg')"
         description="Two houses at Curley Lane Blue Acres collapsed after flooding caused by Hurricane Ida."
       />
       <audio
@@ -89,7 +106,7 @@ async function loadSystems() {
     <a-sky
       src="#pano"
       three-layer="desktopLayers: 1"
-      rotation="11.7 0 0"
+      rotation="11.7 130 0"
     ></a-sky>
     <a-music-radio></a-music-radio>
 
@@ -103,42 +120,61 @@ async function loadSystems() {
       <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
     </a-entity>
 
-    <!-- TODO NOW: Add description for text boxes -->
-
     <!-- Content -->
-    <a-entity rotation="0 -90 0" three-layer="layers: 1">
+    <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
       <!-- Interview Audio -->
-      <a-entity rotation="0 200 0">
+      <a-entity rotation="0 -100 0">
         <a-audio-player
           src="#interview"
-          position="0 1.6 -8"
+          position="0 0 -6"
           title="Interview"
-          description-width="2.5"
+          description-width="2.2"
         ></a-audio-player>
       </a-entity>
-      <!-- Slideshow -->
-      <a-entity rotation="0 140 0">
-        <a-slide-show
-          position="0 1.6 -8"
-          image-query=".slide-show"
-          autoplay="true"
-          description-height="3"
-        ></a-slide-show>
+      <!-- Text Box -->
+      <a-entity rotation="0 40 0">
+        <a-text-box
+          width="3"
+          height="3"
+          position="0 1.5 -6"
+          :title="title"
+          description="Interact with the slides and audio to learn about the devastation caused by flooding at Curley Lane Blue Acres."
+        ></a-text-box>
       </a-entity>
-    </a-entity>
-    <a-entity rotation="0 -60 0">
-      <a-text-box
-        width="3"
-        height="3"
-        position="0 1.6 -8"
-        :title="title"
-        description="Interact with the slides and audio to learn about the devastation caused by flooding at Curley Lane Blue Acres."
-      ></a-text-box>
+      <a-entity rotation="0 40 0">
+        <a-text-box
+          position="-1 -1 -6"
+          width="5"
+          height="3"
+          title="Swan Creek Flooding"
+          description="Although not located in a designated flood zone, the homes at 2 Curley Lane and 4 Curley Lane were destroyed by the flooding of Swan Creek during Hurricane Ida and have since been removed.\n\nSpecific plans for this site have not yet been made, though one idea includes a naturalized park where visitors can enjoy the creek and sylvan views."
+        ></a-text-box>
+        <a-entity rotation="0 80 0">
+          <!-- Photo Slide Show -->
+          <a-slide-show
+            position="0 4 -6"
+            rotation="10 0 0"
+            image-query=".photo-slide-show"
+            autoplay="true"
+            autoplay-duration="5000"
+            description-height="3"
+          ></a-slide-show>
+          <!-- Render Slide Show -->
+          <a-slide-show
+            rotation="-10 0 0"
+            position="0 -2 -6"
+            image-query=".render-slide-show"
+            autoplay="true"
+            autoplay-duration="5000"
+            description-height="3"
+          ></a-slide-show>
+        </a-entity>
+      </a-entity>
     </a-entity>
     <a-entity
       camera
       look-controls="pointerLockEnabled: true"
-      wasd-controls="enabled:true"
+      wasd-controls="enabled:false"
       position="0 1.6 0"
       three-layer="layers: 1"
     >

@@ -104,71 +104,72 @@ async function loadSystems() {
 
     <!-- Content -->
     <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
-      <!-- Tree TextBox -->
-      <a-entity rotation="0 45 0">
+      <a-entity rotation="0 0 0">
+        <!-- Trees -->
+        <a-entity rotation="0 90 0">
+          <a-entity
+            position="0 5 -23"
+            rotation="0 0 0"
+            forest-grower="forestScale: 1"
+          >
+            <AFrameTreeGroup
+              position="14 0 -5"
+              rotation="0 -30 0"
+            ></AFrameTreeGroup>
+            <AFrameTreeGroup
+              position="7 0 0"
+              rotation="0 70 0"
+            ></AFrameTreeGroup>
+            <AFrameTreeGroup
+              position="-7 0 0"
+              rotation="0 -30 0"
+            ></AFrameTreeGroup>
+            <AFrameTreeGroup position="0 0 0"></AFrameTreeGroup>
+            <AFrameTreeGroup
+              position="-14 0 -5"
+              rotation="0 -30 0"
+            ></AFrameTreeGroup>
+          </a-entity>
+        </a-entity>
+        <!-- Tree TextBox -->
         <a-text-box
           width="5.5"
           height="3"
-          position="0 0 -8"
+          position="0 -1.5 -6"
           title="Green Infrastructure"
           description="During Hurricane Ida in 2021, a significant landslide occurred at this steep slope, bringing down large trees, crushing vehicles and narrowly missing homes. \n\nAfter clearing the debris, the City and community replanted numerous native trees, and shrubs to restore the landscape and prevent future landslides. \n\nThe virtual recreation on the left visualizes the future of the landslide zone as the newly planted vegetation takes root."
         ></a-text-box>
-      </a-entity>
-      <!-- Trees -->
-      <a-entity rotation="0 90 0">
-        <a-entity
-          position="0 5 -23"
-          rotation="0 0 0"
-          forest-grower="forestScale: 1"
-        >
-          <AFrameTreeGroup
-            position="14 0 -5"
-            rotation="0 -30 0"
-          ></AFrameTreeGroup>
-          <AFrameTreeGroup position="7 0 0" rotation="0 70 0"></AFrameTreeGroup>
-          <AFrameTreeGroup
-            position="-7 0 0"
-            rotation="0 -30 0"
-          ></AFrameTreeGroup>
-          <AFrameTreeGroup position="0 0 0"></AFrameTreeGroup>
-          <AFrameTreeGroup
-            position="-14 0 -5"
-            rotation="0 -30 0"
-          ></AFrameTreeGroup>
-        </a-entity>
-      </a-entity>
-      <!-- TextBox -->
-      <a-entity rotation="0 0 0">
+        <!-- Textbox -->
         <a-text-box
           width="3"
           height="3"
-          position="0 0 -8"
+          position="1 1.5 -6"
           :title="title"
           description="Interact with the slides and view the tree growth visualization to learn about the past and future of Quarry Street Lane."
         ></a-text-box>
       </a-entity>
-      <!-- Landslide Slideshow -->
-      <a-entity rotation="0 -50 0">
+      <a-entity rotation="0 -80 0">
+        <!-- Landslide Slideshow -->
         <a-slide-show
-          position="0 0 -8"
+          position="0 3 -6"
+          rotation="10 0 0"
           image-query=".landslide-slide-show"
           autoplay="true"
           description-height="3"
         ></a-slide-show>
-      </a-entity>
-      <!-- Video -->
-      <a-entity rotation="0 -120 0">
-        <a-playback-video src="#tree" position="0 0 -8"></a-playback-video>
-      </a-entity>
-      <!-- Storymap Slideshow -->
-      <a-entity rotation="0 -185 0">
+        <!-- Storymap Slideshow -->
         <a-slide-show
-          position="0 0 -8"
+          position="0 -3 -6"
+          rotation="-10 0 0"
           image-query=".storymap-slide-show"
           show-controls="false"
           autoplay="true"
           description-height="3"
         ></a-slide-show>
+        <!-- Video -->
+        <a-entity rotation="0 -80 0">
+          <a-playback-video src="#tree" position="0 0 -6"></a-playback-video>
+        </a-entity>
       </a-entity>
     </a-entity>
     <a-entity
