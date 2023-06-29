@@ -6,7 +6,6 @@ definePageMeta({
 
 async function loadSystems() {
   //@ts-ignore
-  await import('aframe-sun-sky');
   await import('@/aframe/components/button');
   await import('@/aframe/components/audio-player');
   await import('@/aframe/components/slide-show');
@@ -23,12 +22,8 @@ async function loadSystems() {
     :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky
-      material="sunPosition: -0.2 4 -5"
-      three-layer="desktopLayers: 1"
-    ></a-sun-sky>
     <a-assets>
-      <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
+      <img id="pano" :src="usePublic('assets/sites/site6/pano.jpg')" />
       <audio
         id="interview"
         :src="usePublic('assets/sites/site6/interview6.mp3')"
@@ -91,6 +86,11 @@ async function loadSystems() {
       <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
 
+    <a-sky
+      src="#pano"
+      three-layer="desktopLayers: 1"
+      rotation="11.7 0 0"
+    ></a-sky>
     <a-music-radio></a-music-radio>
 
     <!-- People -->

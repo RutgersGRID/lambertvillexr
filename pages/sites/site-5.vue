@@ -22,11 +22,8 @@ async function loadSystems() {
     :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky
-      material="sunPosition: -0.2 4 -5"
-      three-layer="desktopLayers: 1"
-    ></a-sun-sky>
     <a-assets>
+      <img id="pano" :src="usePublic('assets/sites/site5/pano.jpg')" />
       <video
         id="tree"
         preload="auto"
@@ -98,6 +95,11 @@ async function loadSystems() {
       <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
 
+    <a-sky
+      src="#pano"
+      three-layer="desktopLayers: 1"
+      rotation="11.7 90 0"
+    ></a-sky>
     <a-music-radio></a-music-radio>
 
     <!-- Content -->
@@ -115,7 +117,7 @@ async function loadSystems() {
       <!-- Trees -->
       <a-entity rotation="0 90 0">
         <a-entity
-          position="0 0 -15"
+          position="0 5 -23"
           rotation="0 0 0"
           forest-grower="forestScale: 1"
         >

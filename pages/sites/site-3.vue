@@ -104,6 +104,7 @@ async function loadSystems() {
       ></audio>
       <audio class="music" :src="usePublic('assets/music/new-me.wav')"></audio>
     </a-assets>
+
     <a-sky
       src="#pano"
       rotation="11.7 0 0"
