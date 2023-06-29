@@ -84,13 +84,32 @@ async function loadSystems() {
         ></a-slide-show>
       </a-entity>
       <!-- Text box -->
-      <a-entity rotation="0 0 0">
+      <a-entity rotation="0 -60 0">
         <a-text-box
           width="3"
           height="3"
-          position="0 0 -8"
+          position="0 0.4 -6"
           :title="title"
           description="Interact with the slides to learn about the Delaware Canal Enterence."
+        ></a-text-box>
+      </a-entity>
+      <!--Text Box-->
+      <a-entity rotation="0 -10 0">
+        <a-text-box
+          width="5"
+          height="4.5"
+          position="0 1.5 -6"
+          title="Humble Beginnings"
+          description="Looking toward the river, try to imagine a small, flat-bottomed ferry carrying horses, people and goods from the eastern bank of the Delaware to the other side. From about 1732, this was Coryell’s Ferry. There was no canal —only a narrow creek tumbling to the river, a few humble dwellings and one or two commercial establishments."
+        ></a-text-box>
+      </a-entity>
+      <a-entity rotation="0 -10 0">
+        <a-text-box
+          width="5"
+          height="4.5"
+          position="0 -1.5 -6"
+          title="Urbanization"
+          description="Now, skip forward to the 1834 opening of the Delaware and Raritan Feeder Canal and see barges laden with Pennsylvania coal being pulled by mules, the cargo bound for Trenton, New York City, and beyond. The Belvedere-Delaware railroad came in 1851 and with it more people and significant opportunity. By 1872, Lambertville’s population had swelled to its peak of 4,637—600 more than present day. "
         ></a-text-box>
       </a-entity>
     </a-entity>
