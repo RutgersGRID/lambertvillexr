@@ -108,8 +108,8 @@ async function loadSystems() {
         <!-- Trees -->
         <a-entity rotation="0 90 0">
           <a-entity
-            position="0 5 -23"
-            rotation="0 0 0"
+            position="-4 5 -23"
+            rotation="0 0 4"
             forest-grower="forestScale: 1"
           >
             <AFrameTreeGroup
