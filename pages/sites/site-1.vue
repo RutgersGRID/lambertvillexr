@@ -26,25 +26,25 @@ async function loadSystems() {
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide1.jpg')"
         title="Delaware River"
-        description="The river has helped Lambertville's rich history."
+        description="The river has shaped Lambertville's history."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide2.jpg')"
         title="Lambertville Station"
-        description="The Lambertville station being reconstructed into an hotel and inn. "
+        description="The Lambertville station was reconstructed into an hotel and inn. "
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide3.jpg')"
         title="ACME Building"
-        description="The Lambertville ACME screening room being reconstructed into Justice Center."
+        description="The Lambertville ACME screening room was reconstructed into the Justice Center."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site1/slide4.jpg')"
         title="Hibernia Firehouse"
-        description="The Hibernia Firehouse has become a major site of history. Now rumored its being sold."
+        description="The Hibernia Firehouse has become an important historical stie at Lambertville."
       />
       <img
         class="slide-show"
@@ -74,7 +74,7 @@ async function loadSystems() {
     <!-- Content -->
     <a-entity position="0 1 0" three-layer="layers: 1">
       <!-- Slide show -->
-      <a-entity rotation="0 10 0">
+      <a-entity rotation="0 50 0">
         <a-slide-show
           position="0 0 -8"
           height="6"
@@ -84,13 +84,13 @@ async function loadSystems() {
         ></a-slide-show>
       </a-entity>
       <!-- Text box -->
-      <a-entity rotation="0 100 0">
+      <a-entity rotation="0 0 0">
         <a-text-box
           width="3"
           height="3"
           position="0 0 -8"
           :title="title"
-          description="Interact with the slides and audio to learn about the Delaware Canal Enterence."
+          description="Interact with the slides to learn about the Delaware Canal Enterence."
         ></a-text-box>
       </a-entity>
     </a-entity>

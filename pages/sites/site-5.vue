@@ -42,17 +42,17 @@ async function loadSystems() {
       <img
         class="landslide-slide-show"
         :src="usePublic('assets/sites/site5/landslide/slide1.jpg')"
-        description="Landslide causes major damage to the area."
+        description="The landslide caused major damage to the area."
       />
       <img
         class="landslide-slide-show"
         :src="usePublic('assets/sites/site5/landslide/slide3.jpg')"
-        description="Landslide causes major damage to the area."
+        description="The landslide caused major damage to the area."
       />
       <img
         class="landslide-slide-show"
         :src="usePublic('assets/sites/site5/landslide/slide4.jpg')"
-        description="Trees, shrubs and graases were grown to restore the landscape and prevent future landslides."
+        description="Trees, shrubs and grasses were grown to restore the landscape and prevent future landslides."
       />
       <!-- Storymap Slide Show -->
       <img
@@ -108,7 +108,7 @@ async function loadSystems() {
           width="5.5"
           height="3"
           position="0 0 -8"
-          title="Green Infrastruce"
+          title="Green Infrastructure"
           description="During Hurricane Ida in 2021, a significant landslide occurred at this steep slope, bringing down large trees, crushing vehicles and narrowly missing homes. \n\nAfter clearing the debris, the City and community replanted numerous native trees, and shrubs to restore the landscape and prevent future landslides. \n\nThe virtual recreation on the left visualizes the future of the landslide zone as the newly planted vegetation takes root."
         ></a-text-box>
       </a-entity>
@@ -142,7 +142,7 @@ async function loadSystems() {
           height="3"
           position="0 0 -8"
           :title="title"
-          description="Interact with the slides and view the tree growth plan to learn about the past and future of Quarry Street Lane."
+          description="Interact with the slides and view the tree growth visualization to learn about the past and future of Quarry Street Lane."
         ></a-text-box>
       </a-entity>
       <!-- Landslide Slideshow -->

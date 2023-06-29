@@ -27,6 +27,8 @@ async function loadSystems() {
         id="trash-video"
         preload="auto"
         loop="true"
+        width="160"
+        height="90"
         :src="usePublic('assets/sites/site3/trash-video.mp4')"
         crossorigin="anonymous"
         description="View the cleanup efforts after Hurricane Ida"
@@ -109,12 +111,13 @@ async function loadSystems() {
     ></a-sky>
     <a-music-radio></a-music-radio>
 
-    <a-entity three-layer="layers: 1">
+    <a-entity three-layer="layers: 1" rotation="0 90 0">
+      <!-- Boat -->
       <a-entity id="close-boat-pos" position="-3 -2 -6" rotation="0 180 0">
       </a-entity>
       <a-entity
         rotation="0 20 0"
-        position="-23 -2 -15"
+        position="-24 -2 -20"
         click-move="toEntity: #close-boat-pos; spinOnToEntity: true"
       >
         <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
@@ -184,15 +187,15 @@ async function loadSystems() {
           <a-audio-player src="#interview" position="0 0 -8"></a-audio-player>
         </a-entity>
       </a-entity>
-      <a-entity
-        camera
-        look-controls="pointerLockEnabled: true"
-        wasd-controls="enabled:false"
-        position="0 1.6 0"
-        three-layer="layers: 1"
-      >
-        <a-animated-cursor></a-animated-cursor>
-      </a-entity>
+    </a-entity>
+    <a-entity
+      camera
+      look-controls="pointerLockEnabled: true"
+      wasd-controls="enabled:false"
+      position="0 1.6 0"
+      three-layer="layers: 1"
+    >
+      <a-animated-cursor></a-animated-cursor>
     </a-entity>
   </AFrameScene>
 </template>

@@ -99,7 +99,7 @@ const currentSlide = ref(0);
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Mar1936.jpg')"
         title="March 1936"
-        description="Two successive rainstorms combined with snowmelt resulted in floods through New Jersey."
+        description="Two successive rainstorms combined with snowmelt resulted in floods throughout New Jersey."
       />
       <img
         id="Aug1955"
@@ -120,14 +120,14 @@ const currentSlide = ref(0);
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Apr2005.jpg')"
         title="April 2005"
-        description="The Delaware River flodded due to snow melt and unusually high precipitation."
+        description="The Delaware River flooded due to snow melt and unusually high precipitation."
       />
       <img
         id="Jun2006"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Jun2006.jpg')"
         title="June 2006"
-        description="FLood conditions resulted from a month of above-avaerage rainfall combined with a slow moving storm."
+        description="A month of above-avaerage rainfall combined with a slow moving storm created the perfect flood conditions."
       />
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <a-asset-item
@@ -150,7 +150,6 @@ const currentSlide = ref(0);
         src="#pano"
         three-layer="layers: 31; desktopLayers: 1;"
         rotation="11.7 0 0"
-        position="0 50 0"
       ></a-sky>
     </a-entity>
     <a-three-water
@@ -162,11 +161,11 @@ const currentSlide = ref(0);
     ></a-three-water>
     <a-music-radio></a-music-radio>
 
-    <a-entity position="0 0 0" three-layer="layers: 1, 31">
+    <a-entity position="0 0 0" rotation="0 70 0" three-layer="layers: 1, 31">
       <!-- Models -->
-      <a-entity position="0 0 0" rotation="0 70 0">
+      <a-entity position="0 0 0" rotation="0 -190 0">
         <a-entity
-          position="0 0 -6"
+          position="0 0 -6.5"
           rotation="0 -50 0"
           animation__rotation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 30000; easing: linear"
         >
@@ -248,7 +247,7 @@ const currentSlide = ref(0);
             height="3"
             position="0 2.5 -6"
             :title="title"
-            description="Click on the buttons below to view water levels at the Pittore Justice center during various flooding events. A virtual model of a street is displayed on the left for reference."
+            description="Click on the buttons below to view water levels at the Pittore Justice center during various flooding events. A virtual model of a street is displayed on the right for reference."
           ></a-text-box>
         </a-entity>
 

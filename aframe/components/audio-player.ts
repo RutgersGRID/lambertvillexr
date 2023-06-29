@@ -162,14 +162,14 @@ export default class AudioPlayerComponent extends BaseComponent<AudioPlayerData>
 
     this.backgroundPlane.setAttribute(
       'width',
-      this.data.size / 2 + outlineWidth + trueDescriptionWidth
+      this.data.size / 2 + 2 * outlineWidth + trueDescriptionWidth
     );
     this.backgroundPlane.setAttribute(
       'height',
       this.data.size + 2 * outlineWidth
     );
     this.backgroundPlane.setAttribute('position', {
-      x: (this.data.size / 2 + outlineWidth) / 2,
+      x: (this.data.size / 2 + 2 * outlineWidth) / 2,
     });
     this.backgroundPlane.setAttribute('visible', showDescription);
 

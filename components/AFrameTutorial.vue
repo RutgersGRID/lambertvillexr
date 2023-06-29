@@ -290,24 +290,28 @@ function getSegmentDescription(segment?: TutorialSegment) {
         <a-entity>
           <a-sphere
             ref="ballAbove"
+            radius="2"
             position="0 10 -5"
             visible="false"
             animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
           ></a-sphere>
           <a-sphere
             ref="ballLeft"
+            radius="2"
             position="-10 0 -5"
             visible="false"
             animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
           ></a-sphere>
           <a-sphere
             ref="ballRight"
+            radius="2"
             position="10 0 -5"
             visible="false"
             animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"
           ></a-sphere>
           <a-sphere
             ref="ballBelow"
+            radius="2"
             position="0 -10 -5"
             visible="false"
             animation__mouseenter="property: scale; startEvents: mouseenter; easing: easeInCubic; dur: 150; to: 0 0 0"

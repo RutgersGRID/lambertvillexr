@@ -22,30 +22,33 @@ async function loadSystems() {
     :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
+    <a-sun-sky
+      material="sunPosition: -0.2 4 -5"
+      three-layer="desktopLayers: 1"
+    ></a-sun-sky>
     <a-assets>
       <audio
         id="interview"
         :src="usePublic('assets/sites/site4/interview4.mp3')"
         preload="auto"
         title="Recovery Stories"
-        description="Listen to this audio clip to hear stories about the recover and resilience of the Lambertville following Hurricane Ida. "
+        description="Listen to this audio clip to hear stories about the recovery and resilience of the Lambertville following Hurricane Ida. "
       ></audio>
       <!-- Community Slide Show -->
       <img
         class="community-slide-show"
         :src="usePublic('assets/sites/site4/community/slide1.jpg')"
-        description="Volunteers getting together to discuss recovery plan."
+        description="Volunteers getting together to discuss a recovery plan."
       />
       <img
         class="community-slide-show"
         :src="usePublic('assets/sites/site4/community/slide4.jpg')"
-        description="Volunteers trying their best efforts to moblilize."
+        description="Volunteers moblilizing to clean up debris."
       />
       <img
         class="community-slide-show"
         :src="usePublic('assets/sites/site4/community/slide6.jpg')"
-        description="Lambertville Free Public library distributing food twice a week on wagons "
+        description="Free Public library of Lambertville distributing food twice a week on wagons."
       />
       <img
         class="community-slide-show"
@@ -55,12 +58,12 @@ async function loadSystems() {
       <img
         class="community-slide-show"
         :src="usePublic('assets/sites/site4/community/slide8.jpg')"
-        description="Flooding"
+        description="Flooding in Lmabertville."
       />
       <img
         class="community-slide-show"
         :src="usePublic('assets/sites/site4/community/slide10.jpg')"
-        description="After-effect"
+        description="Swan creek flooding."
       />
       <!-- Storymap Slide Show -->
       <img
@@ -95,7 +98,7 @@ async function loadSystems() {
     </a-assets>
 
     <a-music-radio></a-music-radio>
-    
+
     <!-- Content -->
     <a-entity rotation="0 0 0" position="0 1 0" three-layer="layers: 1">
       <!-- Storymap Slideshow -->
@@ -123,7 +126,7 @@ async function loadSystems() {
         <a-slide-show
           position="0 0 -8"
           image-query=".community-slide-show"
-          autoplay-duration="3000"
+          autoplay-duration="5000"
           autoplay="true"
         ></a-slide-show>
       </a-entity>
@@ -134,7 +137,7 @@ async function loadSystems() {
           height="3"
           position="0 0 -8"
           :title="title"
-          description="Interact with the slides and audio to learn about the history of Hibernia Firehouse."
+          description="Interact with the slides and audio to learn about the history of the Hibernia Firehouse."
         ></a-text-box>
       </a-entity>
     </a-entity>

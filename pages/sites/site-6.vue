@@ -23,7 +23,10 @@ async function loadSystems() {
     :start-title="title"
     start-description="Please press the start button below while facing this site's QR code."
   >
-    <a-sun-sky material="sunPosition: -0.2 4 -5" three-layer="desktopLayers: 1"></a-sun-sky>
+    <a-sun-sky
+      material="sunPosition: -0.2 4 -5"
+      three-layer="desktopLayers: 1"
+    ></a-sun-sky>
     <a-assets>
       <!-- <audio id="interview" :src="usePublic('assets/site6/interview6.mp3')"></audio> -->
       <audio
@@ -60,22 +63,22 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide4.jpg')"
-        description="High flood Hurricane Ida tide."
+        description="A high tide flood caused by Hurricane Ida."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide5.jpg')"
-        description="Peeking at the flood levels outside."
+        description="Viewing an ongoing flood from inside."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide7.jpg')"
-        description="A family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
+        description="The Rosso family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site6/slide8.jpg')"
-        description="Damage past flood"
+        description="Two houses at Curley Lane Blue Acres collapsed after flooding caused by Hurricane Ida."
       />
       <audio
         class="music"
@@ -99,7 +102,9 @@ async function loadSystems() {
       <a-gltf-model src="#Person5" position="5 -5 -45"></a-gltf-model>
       <a-gltf-model src="#Person6" position="7 -7 -65"></a-gltf-model>
     </a-entity>
-    
+
+    <!-- TODO NOW: Add description for text boxes -->
+
     <!-- Content -->
     <a-entity rotation="0 -90 0" three-layer="layers: 1">
       <!-- Interview Audio -->
@@ -108,6 +113,7 @@ async function loadSystems() {
           src="#interview"
           position="0 1.6 -8"
           title="Interview"
+          description-width="2.5"
         ></a-audio-player>
       </a-entity>
       <!-- Slideshow -->
@@ -126,7 +132,7 @@ async function loadSystems() {
         height="3"
         position="0 1.6 -8"
         :title="title"
-        description="Interact with the slides and audio to learn about the breaking down of houses at the Curley Lane Blue Acres."
+        description="Interact with the slides and audio to learn about the devastation caused by flooding at Curley Lane Blue Acres."
       ></a-text-box>
     </a-entity>
     <a-entity
