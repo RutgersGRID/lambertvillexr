@@ -74,9 +74,9 @@ async function loadSystems() {
     <!-- Content -->
     <a-entity position="0 1 0" three-layer="layers: 1">
       <!-- Slide show -->
-      <a-entity rotation="0 50 0">
+      <a-entity rotation="0 60 0">
         <a-slide-show
-          position="0 0 -8"
+          position="0 0 -6"
           height="6"
           width="8.95960311837"
           image-query=".slide-show"
@@ -84,7 +84,7 @@ async function loadSystems() {
         ></a-slide-show>
       </a-entity>
       <!-- Text box -->
-      <a-entity rotation="0 -60 0">
+      <a-entity rotation="0 -55 0">
         <a-text-box
           width="3"
           height="3"

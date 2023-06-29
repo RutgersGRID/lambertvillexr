@@ -147,45 +147,46 @@ async function loadSystems() {
 
       <!-- Content -->
       <a-entity rotation="0 -90 0" position="0 0 0">
-        <!-- Text -->
         <a-entity rotation="0 0 0">
+          <!-- Text -->
           <a-text-box
             width="3"
             height="3"
-            position="0 0 -8"
+            position="0 1.3 -6"
             title="Site 3"
             description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
           ></a-text-box>
+          <!-- Interview Audio -->
+          <a-audio-player
+            src="#interview"
+            position="-0.8 -1.4 -6"
+          ></a-audio-player>
         </a-entity>
         <!-- Video -->
         <a-entity rotation="0 -60 0">
           <a-playback-video
             src="#trash-video"
-            position="0 0 -8"
+            rotation="10 0 0"
+            position="0 3 -6"
           ></a-playback-video>
-        </a-entity>
-        <!-- Slideshow -->
-        <a-entity rotation="0 -125 0">
+          <!-- Slideshow -->
           <a-slide-show
-            position="0 0 -8"
+            rotation="-10 0 0"
+            position="0 -3 -6"
             image-query=".slide-show"
             autoplay="true"
           ></a-slide-show>
         </a-entity>
         <!-- Boat Text -->
-        <a-entity rotation="0 -180 0">
+        <a-entity rotation="0 -160 0">
           <a-text-box
             width="4"
             height="3"
-            position="0 0 -8"
-            title="Rising Tides"
-            description="During Hurricane Irene in 2011, the upstream balustrade was destroyed when, due to the rising waters in the creek, a boat crashed over the top of the bridge and landed in the street.\n\nA virtual recreation of the boat has been made at the crash site.\nClick on the virtual boat to view it up close."
+            position="0 0.75 -6"
+            title="Broken Bridge"
+            description="During Hurricane Irene in 2011, the upstream balustrade was destroyed when, due to the rising waters in the creek, a boat crashed over the top of the bridge and landed in the street.\n\nA virtual recreation of the boat has been made at the crash site. Click on the virtual boat to view it up close."
           >
           </a-text-box>
-        </a-entity>
-        <!-- Interview Audio -->
-        <a-entity rotation="0 -320 0">
-          <a-audio-player src="#interview" position="0 0 -8"></a-audio-player>
         </a-entity>
       </a-entity>
     </a-entity>
