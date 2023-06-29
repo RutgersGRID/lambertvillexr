@@ -55,6 +55,8 @@ Run
 npm run build
 ```
 
+The static website should be built inside of the `.output/public` folder.
+
 #### Settings
 
 The settings for building the website can be configured by environment variables.
@@ -63,6 +65,19 @@ The settings for building the website can be configured by environment variables
   - If set to `true`, then the demos will not be built. This should be enabled for production builds.
 - `META_URL`
   - If set, then all social media previews will link to this URL. This should be set for production builds.
+
+#### Site URLs
+
+Navigating to a site with `?ar=true` after its url will automatically enter AR mode when loaded. When making actual site QR codes, you should include this query text to the end of the site urls to ensure users are sent to AR mode immediately after they open the site from the QR code.
+
+```
+Ex.
+
+https://rutgersgrid.github.io/lambertvillexr/sites/site-1/?ar=true
+https://rutgersgrid.github.io/lambertvillexr/sites/site-2/?ar=true
+https://rutgersgrid.github.io/lambertvillexr/sites/site-3/?ar=true
+...
+```
 
 ### Credits
 
