@@ -119,7 +119,7 @@ async function loadSystems() {
       <a-entity rotation="0 120 0">
         <a-audio-player
           src="#interview"
-          position="0 0 -8"
+          position="0 -2.5 -8"
           title="Interview"
         ></a-audio-player>
       </a-entity>
@@ -140,6 +140,15 @@ async function loadSystems() {
           position="0 0 -8"
           :title="title"
           description="Interact with the slides and audio to learn about the history of the Hibernia Firehouse."
+        ></a-text-box>
+      </a-entity>
+      <a-entity rotation="0 120 0">
+        <a-text-box
+          width="5"
+          height="4.5"
+          position="0 1 -6"
+          title="Urbanization"
+          description="When Ida hit, floodwaters streamed over the bridge, filling the basement with four feet of water and destroying a large backstock of food.The City’s fire department, police department and local rescue squad answered nonstop emergency and evacuation calls during hurricane Ida and not a single life was lost due to their heroic efforts.On April 1, 2022, eighty community volunteers removed three tons of Ida-related debris from Swan Creek, including the remnants of an upright piano, the origin of which remains unknown."
         ></a-text-box>
       </a-entity>
     </a-entity>
