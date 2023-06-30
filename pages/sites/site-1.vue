@@ -61,7 +61,7 @@ async function loadSystems() {
         height="90"
         :src="usePublic('assets/sites/site1/drone-river.mp4')"
         crossorigin="anonymous"
-        title="Deleware River Canal"
+        title="Delaware River Canal"
         description="View a drone shot of the entire canal."
       ></video>
       <audio
