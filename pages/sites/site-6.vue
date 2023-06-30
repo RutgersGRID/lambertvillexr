@@ -106,26 +106,27 @@ async function loadSystems() {
     <a-sky
       src="#pano"
       three-layer="desktopLayers: 1"
-      rotation="11.7 130 0"
+      rotation="11.7 90 0"
     ></a-sky>
     <a-music-radio></a-music-radio>
 
-    <!-- People -->
-    <a-entity
-      material-override="color: black"
-      three-layer="layers: 1"
-      position="-50 0 -20"
-    >
-      <a-gltf-model src="#Person1" position="20 -12 0"></a-gltf-model>
-      <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
-      <a-gltf-model src="#Person3" position="34 -9 -25"></a-gltf-model>
-      <a-gltf-model src="#Person4" position="-4 -8 -35"></a-gltf-model>
-      <a-gltf-model src="#Person5" position="12 -5 -45"></a-gltf-model>
-      <a-gltf-model src="#Person6" position="3 -7 -65"></a-gltf-model>
-    </a-entity>
-
     <!-- Content -->
-    <a-entity rotation="0 50 0" position="0 1 0" three-layer="layers: 1">
+    <a-entity rotation="0 10 0" position="0 1 0" three-layer="layers: 1">
+      <!-- People -->
+      <a-entity rotation="0 -50 0">
+        <a-entity
+          material-override="color: black"
+          three-layer="layers: 1"
+          position="-50 0 -20"
+        >
+          <a-gltf-model src="#Person1" position="20 -12 0"></a-gltf-model>
+          <a-gltf-model src="#Person2" position="14 -6 -55"></a-gltf-model>
+          <a-gltf-model src="#Person3" position="34 -9 -25"></a-gltf-model>
+          <a-gltf-model src="#Person4" position="-4 -8 -35"></a-gltf-model>
+          <a-gltf-model src="#Person5" position="12 -5 -45"></a-gltf-model>
+          <a-gltf-model src="#Person6" position="3 -7 -65"></a-gltf-model>
+        </a-entity>
+      </a-entity>
       <!-- Interview Audio -->
       <a-entity rotation="0 -100 0">
         <a-audio-player

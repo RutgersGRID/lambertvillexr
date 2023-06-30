@@ -88,14 +88,14 @@ async function loadSystems() {
         <!-- Video -->
         <a-playback-video
           src="#drone-video"
-          position="0 3.4 -6"
-          rotation="10 0 0"
+          position="0 -2.7 -6"
+          rotation="-10 0 0"
         >
         </a-playback-video>
         <!-- Slide show -->
         <a-slide-show
-          position="0 -3 -6"
-          rotation="-10 0 0"
+          position="0 3.9 -6"
+          rotation="10 0 0"
           height="5.35738016136"
           width="8"
           image-query=".slide-show"
