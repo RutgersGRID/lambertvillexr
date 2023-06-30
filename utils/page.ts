@@ -31,11 +31,21 @@ export function getRouteName(route: RouteLocationNormalized | RouteRecordRaw) {
 
 export function useRouterCategories() {
   const router = useRouter();
+  const config = useRuntimeConfig();
 
   const routeCategories: RouteCategory[] = [
     {
       name: 'General',
-      routes: [],
+      routes: [
+        {
+          path: '/storymap',
+          redirect: config.public.storymapUrl,
+          meta: {
+            pageName: 'Storymap',
+            pageOrder: 1,
+          },
+        },
+      ],
     },
   ];
 

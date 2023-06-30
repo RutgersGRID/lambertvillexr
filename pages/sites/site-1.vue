@@ -100,6 +100,7 @@ async function loadSystems() {
           width="8"
           image-query=".slide-show"
           autoplay="true"
+          autoplay-duration="5000"
         ></a-slide-show>
       </a-entity>
       <!-- Text box -->

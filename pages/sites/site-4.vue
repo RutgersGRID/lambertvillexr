@@ -121,7 +121,7 @@ async function loadSystems() {
           width="5"
           height="4.5"
           position="0 1 -6"
-          title="Urbanization"
+          title="Community Recovery"
           description="When Ida hit, floodwaters streamed over the bridge, filling the basement with four feet of water and destroying a large backstock of food.The City’s fire department, police department and local rescue squad answered nonstop emergency and evacuation calls during hurricane Ida and not a single life was lost due to their heroic efforts.On April 1, 2022, eighty community volunteers removed three tons of Ida-related debris from Swan Creek, including the remnants of an upright piano, the origin of which remains unknown."
         ></a-text-box>
         <!-- Interview Audio -->
@@ -136,8 +136,8 @@ async function loadSystems() {
         <a-slide-show
           position="0 0 -6"
           image-query=".community-slide-show"
-          autoplay-duration="5000"
           autoplay="true"
+          autoplay-duration="5000"
         ></a-slide-show>
       </a-entity>
       <!-- Text box -->

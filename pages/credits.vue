@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  pageOrder: 2,
+  pageOrder: 3,
 });
 </script>
 

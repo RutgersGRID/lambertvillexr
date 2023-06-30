@@ -5,10 +5,15 @@ const { routeCategories } = useRouterCategories();
 
 function getCategoryNavLinks(category: RouteCategory) {
   return category.routes.map((x) => {
-    return {
+    let linkObj = <any>{
       label: getRouteName(x),
-      to: x.path,
     };
+    if (x.redirect) {
+      linkObj.click = () => {
+        if (typeof x.redirect === 'string') window.open(x.redirect);
+      };
+    } else linkObj.to = x.path;
+    return linkObj;
   });
 }
 </script>
@@ -22,7 +27,7 @@ function getCategoryNavLinks(category: RouteCategory) {
         :links="getCategoryNavLinks(category)"
         :ui="{
           wrapper: 'border-l border-gray-200 dark:border-gray-800 space-y-2',
-          base: 'group block border-l -ml-px lg:leading-6',
+          base: 'group block border-l -ml-px lg:leading-6 text-left',
           padding: 'pl-4 py-1',
           rounded: '',
           font: '',

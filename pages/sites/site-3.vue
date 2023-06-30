@@ -150,7 +150,7 @@ async function loadSystems() {
             width="3"
             height="3"
             position="0 1.3 -6"
-            title="Site 3"
+            title="Union Street Bridge"
             description="Interact with the videos and slides to learn about the impact of flooding on the South Union Street Bridge."
           ></a-text-box>
           <!-- Interview Audio -->
@@ -172,6 +172,7 @@ async function loadSystems() {
             position="0 -3 -6"
             image-query=".slide-show"
             autoplay="true"
+            autoplay-duration="5000"
           ></a-slide-show>
         </a-entity>
         <!-- Boat Text -->

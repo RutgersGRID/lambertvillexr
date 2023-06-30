@@ -155,6 +155,7 @@ async function loadSystems() {
           rotation="10 0 0"
           image-query=".landslide-slide-show"
           autoplay="true"
+          autoplay-duration="5000"
           description-height="3"
         ></a-slide-show>
         <!-- Storymap Slideshow -->
@@ -164,6 +165,7 @@ async function loadSystems() {
           image-query=".storymap-slide-show"
           show-controls="false"
           autoplay="true"
+          autoplay-duration="5000"
           description-height="3"
         ></a-slide-show>
         <!-- Video -->

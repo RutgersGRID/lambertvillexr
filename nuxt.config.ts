@@ -21,9 +21,19 @@ const url =
   process.env.META_URL ?? 'https://rutgersgrid.github.io/lambertvillexr/';
 console.log('\tUsing meta url: ', url);
 
+console.log('STORYMAP_URL', process.env.STORYMAP_URL);
+const storymapUrl =
+  process.env.STORYMAP_URL ??
+  'https://storymaps.arcgis.com/collections/4800927dd9144693894096d8de3def54?item=1';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+  runtimeConfig: {
+    public: {
+      storymapUrl,
+    },
+  },
   app: {
     head: {
       title: 'Flowing Together',

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   pageName: 'Home',
+  pageOrder: 0,
 });
 
 const heroVideo = ref<HTMLVideoElement>();

@@ -65,6 +65,8 @@ The settings for building the website can be configured by environment variables
   - If set to `true`, then the demos will not be built. This should be enabled for production builds.
 - `META_URL`
   - If set, then all social media previews will link to this URL. This should be set for production builds.
+- `STORYMAP_URL
+  - If set, then the story map url on the site will link to this URL. This should be set for production builds.
 
 #### Site URLs
 
