@@ -122,25 +122,22 @@ async function loadSystems() {
         click-move="toEntity: #close-boat-pos; spinOnToEntity: true"
       >
         <a-entity position="0 0.2 0" rotation="-5 -30 -20" scale="0.5 0.5 0.5">
-          <a-gltf-model
-            src="#boat"
-            position="5.422 -1.64306 8.59925"
-          ></a-gltf-model>
+          <a-gltf-model src="#boat" position="0 0 -5"></a-gltf-model>
         </a-entity>
         <a-gltf-model
           src="#debris"
-          position="0 -3 3"
-          scale="1.3 1.3 1.3"
+          position="0 -1 3"
+          scale="0.1 0.1 0.1"
         ></a-gltf-model>
         <a-gltf-model
           src="#debris"
-          position="0 -3 -3"
-          scale="1.3 1.3 1.3"
+          position="-0.5 -1 -3d"
+          scale="0.13 0.13 0.13"
         ></a-gltf-model>
         <a-gltf-model
           src="#slab"
           scale="0.5 0.5 0.5"
-          position="2.5 -1 1.5"
+          position="2.5 -1.3 1.5"
           rotation="0 50 0"
         ></a-gltf-model>
       </a-entity>
