@@ -59,7 +59,7 @@ async function loadSystems() {
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide1.png')"
-        description="Curley Lane Blue Acres site after the two houses were destoryed by flooding."
+        description="Curley Lane Blue Acres site after the two houses were destroyed by flooding."
       />
       <img
         class="render-slide-show"
@@ -75,7 +75,7 @@ async function loadSystems() {
       <img
         class="photo-slide-show"
         :src="usePublic('assets/sites/site6/photos/slide4.jpg')"
-        description="A high tide flood caused by Hurricane Ida."
+        description="A high-tide flood caused by Hurricane Ida."
       />
       <img
         class="photo-slide-show"
@@ -85,7 +85,7 @@ async function loadSystems() {
       <img
         class="photo-slide-show"
         :src="usePublic('assets/sites/site6/photos/slide7.jpg')"
-        description="The Rosso family bought the home in 1920 and held it for 103 years until the Ida's flooding tore it down."
+        description="The Rosso family bought the home in 1920 and held it for 103 years until Hurricane Ida tore it down."
       />
       <img
         class="photo-slide-show"

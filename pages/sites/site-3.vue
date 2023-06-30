@@ -31,7 +31,7 @@ async function loadSystems() {
         height="90"
         :src="usePublic('assets/sites/site3/trash-video.mp4')"
         crossorigin="anonymous"
-        description="View the cleanup efforts after Hurricane Ida"
+        description="View the cleanup efforts after Hurricane Ida."
       ></video>
       <audio
         id="interview"
@@ -56,42 +56,42 @@ async function loadSystems() {
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide3.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide5.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide7.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide8.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide9.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide10.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide11.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img
         class="slide-show"
         :src="usePublic('assets/sites/site3/slide14.jpg')"
-        description="Post-Ida Damage"
+        description="Post-Ida Damage."
       />
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <audio
