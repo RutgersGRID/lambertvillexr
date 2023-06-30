@@ -53,6 +53,17 @@ async function loadSystems() {
         description="Before and after of 41 Quarry St."
       />
       <img id="pano" :src="usePublic('assets/sites/site1/pano.jpg')" />
+      <video
+        id="drone-video"
+        preload="auto"
+        loop="true"
+        width="160"
+        height="90"
+        :src="usePublic('assets/sites/site1/drone-river.mp4')"
+        crossorigin="anonymous"
+        title="Deleware River Canal"
+        description="View a drone shot of the entire canal."
+      ></video>
       <audio
         class="music"
         :src="usePublic('assets/music/end-poem-smooth.wav')"
@@ -73,12 +84,20 @@ async function loadSystems() {
 
     <!-- Content -->
     <a-entity position="0 1 0" three-layer="layers: 1">
-      <!-- Slide show -->
       <a-entity rotation="0 60 0">
+        <!-- Video -->
+        <a-playback-video
+          src="#drone-video"
+          position="0 3.4 -6"
+          rotation="10 0 0"
+        >
+        </a-playback-video>
+        <!-- Slide show -->
         <a-slide-show
-          position="0 0 -6"
-          height="6"
-          width="8.95960311837"
+          position="0 -3 -6"
+          rotation="-10 0 0"
+          height="5.35738016136"
+          width="8"
           image-query=".slide-show"
           autoplay="true"
         ></a-slide-show>
