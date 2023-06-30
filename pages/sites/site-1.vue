@@ -120,7 +120,7 @@ async function loadSystems() {
           height="4.5"
           position="0 1.5 -6"
           title="Humble Beginnings"
-          description="Looking toward the river, try to imagine a small, flat-bottomed ferry carrying horses, people and goods from the eastern bank of the Delaware to the other side. From about 1732, this was Coryell’s Ferry. There was no canal —only a narrow creek tumbling to the river, a few humble dwellings and one or two commercial establishments."
+          description="Looking toward the river, try to imagine a small, flat-bottomed ferry carrying horses, people and goods from the eastern bank of the Delaware to the other side. From about 1732, this was Coryell’s Ferry. There was no canal — only a narrow creek tumbling to the river, a few humble dwellings and one or two commercial establishments."
         ></a-text-box>
       </a-entity>
       <a-entity rotation="0 -10 0">

@@ -64,12 +64,12 @@ async function loadSystems() {
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide2.png')"
-        description="Curley Lane Blue Acres site reimagined with native plantings."
+        description="Curley Lane Blue Acres site reimagined as a naturalized park."
       />
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide3.png')"
-        description="Curley Lane Blue Acres site reimagined as a naturalized park."
+        description="Curley Lane Blue Acres site reimagined with native plantings."
       />
       <!-- Photo Slide Show -->
       <img
