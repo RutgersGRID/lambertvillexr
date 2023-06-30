@@ -1,1 +1,0 @@
-import{a}from"./AFrameScene.vue.9408110a.js";import{a as e,c as n,o as r,s as c}from"./entry.8c311a48.js";import"./usePublic.83501689.js";const f=e({__name:"tutorial",setup(s){function o(){c("/")}return(i,_)=>{const t=a;return r(),n(t,{onFinished:o,"force-tutorial":!0})}}});export{f as default};
