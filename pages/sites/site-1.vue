@@ -19,7 +19,7 @@ async function loadSystems() {
   <AFrameScene
     :load-systems="loadSystems"
     :start-title="title"
-    start-description="Please press the start button below while facing this site's QR code."
+    start-description="If you're at the site, please press the start button while facing the Delaware Canal. Otherwise, just press the start button."
   >
     <a-assets>
       <img
