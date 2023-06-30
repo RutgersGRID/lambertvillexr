@@ -131,22 +131,20 @@ async function loadSystems() {
             ></AFrameTreeGroup>
           </a-entity>
         </a-entity>
-        <!-- Tree TextBox -->
-        <a-text-box
-          width="5.5"
-          height="3"
-          position="0 -1.5 -6"
-          title="Green Infrastructure"
-          description="During Hurricane Ida in 2021, a significant landslide occurred at this steep slope, bringing down large trees, crushing vehicles and narrowly missing homes. \n\nAfter clearing the debris, the City and community replanted numerous native trees, and shrubs to restore the landscape and prevent future landslides. \n\nThe virtual recreation on the left visualizes the future of the landslide zone as the newly planted vegetation takes root."
-        ></a-text-box>
         <!-- Textbox -->
         <a-text-box
           width="3"
           height="3"
-          position="1 1.5 -6"
+          position="0 1 -6"
           :title="title"
           description="Interact with the slides and view the tree growth visualization to learn about the past and future of Quarry Street Lane."
         ></a-text-box>
+        <!-- Video -->
+        <a-playback-video
+          src="#tree"
+          position="0 -3 -6"
+          rotation="-10 0 0"
+        ></a-playback-video>
       </a-entity>
       <a-entity rotation="0 -80 0">
         <!-- Landslide Slideshow -->
@@ -168,9 +166,16 @@ async function loadSystems() {
           autoplay-duration="5000"
           description-height="3"
         ></a-slide-show>
-        <!-- Video -->
-        <a-entity rotation="0 -80 0">
-          <a-playback-video src="#tree" position="0 0 -6"></a-playback-video>
+        <!-- Textbox -->
+        <a-entity rotation="0 -110 0">
+          <!-- Tree TextBox -->
+          <a-text-box
+            width="5.5"
+            height="3"
+            position="0 0 -6"
+            title="Green Infrastructure"
+            description="During Hurricane Ida in 2021, a significant landslide occurred at this steep slope, bringing down large trees, crushing vehicles and narrowly missing homes. \n\nAfter clearing the debris, the City and community replanted numerous native trees, and shrubs to restore the landscape and prevent future landslides. \n\nThe virtual recreation on the right visualizes the future of the landslide zone as the newly planted vegetation takes root."
+          ></a-text-box>
         </a-entity>
       </a-entity>
     </a-entity>

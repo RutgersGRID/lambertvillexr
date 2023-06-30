@@ -12,7 +12,6 @@ const THREE = AFRAME.THREE;
 export type ThreeWaterLevelButtonData = {
   waterLevel: number;
   unit: 'feet' | 'meter';
-  title: string;
 };
 
 @component('three-water-level-button')
@@ -20,11 +19,9 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
   static schema: Schema<ThreeWaterLevelButtonData> = {
     waterLevel: { default: 0 },
     unit: { default: 'feet' },
-    title: { default: 'title' },
   };
 
   textButton?: Entity;
-  titleElem?: Entity;
 
   init() {
     const size = 1;
@@ -45,27 +42,7 @@ export class ThreeWaterLevelButtonComponent extends BaseComponent<ThreeWaterLeve
       });
     });
 
-    this.titleElem = document.createEntity('a-troika-text');
-    this.titleElem.setAttribute(
-      'font',
-      usePublic('assets/fonts/Raleway/Raleway-Bold.ttf')
-    );
-    this.titleElem.setAttribute('width', size);
-    this.titleElem.setAttribute('fontSize', 0.2);
-    this.titleElem.setAttribute('align', 'center');
-    this.titleElem.setAttribute('position', {
-      x: 0,
-      y: size / 2 + 0.2,
-      z: 0,
-    });
-
     this.el.appendChild(this.textButton);
-    this.el.appendChild(this.titleElem);
-  }
-
-  update() {
-    if (!this.titleElem) return;
-    this.titleElem.setAttribute('value', this.data.title);
   }
 
   feetToMeters(feet: number) {

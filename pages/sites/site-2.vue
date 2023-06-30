@@ -23,34 +23,21 @@ function getWaterLevelFromCrest(crest: number) {
   return crest - 12;
 }
 
-const waterLevels: { date: string; crest: number }[] = [
+const waterLevels: { level: number }[] = [
   {
-    date: 'January 1841',
-    crest: 17.9,
+    level: 1,
   },
   {
-    date: 'October 1903',
-    crest: 31.08,
+    level: 2,
   },
   {
-    date: 'March 1936',
-    crest: 17.89,
+    level: 3,
   },
   {
-    date: 'August 1955',
-    crest: 24.16,
+    level: 5,
   },
   {
-    date: 'September 2004',
-    crest: 16.5,
-  },
-  {
-    date: 'April 2005',
-    crest: 20,
-  },
-  {
-    date: 'June 2006',
-    crest: 19.08,
+    level: 7,
   },
 ];
 
@@ -247,7 +234,7 @@ const currentSlide = ref(0);
             height="3"
             position="0 2.5 -6"
             :title="title"
-            description="Click on the buttons below to view water levels at the Pittore Justice center during various flooding events. A virtual model of a street is displayed on the right for reference."
+            description="Click on the buttons below to view various hypothetical water levels during a flood. A virtual model of a street is displayed on the right for reference."
           ></a-text-box>
         </a-entity>
 
@@ -256,9 +243,9 @@ const currentSlide = ref(0);
           <a-slide-show
             position="0 5 -6"
             image-query=".timeline-photo"
-            show-controls="false"
+            show-controls="true"
             description-height="2"
-            :current-slide="currentSlide"
+            current-slide="0"
           ></a-slide-show>
         </a-entity>
 
@@ -271,11 +258,12 @@ const currentSlide = ref(0);
         </a-entity>
         <a-cylinder
           color="black"
-          height="2"
+          position="0 -0.1 0"
+          height="1.8"
           radius="5.2"
           transparent="true"
           opacity="0.75"
-          theta-start="50"
+          :theta-start="waterLevels.length * 20 - 10"
           :theta-length="20 * (waterLevels.length - 1 + 2)"
           open-ended="true"
           side="double"
@@ -286,7 +274,7 @@ const currentSlide = ref(0);
           height="0.05"
           radius="5.2"
           transparent="true"
-          theta-start="60"
+          :theta-start="waterLevels.length * 20"
           :theta-length="20 * (waterLevels.length - 1)"
           open-ended="true"
           side="double"
@@ -297,12 +285,10 @@ const currentSlide = ref(0);
           :rotation="`0 ${index * -20} 0`"
         >
           <a-three-water-level-button
-            :water-level="getWaterLevelFromCrest(waterLevel.crest)"
+            :water-level="waterLevel.level"
             unit="feet"
-            :title="waterLevel.date"
             position="0 0 -5"
             rotation="-20 0 0 "
-            @click="currentSlide = index"
           ></a-three-water-level-button>
         </a-entity>
       </a-entity>
