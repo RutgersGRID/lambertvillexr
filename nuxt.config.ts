@@ -37,7 +37,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Flowing Together',
-      titleTemplate: '%s | Flowing Together',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
