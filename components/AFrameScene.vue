@@ -119,7 +119,9 @@ onMounted(async () => {
   if (props.loadSystems) await props.loadSystems();
   aframeLoaded.value = true;
 
-  musicEnabled.value = localStorage.getItem('music-enabled') == 'true';
+  const localMusicEnabled = localStorage.getItem('music-enabled');
+  musicEnabled.value =
+    localMusicEnabled === null ? true : localMusicEnabled === 'true';
 });
 
 function onSceneEntered(userClicked: boolean) {
