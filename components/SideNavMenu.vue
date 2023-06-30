@@ -16,6 +16,15 @@ function getCategoryNavLinks(category: RouteCategory) {
     return linkObj;
   });
 }
+
+const alanLink = ref<HTMLElement>();
+const andSpan = ref<HTMLSpanElement>();
+
+onMounted(() => {
+  if (!andSpan.value || !alanLink.value) return;
+  andSpan.value.innerHTML = ' and ';
+  alanLink.value.innerHTML = 'Alan Tong&ZeroWidthSpace;';
+});
 </script>
 
 <template>
@@ -43,12 +52,13 @@ function getCategoryNavLinks(category: RouteCategory) {
     <div class="text-xs text-gray-400 dark:text-gray-400">
       Made by
       <a
+        ref="alanLink"
         href="https://www.linkedin.com/in/alantong88/"
         class="text-gray-600 dark:text-gray-200 underline"
       >
         Alan Tong
       </a>
-      and
+      <span ref="andSpan"> </span>
       <a
         href="https://www.linkedin.com/in/dhawal15/"
         class="text-gray-600 dark:text-gray-200 underline"
