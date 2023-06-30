@@ -16,7 +16,7 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
   static schema: Schema<MusicRadioComponentData> = {
     musicQuery: { default: '.music' },
     shuffle: { default: true },
-    volume: { default: 0.2 },
+    volume: { default: 0.4 },
     enabled: { default: true },
   };
 
