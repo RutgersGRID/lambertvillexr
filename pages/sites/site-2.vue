@@ -72,14 +72,14 @@ const currentSlide = ref(0);
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Jan1841.jpg')"
         title="Janurary 1841"
-        description="The first major flood recorded. Half of the wooden Lambertville - New Hope Bridge was swept away."
+        description="In the first major flood recorded, half of the wooden Lambertville-New Hope Bridge was swept away."
       />
       <img
         id="Oct1903"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Oct1903.jpg')"
         title="October 1903"
-        description="The rebuilt Lambertville - New Hope bridge was destroyed again by a new flood."
+        description="The rebuilt Lambertville-New Hope bridge was destroyed again by a new flood."
       />
       <img
         id="Mar1936"
@@ -93,14 +93,14 @@ const currentSlide = ref(0);
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Aug1955.jpg')"
         title="August 2005"
-        description="Hurricances Diane and Connie brought excess rainfall and winds. The Point Pleasant bridge was destroyed and was never rebuilt again."
+        description="Hurricances Diane and Connie brought excess rainfall and winds. The Point Pleasant bridge was destroyed and never rebuilt again."
       />
       <img
         id="Sept2004"
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Sept2004.jpg')"
         title="September 2004"
-        description="The remnants of Hurricane Ivan combined with a cold front produced excess rainfall across New Jersey."
+        description="The remnants of Hurricane Ivan, combined with a cold front, produced excess rainfall across New Jersey."
       />
       <img
         id="Apr2005"
@@ -114,7 +114,7 @@ const currentSlide = ref(0);
         class="timeline-photo"
         :src="usePublic('assets/sites/site2/flood-images/Jun2006.jpg')"
         title="June 2006"
-        description="A month of above-avaerage rainfall combined with a slow moving storm created the perfect flood conditions."
+        description="A month of above-average rainfall combined with a slow-moving storm created the perfect flood conditions."
       />
       <img id="pano" :src="usePublic('assets/sites/site3/pano.jpg')" />
       <a-asset-item
