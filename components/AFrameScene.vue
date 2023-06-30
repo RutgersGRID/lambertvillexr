@@ -42,7 +42,7 @@ if (arMode.value === undefined) {
 }
 
 const musicRadio = ref<Entity>();
-const musicEnabled = ref(true);
+const musicEnabled = ref<boolean>();
 
 function updateArMode() {
   if (!webcamVideo.value || !scene.value) return;
@@ -119,7 +119,7 @@ onMounted(async () => {
   if (props.loadSystems) await props.loadSystems();
   aframeLoaded.value = true;
 
-  musicRadio.value = document.querySelector('[music-radio]');
+  musicEnabled.value = localStorage.getItem('music-enabled') == 'true';
 });
 
 function onSceneEntered(userClicked: boolean) {
@@ -145,6 +145,9 @@ function onSceneEntered(userClicked: boolean) {
 
     webcamVideo.value.play();
   }
+  musicRadio.value = document.querySelector('[music-radio],a-music-radio');
+  if (musicRadio.value)
+    musicRadio.value.setAttribute('music-radio', 'enabled', musicEnabled.value);
   emit('sceneEntered');
   scene.value.setAttribute('scene-entered', true);
   scene.value.emit('scene-entered');
@@ -160,11 +163,11 @@ function toggleArMode() {
 }
 
 function toggleMusic() {
-  musicRadio.value = document.querySelector('[music-radio]');
   if (!musicRadio.value) return;
 
   musicEnabled.value = !musicEnabled.value;
   musicRadio.value.setAttribute('music-radio', 'enabled', musicEnabled.value);
+  localStorage.setItem('music-enabled', musicEnabled.value ? 'true' : 'false');
 }
 </script>
 

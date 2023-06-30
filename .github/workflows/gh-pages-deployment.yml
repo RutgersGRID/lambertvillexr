@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 env:
+  HIDE_DEMOS: true
   NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 
 jobs:

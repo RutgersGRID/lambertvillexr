@@ -78,7 +78,7 @@ export class MusicRadioComponent extends BaseComponent<MusicRadioComponentData> 
 
   onSceneEntered() {
     this.setupMediaElemListeners();
-    this.startSong();
+    if (this.data.enabled) this.startSong();
     this.initialAudioSetup = true;
   }
 
