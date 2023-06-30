@@ -246,6 +246,8 @@ const currentSlide = ref(0);
             show-controls="true"
             description-height="2"
             current-slide="0"
+            autoplay="true"
+            autoplay-duration="5000"
           ></a-slide-show>
         </a-entity>
 
