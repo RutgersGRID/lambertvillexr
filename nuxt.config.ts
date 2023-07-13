@@ -18,7 +18,8 @@ const description =
 const image = '/assets/images/header.jpg';
 console.log('META_URL: ', process.env.META_URL);
 const url =
-  process.env.META_URL ?? 'https://flowingtogether.lambertvillenj.org/';
+  process.env.META_URL ??
+  'https://flowingtogether.lambertvillenj.org/lambertvillexr/';
 console.log('\tUsing meta url: ', url);
 
 console.log('STORYMAP_URL', process.env.STORYMAP_URL);
