@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const title = 'Curley Lane Blue Acres';
+const title = 'Curley Lane';
 definePageMeta({
-  pageName: 'Curley Lane Blue Acres',
+  pageName: 'Curley Lane',
 });
 
 async function loadSystems() {
@@ -59,17 +59,17 @@ async function loadSystems() {
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide1.png')"
-        description="Curley Lane Blue Acres site after the two houses were destroyed by flooding."
+        description="Curley Lane site after the two houses were destroyed by flooding."
       />
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide2.png')"
-        description="Curley Lane Blue Acres site reimagined as a naturalized park."
+        description="Curley Lane site reimagined as a naturalized park."
       />
       <img
         class="render-slide-show"
         :src="usePublic('assets/sites/site6/renders/slide3.png')"
-        description="Curley Lane Blue Acres site reimagined with native plantings."
+        description="Curley Lane site reimagined with native plantings."
       />
       <!-- Photo Slide Show -->
       <img
@@ -90,7 +90,7 @@ async function loadSystems() {
       <img
         class="photo-slide-show"
         :src="usePublic('assets/sites/site6/photos/slide8.jpg')"
-        description="Two houses at Curley Lane Blue Acres collapsed after flooding caused by Hurricane Ida."
+        description="Two houses at Curley Lane collapsed after flooding caused by Hurricane Ida."
       />
       <audio
         class="music"

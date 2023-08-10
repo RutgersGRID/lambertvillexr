@@ -7,7 +7,8 @@ on:
 
 env:
   HIDE_DEMOS: true
-  NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+  NUXT_APP_BASE_URL: '/'
+  #NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 
 jobs:
   build:
