@@ -45,7 +45,7 @@ onMounted(() => {
       <h1>Flowing Together</h1>
       <p>
         Welcome to the Lambertville Flowing Together virtual tour site! <br />
-        Please use the navigation below to view each site.
+        Please use the navigation menu icon or the sidebar to view each site.
       </p>
     </div>
   </div>
